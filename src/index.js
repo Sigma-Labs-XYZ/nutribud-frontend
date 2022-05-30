@@ -1,16 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Home from "./Home/Home.js";
+import Home from "./Home/Home";
+import LoginPage from "./LoginPage/LoginPage";
+import SignupPage from "./SignupPage/SignupPage";
+import Settings from "./Settings/Settings";
+import Profile from "./Profile/Profile";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/sign-up" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/sign-up" element={<SignupPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/settings" element={<Settings />} />
     </Routes>
