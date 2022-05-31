@@ -13,10 +13,10 @@ export default function LoginForm(props) {
   const networking = new Networking();
 
   async function handleSubmitClick() {
-    const sessionID = await networking.userLoginAttempt(username, password);
-    if (sessionID.error) setError(true);
-    else if (sessionID) {
-      await logUserIn(sessionID);
+    const response = await networking.userLoginAttempt(username, password);
+    if (response.error) setError(true);
+    else {
+      await logUserIn(response.response);
       //   navigate("/");
     }
   }
@@ -58,9 +58,7 @@ export default function LoginForm(props) {
         <div className="error-message">{displayError()}</div>
       </form>
       <div className="signup-link">
-        <a href="http://localhost:3000/sign-up">
-          Don't have an account yet? Sign up here!
-        </a>
+        <a href="http://localhost:3000/sign-up">Don't have an account yet? Sign up here!</a>
       </div>
     </div>
   );

@@ -1,21 +1,21 @@
 export default class Networking {
-  async createAccount(username, password) {
-    const response = await fetch("/register", {
+  async createAccount(username, password, passwordConfirmation) {
+    const userRegistrationDetails = { username, password, passwordConfirmation };
+    const response = await fetch("http://localhost:8080/register", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: {
-        username: username,
-        password: password,
-      },
+      body: JSON.stringify(userRegistrationDetails),
     });
+    const data = await response.json();
+    return data;
   }
 
   async userLoginAttempt(username, password) {
     const userLoginDetails = { username, password };
-
-    const response = await fetch(`/login`, {
+    const response = await fetch(`http://localhost:8080/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -24,7 +24,6 @@ export default class Networking {
       body: JSON.stringify(userLoginDetails),
     });
     const data = await response.json();
-    if (data.response) return data.response;
-    else if (data.error) return data;
+    return data;
   }
 }

@@ -5,8 +5,7 @@ import Networking from "../Networking";
 export default function SignupForm(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [passwordConfirmationInput, setPasswordConfirmationInput] =
-    useState("");
+  const [passwordConfirmationInput, setPasswordConfirmationInput] = useState("");
   const [accountCreationAttempts, setAccountCreationAttempts] = useState(0);
   const [accountCreationSuccess, setAccountCreationSuccess] = useState(false);
 
@@ -16,13 +15,8 @@ export default function SignupForm(props) {
 
   async function handleSubmit(e) {
     if (passwordInput === passwordConfirmationInput) {
-      const response = await networking.createAccount(
-        usernameInput,
-        passwordInput
-      );
-      response.error
-        ? setAccountCreationSuccess(false)
-        : setAccountCreationSuccess(true);
+      const response = await networking.createAccount(usernameInput, passwordInput, passwordConfirmationInput);
+      response.error ? setAccountCreationSuccess(false) : setAccountCreationSuccess(true);
       setAccountCreationAttempts(accountCreationAttempts + 1);
     }
   }
@@ -83,14 +77,11 @@ export default function SignupForm(props) {
             Create account
           </Button>
         </div>
-        <div className="account-creation-success-error-message">
-          {displayResponseMessage()}
-        </div>
+        <div className="account-creation-success-error-message">{displayResponseMessage()}</div>
       </form>
       <div className="login-link">
         <p>
-          Already have an account? Login{" "}
-          <a href="http://localhost:3000/login"> here</a>!
+          Already have an account? Login <a href="http://localhost:3000/login"> here</a>!
         </p>
       </div>
     </div>
