@@ -9,6 +9,7 @@ import Profile from "./Profile/Profile";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@emotion/react";
 
 let theme = createTheme({
   palette: {
@@ -19,19 +20,24 @@ let theme = createTheme({
       main: "#FFFFFF",
     },
   },
+  typography: {
+    fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home theme={theme} />} />
-      <Route path="/sign-up" element={<SignupPage theme={theme} />} />
-      <Route path="/login" element={<LoginPage theme={theme} />} />
-      <Route path="/profile" element={<Profile theme={theme} />} />
-      <Route path="/settings" element={<Settings theme={theme} />} />
-    </Routes>
-  </Router>
+  <ThemeProvider theme={theme}>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </Router>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
