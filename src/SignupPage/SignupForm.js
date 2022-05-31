@@ -81,7 +81,7 @@ export default function SignupForm(props) {
       </form>
       <div className="login-link">
         <p>
-          Already have an account? Login <a href="http://localhost:3000/login"> here</a>!
+          Already have an account? Login <a href={`${process.env.FRONTEND_LINK}/login`}> here</a>!
         </p>
       </div>
     </div>

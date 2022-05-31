@@ -36,12 +36,7 @@ export default function LoginForm(props) {
           padding: 8,
         }}
       >
-        <Typography
-          variant="h4"
-          className="title"
-          textAlign="center"
-          margin={2}
-        >
+        <Typography variant="h4" className="title" textAlign="center" margin={2}>
           NutriBud
         </Typography>
         <form className="login-user">
@@ -73,8 +68,7 @@ export default function LoginForm(props) {
 
       <div className="signup-link">
         <p>
-          Don't have an account yet? Sign up{" "}
-          <a href="http://localhost:3000/sign-up">here</a>!
+          Don't have an account yet? Sign up <a href={`${process.env.FRONTEND_LINK}/sign-up`}>here</a>!
         </p>
       </div>
     </div>
