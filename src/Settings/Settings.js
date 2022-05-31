@@ -1,3 +1,4 @@
+import React from "react";
 import "./Settings.css";
 import { ThemeProvider } from "@emotion/react";
 

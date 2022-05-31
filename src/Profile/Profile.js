@@ -1,3 +1,4 @@
+import React from "react";
 import "./Profile.css";
 import { ThemeProvider } from "@emotion/react";
 
