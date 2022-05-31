@@ -81,7 +81,7 @@ export default function SignupForm(props) {
       </form>
       <div className="login-link">
         <p>
-          Already have an account? Login <a href={`${process.env.FRONTEND_LINK}/login`}> here</a>!
+          Already have an account? Login <a href="https://nutribud-frontend.sigmalabs.co.uk/login"> here</a>!
         </p>
       </div>
     </div>
