@@ -1,0 +1,50 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 5%;
+}
+
+.page-title {
+  color: rgb(3, 164, 0);
+  /* text-decoration: underline; */
+}
+
+.username-wrapper {
+  flex-direction: column;
+  text-align: center;
+  padding: 2%;
+  justify-content: center;
+}
+
+.password-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  justify-content: center;
+}
+
+.password-box {
+  display: flex;
+  padding: 1.5%;
+  margin: 1%;
+  justify-content: center;
+}
+
+.page-wrapper {
+  margin-top: 15%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.account-creation-success-error-message {
+  justify-content: center;
+  margin: 2.5%;
+}
