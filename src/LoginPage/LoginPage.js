@@ -1,11 +1,12 @@
 import "./LoginPage.css";
 import { ThemeProvider } from "@emotion/react";
+import LoginForm from "./LoginForm";
 
 export default function LoginPage(props) {
   return (
     <div>
       <ThemeProvider theme={props.theme}>
-        {/* component(s) goes here */}
+        <LoginForm />
       </ThemeProvider>
     </div>
   );

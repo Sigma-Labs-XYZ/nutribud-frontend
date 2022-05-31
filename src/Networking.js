@@ -11,4 +11,20 @@ export default class Networking {
       },
     });
   }
+
+  async userLoginAttempt(username, password) {
+    const userLoginDetails = { username, password };
+
+    const response = await fetch(`/login`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userLoginDetails),
+    });
+    const data = await response.json();
+    if (data.response) return data.response;
+    else if (data.error) return data;
+  }
 }
