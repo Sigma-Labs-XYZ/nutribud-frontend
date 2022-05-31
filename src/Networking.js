@@ -1,7 +1,7 @@
 export default class Networking {
   async createAccount(username, password, passwordConfirmation) {
     const userRegistrationDetails = { username, password, passwordConfirmation };
-    const response = await fetch("http://localhost:8080/register", {
+    const response = await fetch(`${process.env.URL}/register`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -15,7 +15,7 @@ export default class Networking {
 
   async userLoginAttempt(username, password) {
     const userLoginDetails = { username, password };
-    const response = await fetch(`http://localhost:8080/login`, {
+    const response = await fetch(`${process.env.URL}/login`, {
       method: "POST",
       credentials: "include",
       headers: {
