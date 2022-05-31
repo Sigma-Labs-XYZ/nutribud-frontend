@@ -1,6 +1,10 @@
 import "./Home.css";
-import { ThemeProvider } from "@emotion/react";
+import Header from "../GlobalComponents/Header/Header";
 
 export default function Home(props) {
-  return <div></div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }

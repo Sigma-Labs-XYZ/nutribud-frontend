@@ -1,10 +1,10 @@
 import "./Settings.css";
-import { ThemeProvider } from "@emotion/react";
+import Header from "../GlobalComponents/Header/Header";
 
 export default function Settings(props) {
   return (
     <div>
-      <ThemeProvider theme={props.theme}>{/* stuff goes here */}</ThemeProvider>
+      <Header />
     </div>
   );
 }

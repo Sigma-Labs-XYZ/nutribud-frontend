@@ -1,14 +1,13 @@
 import "./SignupPage.css";
 import React from "react";
 import SignupForm from "./SignupForm";
-import { ThemeProvider } from "@emotion/react";
+import Header from "../GlobalComponents/Header/Header";
 
 export default function SignupPage(props) {
   return (
     <div>
-      <ThemeProvider theme={props.theme}>
-        <SignupForm />
-      </ThemeProvider>
+      <Header />
+      <SignupForm />
     </div>
   );
 }
