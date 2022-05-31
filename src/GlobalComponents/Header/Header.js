@@ -63,6 +63,7 @@ export default function Header() {
   }
 
   async function handleLogoutClick() {
+    console.log("ran");
     await networking.logout();
   }
 
@@ -202,10 +203,7 @@ export default function Header() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <FitnessCenterIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-              color="secondary"
-            />
+            <FitnessCenterIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} color="secondary" />
             <Typography
               variant="h6"
               noWrap
@@ -255,9 +253,7 @@ export default function Header() {
                 {renderPageButtonsSmallPage()}
               </Menu>
             </Box>
-            <FitnessCenterIcon
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-            />
+            <FitnessCenterIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
