@@ -1,10 +1,7 @@
 export default class Networking {
   async createAccount(username, password, passwordConfirmation) {
-    const userRegistrationDetails = {
-      username,
-      password,
-      passwordConfirmation,
-    };
+    const userRegistrationDetails = { username, password, passwordConfirmation };
+
     const response = await fetch(`${process.env.URL}/register`, {
       method: "POST",
       credentials: "include",
@@ -19,7 +16,8 @@ export default class Networking {
 
   async userLoginAttempt(username, password) {
     const userLoginDetails = { username, password };
-    const response = await fetch(`${process.env.URL}/register`, {
+    const response = await fetch(`${process.env.URL}/login`, {
+
       method: "POST",
       credentials: "include",
       headers: {
@@ -32,7 +30,7 @@ export default class Networking {
   }
 
   async verifyUserSession() {
-    const response = await fetch(`${process.env.URL}/register`, {
+    const response = await fetch(`${process.env.URL}/login`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -43,7 +41,7 @@ export default class Networking {
   }
 
   async logout() {
-    const response = await fetch(`${process.env.URL}/register`, {
+    const response = await fetch(`${process.env.URL}/login`, {
       method: "DELETE",
       credentials: "include",
 
