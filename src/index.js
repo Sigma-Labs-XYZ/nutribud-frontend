@@ -8,16 +8,28 @@ import Settings from "./Settings/Settings";
 import Profile from "./Profile/Profile";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createTheme } from "@mui/material/styles";
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: "#6acc01",
+    },
+    secondary: {
+      main: "#6301cc",
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/sign-up" element={<SignupPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route path="/" element={<Home theme={theme} />} />
+      <Route path="/sign-up" element={<SignupPage theme={theme} />} />
+      <Route path="/login" element={<LoginPage theme={theme} />} />
+      <Route path="/profile" element={<Profile theme={theme} />} />
+      <Route path="/settings" element={<Settings theme={theme} />} />
     </Routes>
   </Router>
 );
