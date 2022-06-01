@@ -1,0 +1,10 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 0%;
+}
+
+.TabSelector {
+  justify-content: center;
+}
