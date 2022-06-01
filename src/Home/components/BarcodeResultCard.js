@@ -13,7 +13,6 @@ import Networking from "../../Networking";
 
 export default function BarcodeResultCard(props) {
   const nutriments = props.data.nutriments;
-  console.log(props.data);
 
   const networking = new Networking();
 
@@ -61,7 +60,10 @@ export default function BarcodeResultCard(props) {
                   component="div"
                   sx={{ padding: "4px" }}
                 >
-                  {nutriments["energy-kcal_100g"]} Kcal
+                  {nutriments["energy-kcal_100g"]
+                    ? nutriments["energy-kcal_100g"]
+                    : nutriments["energy_100g"]}{" "}
+                  {nutriments["energy_unit"]}
                 </Typography>
               </Paper>
             </Box>

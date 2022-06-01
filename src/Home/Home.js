@@ -19,11 +19,12 @@ export default function Home(props) {
   const [tab, setTab] = useState("Product name");
   const [auth, setAuth] = useState(false);
   const [textInput, setTextInput] = useState("");
-  const [searchResults, setSearchResults] = useState(undefined);
+  const [searchResults, setSearchResults] = useState([]);
 
   const networking = new Networking();
 
   function selectTab(selectedTab) {
+    setSearchResults([]);
     setTab(selectedTab);
   }
 
@@ -36,34 +37,38 @@ export default function Home(props) {
     authentication.response ? setAuth(true) : setAuth(false);
   }
 
-  useEffect(() => {
-    setSearchResults(undefined);
-  }, [tab]);
-
   function showBarcodeButton() {
     if (tab === "Barcode") return <ScannerButton />;
+  }
+
+  async function loadingSearchResults(results) {
+    setSearchResults(results);
   }
 
   async function handleSearch() {
     if (tab === "Barcode") {
       const response = await networking.barcodeSearch(textInput);
-      setSearchResults(response);
+      await loadingSearchResults(response);
     } else {
-      const response = await networking.mealSearch("");
-      setSearchResults(response);
+      if (textInput !== "") {
+        const response = await networking.mealSearch(textInput);
+        await loadingSearchResults(response);
+      }
     }
   }
 
   function showBarcodeResults() {
-    if (searchResults && !searchResults.error)
-      return <BarcodeResultCard data={searchResults} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults.error)
+      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return <Typography> No data</Typography>;
   }
 
   function showMealResults() {
-    if (searchResults && !searchResults.error)
-      return <MealResultCard data={searchResults} auth={auth} />;
-    else return <Typography> No data</Typography>;
+    if (searchResults.length > 0 && !searchResults.error) {
+      return searchResults.map((meal) => (
+        <MealResultCard data={meal} auth={auth} />
+      ));
+    } else return <Typography> No data</Typography>;
   }
 
   return (
@@ -74,11 +79,12 @@ export default function Home(props) {
           <TabSelector selectTab={selectTab} />
         </div>
         <Paper
-          sx={{ flex: 1, width: "20%", padding: 2 }}
+          sx={{ flex: 1, width: "40%", padding: 2 }}
           elevation={3}
           className="search-box"
         >
           <TextField
+            sx={{ width: "80%" }}
             variant="outlined"
             label="search"
             placeholder={

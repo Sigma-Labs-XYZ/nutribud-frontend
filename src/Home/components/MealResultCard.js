@@ -13,7 +13,6 @@ import Networking from "../../Networking";
 
 export default function MealResultCard(props) {
   const nutriments = props.data.nutriments;
-  console.log(props.data);
 
   const networking = new Networking();
 
@@ -43,7 +42,7 @@ export default function MealResultCard(props) {
               marginTop: "1%",
             }}
             component="img"
-            image={props.data.productImg}
+            image={props.data.image}
             alt={props.data.name + " Img"}
           />
         </Box>
@@ -61,7 +60,7 @@ export default function MealResultCard(props) {
                   component="div"
                   sx={{ padding: "4px" }}
                 >
-                  {nutriments["energy-kcal_100g"]} Kcal
+                  {Math.floor(nutriments.Energy)} Kcal
                 </Typography>
               </Paper>
             </Box>
@@ -71,13 +70,14 @@ export default function MealResultCard(props) {
           <Box>
             <Paper elevation={2}>
               <Typography variant="body1" component="div">
-                Carbohydrates {nutriments["carbohydrates"]}g
+                Carbohydrates{" "}
+                {Math.round(nutriments["Carbohydrate, by difference"])} g
               </Typography>
               <Typography variant="body1" component="div">
-                Fat {nutriments["fat"]}g
+                Fat {Math.round(nutriments["Total lipid (fat)"])} g
               </Typography>
               <Typography variant="body1" component="div">
-                Protein {nutriments["proteins"]}g
+                Protein {Math.round(nutriments["Protein"])} g
               </Typography>
             </Paper>
           </Box>

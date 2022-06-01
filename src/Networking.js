@@ -72,8 +72,8 @@ export default class Networking {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`
     );
-
-    return await response.json();
+    const data = await response.json();
+    return [data.response];
   }
 
   async mealSearch(item) {
@@ -82,6 +82,7 @@ export default class Networking {
         item
       )}`
     );
-    return await response.json();
+    const data = await response.json();
+    return data.response;
   }
 }
