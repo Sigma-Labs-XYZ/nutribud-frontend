@@ -1,6 +1,10 @@
 export default class Networking {
   async createAccount(username, password, passwordConfirmation) {
-    const userRegistrationDetails = { username, password, passwordConfirmation };
+    const userRegistrationDetails = {
+      username,
+      password,
+      passwordConfirmation,
+    };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
       credentials: "include",
@@ -47,6 +51,42 @@ export default class Networking {
       headers: {
         "Content-Type": "application/json",
       },
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async updateInformation(name, weight, height, age, gender) {
+    const userInformation = { name, weight, height, age, gender };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async updateGoals(calories, protein, carbs, fats, sugar, salt, fibre) {
+    const userInformation = {
+      calories,
+      protein,
+      carbs,
+      fats,
+      sugar,
+      salt,
+      fibre,
+    };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/goals`, {
+      method: "POST", // IS THIS GONNA BE A POST OR PATCH - ASK BACKEND SQUAD ABOUT SERVER.JS
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
     });
     const data = await response.json();
     return data;

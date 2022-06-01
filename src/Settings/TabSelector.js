@@ -41,7 +41,6 @@ export default function TabSelector(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     const tab = newValue === 0 ? "info" : "goals";
-    console.log("selector component: ", tab);
     props.selectTab(tab);
   };
 

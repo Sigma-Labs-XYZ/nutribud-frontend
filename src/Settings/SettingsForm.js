@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Networking from "../Networking.js";
 import {
   Paper,
   TextField,
@@ -7,9 +8,32 @@ import {
   RadioGroup,
   Radio,
   InputAdornment,
+  Button,
+  Alert,
 } from "@mui/material";
 
-export default function SettingsForm() {
+export default function SettingsForm(props) {
+  const [name, setName] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+
+  const networking = new Networking();
+
+  async function handleSubmitClick() {
+    const response = await networking.userLoginAttempt(
+      name,
+      weight,
+      height,
+      age,
+      gender
+    );
+    if (response.error) {
+      return <Alert severity="error">Unable to save changes</Alert>;
+    }
+  }
+
   return (
     <div className="page-wrapper">
       <div className="settings-form-wrapper">
@@ -29,7 +53,7 @@ export default function SettingsForm() {
               label="Name"
               variant="outlined"
               sx={{ m: 1, width: "60ch" }}
-              // onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="weight-settings-wrapper">
@@ -38,7 +62,7 @@ export default function SettingsForm() {
               label="Weight"
               variant="outlined"
               sx={{ m: 1, width: "60ch" }}
-              // onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setWeight(e.target.value)}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">kg</InputAdornment>
@@ -52,7 +76,7 @@ export default function SettingsForm() {
               label="Height"
               variant="outlined"
               sx={{ m: 1, width: "60ch" }}
-              // onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setHeight(e.target.value)}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">cm</InputAdornment>
@@ -66,11 +90,14 @@ export default function SettingsForm() {
               label="Age"
               variant="outlined"
               sx={{ m: 1, width: "60ch" }}
-              // onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setAge(e.target.value)}
             />
           </div>
           <div className="gender-settings-wrapper">
-            <FormLabel id="demo-controlled-radio-buttons-group">
+            <FormLabel
+              id="demo-controlled-radio-buttons-group"
+              sx={{ marginLeft: 1 }}
+            >
               Gender
             </FormLabel>
             <RadioGroup
@@ -78,16 +105,21 @@ export default function SettingsForm() {
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
               sx={{ m: 1, width: "60ch" }}
-              //   value={value}
-              //   onChange={handleChange}
+              // value={value}
+              onChange={(e) => setGender(e.target.value)}
             >
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel value="Male" control={<Radio />} label="Male" />
               <FormControlLabel
-                value="female"
+                value="Female"
                 control={<Radio />}
                 label="Female"
               />
             </RadioGroup>
+          </div>
+          <div className="submit-btn">
+            <Button variant="contained" onClick={handleSubmitClick} margin={2}>
+              Save Changes
+            </Button>
           </div>
         </Paper>
       </div>
