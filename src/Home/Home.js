@@ -7,6 +7,7 @@ import {
   IconButton,
   Tooltip,
   Typography,
+  Stack,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ScannerButton from "./components/ScannerButton";
@@ -103,7 +104,9 @@ export default function Home(props) {
           </Tooltip>
           {showBarcodeButton()}
         </Paper>
+        {/* <Stack direction="column" justifyContent="center" alignItems="center"> */}
         {tab === "Barcode" ? showBarcodeResults() : showMealResults()}
+        {/* </Stack> */}
       </div>
     </div>
   );

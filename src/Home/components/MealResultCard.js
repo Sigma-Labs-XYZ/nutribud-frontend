@@ -25,7 +25,9 @@ export default function MealResultCard(props) {
 
   return (
     <Card elevation={5} sx={{ minWidth: 1 / 2, minHeight: 175, margin: 2 }}>
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -46,7 +48,7 @@ export default function MealResultCard(props) {
             alt={props.data.name + " Img"}
           />
         </Box>
-        <CardContent>
+        <CardContent sx={{ maxWidth: "30%" }}>
           <Box>
             <CardHeader
               sx={{ paddingTop: "1px" }}
@@ -82,7 +84,14 @@ export default function MealResultCard(props) {
             </Paper>
           </Box>
         </CardContent>
-        <Box sx={{ display: "flex", alignItems: "end" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "end",
+            marginRight: "1%",
+            marginBottom: "1%",
+          }}
+        >
           <AddToTrackerButton trackItem={trackItem} />
         </Box>
       </Box>

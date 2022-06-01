@@ -25,7 +25,9 @@ export default function BarcodeResultCard(props) {
 
   return (
     <Card elevation={5} sx={{ minWidth: 1 / 2, minHeight: 175, margin: 2 }}>
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -51,7 +53,7 @@ export default function BarcodeResultCard(props) {
             <CardHeader
               sx={{ paddingTop: "1px" }}
               title={[props.data.name]}
-              subheader={"nutritional value\n per 100g"}
+              subheader={"nutritional value per 100g"}
             />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Paper elevation={4}>
@@ -84,7 +86,14 @@ export default function BarcodeResultCard(props) {
             </Paper>
           </Box>
         </CardContent>
-        <Box sx={{ display: "flex", alignItems: "end" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "end",
+            marginRight: "1%",
+            marginBottom: "1%",
+          }}
+        >
           <AddToTrackerButton trackItem={trackItem} />
         </Box>
       </Box>
