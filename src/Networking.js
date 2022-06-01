@@ -81,7 +81,7 @@ export default class Networking {
       fibre,
     };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/goals`, {
-      method: "POST", // IS THIS GONNA BE A POST OR PATCH - ASK BACKEND SQUAD ABOUT SERVER.JS
+      method: "PATCH",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",

@@ -14,7 +14,7 @@ export default function GoalsForm(props) {
   const networking = new Networking();
 
   async function handleSubmitClick() {
-    const response = await networking.userLoginAttempt(
+    const response = await networking.updateGoals(
       calories,
       protein,
       carbs,

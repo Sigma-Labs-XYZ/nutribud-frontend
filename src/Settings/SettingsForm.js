@@ -22,7 +22,7 @@ export default function SettingsForm(props) {
   const networking = new Networking();
 
   async function handleSubmitClick() {
-    const response = await networking.userLoginAttempt(
+    const response = await networking.updateInformation(
       name,
       weight,
       height,
