@@ -56,6 +56,7 @@ export default class Networking {
     return data;
   }
 
+
   async updateUserInformation(name, weight, height, age, gender) {
     const userInformation = { name, weight, height, age, gender };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
@@ -130,5 +131,35 @@ export default class Networking {
 
     const data = await response.json();
     return data.response.rows;
+
+  async trackItem(data, amount) {
+    const trackedItem = { itemInfo: data, amount: amount };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(trackedItem),
+    });
+    return await response.json();
+  }
+
+  async barcodeSearch(barcode) {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`
+    );
+    const data = await response.json();
+    if (data.response) return [data.response];
+    else return [data];
+  }
+
+  async mealSearch(item) {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/search-text?item=${encodeURIComponent(
+        item
+      )}`
+    );
+    const data = await response.json();
+    return data.response;
   }
 }
