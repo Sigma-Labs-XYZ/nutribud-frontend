@@ -56,6 +56,83 @@ export default class Networking {
     return data;
   }
 
+
+  async updateUserInformation(name, weight, height, age, gender) {
+    const userInformation = { name, weight, height, age, gender };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async updateUserGoals(calories, protein, carbs, fats, sugar, salt, fiber) {
+    const userInformation = {
+      calories,
+      protein,
+      carbs,
+      fats,
+      sugar,
+      salt,
+      fiber,
+    };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/goals`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async getUserInformation() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    return data.response.rows;
+  }
+
+  async newUserInformation(name, weight, height, age, gender) {
+    const userInformation = { name, weight, height, age, gender };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async getUserGoals() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/goals`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    return data.response.rows;
+  }
+
   async trackItem(data, amount) {
     const trackedItem = { itemInfo: data, amount: amount };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking`, {

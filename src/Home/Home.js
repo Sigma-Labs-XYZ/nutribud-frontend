@@ -15,6 +15,7 @@ import Networking from "../Networking";
 import BarcodeResultCard from "./components/BarcodeResultCard";
 import MealResultCard from "./components/MealResultCard";
 
+
 export default function Home(props) {
   const [tab, setTab] = useState("Product name");
   const [auth, setAuth] = useState(false);
