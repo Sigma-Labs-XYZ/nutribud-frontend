@@ -7,7 +7,6 @@ import {
   IconButton,
   Tooltip,
   Typography,
-  Stack,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ScannerButton from "./components/ScannerButton";
