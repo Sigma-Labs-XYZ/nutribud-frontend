@@ -36,7 +36,12 @@ export default function LoginForm(props) {
           padding: 8,
         }}
       >
-        <Typography variant="h4" className="title" textAlign="center" margin={2}>
+        <Typography
+          variant="h4"
+          className="title"
+          textAlign="center"
+          margin={2}
+        >
           NutriBud
         </Typography>
         <form className="login-user">
@@ -68,7 +73,8 @@ export default function LoginForm(props) {
 
       <div className="signup-link">
         <p>
-          Don't have an account yet? Sign up <a href="https://nutribud-frontend.sigmalabs.co.uk/sign-up">here</a>!
+          Don't have an account yet? Sign up{" "}
+          <a href="https://nutribud-frontend.sigmalabs.co.uk/sign-up">here</a>!
         </p>
       </div>
     </div>
