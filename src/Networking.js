@@ -56,7 +56,56 @@ export default class Networking {
     return data;
   }
 
-  async updateInformation(name, weight, height, age, gender) {
+  async updateUserInformation(name, weight, height, age, gender) {
+    const userInformation = { name, weight, height, age, gender };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async updateUserGoals(calories, protein, carbs, fats, sugar, salt, fiber) {
+    const userInformation = {
+      calories,
+      protein,
+      carbs,
+      fats,
+      sugar,
+      salt,
+      fiber,
+    };
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/goals`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async getUserInformation() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    return data.response.rows;
+  }
+
+  async newUserInformation(name, weight, height, age, gender) {
     const userInformation = { name, weight, height, age, gender };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {
       method: "POST",
@@ -70,25 +119,16 @@ export default class Networking {
     return data;
   }
 
-  async updateGoals(calories, protein, carbs, fats, sugar, salt, fibre) {
-    const userInformation = {
-      calories,
-      protein,
-      carbs,
-      fats,
-      sugar,
-      salt,
-      fibre,
-    };
+  async getUserGoals() {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/goals`, {
-      method: "PATCH",
+      method: "GET",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInformation),
     });
+
     const data = await response.json();
-    return data;
+    return data.response.rows;
   }
 }

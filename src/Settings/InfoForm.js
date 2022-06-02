@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Networking from "../Networking.js";
 import {
   Paper,
@@ -12,25 +12,64 @@ import {
   Alert,
 } from "@mui/material";
 
-export default function SettingsForm(props) {
+export default function InfoForm(props) {
   const [name, setName] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    async function loadUserInformation() {
+      const response = await networking.getUserInformation();
+      const userInfo = response[0];
+      setName(userInfo.name);
+      setWeight(userInfo.weight);
+      setHeight(userInfo.height);
+      setAge(userInfo.age);
+      setGender(userInfo.sex);
+    }
+    loadUserInformation();
+    // eslint-disable-next-line
+  }, []);
 
   const networking = new Networking();
 
   async function handleSubmitClick() {
-    const response = await networking.updateInformation(
-      name,
-      weight,
-      height,
-      age,
-      gender
-    );
-    if (response.error) {
+    const userInfoResponse = await networking.getUserInformation();
+
+    if (userInfoResponse.length === 0) {
+      const response = await networking.newUserInformation(
+        name,
+        weight,
+        height,
+        age,
+        gender
+      );
+      if (response.error) {
+        setError(true);
+      }
+    } else {
+      const response = await networking.updateUserInformation(
+        name,
+        weight,
+        height,
+        age,
+        gender
+      );
+      if (response.error) {
+        setError(true);
+      }
+    }
+  }
+
+  function displayResponseMessage() {
+    if (error) {
+      setTimeout(() => setError(false), 5000);
       return <Alert severity="error">Unable to save changes</Alert>;
+    } else {
+      return <Alert severity="success">Changes Saved!</Alert>;
     }
   }
 
@@ -52,6 +91,7 @@ export default function SettingsForm(props) {
               id="outlined-basic"
               label="Name"
               variant="outlined"
+              value={name}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setName(e.target.value)}
             />
@@ -61,6 +101,7 @@ export default function SettingsForm(props) {
               id="outlined-basic"
               label="Weight"
               variant="outlined"
+              value={weight}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setWeight(e.target.value)}
               InputProps={{
@@ -75,6 +116,7 @@ export default function SettingsForm(props) {
               id="outlined-basic"
               label="Height"
               variant="outlined"
+              value={height}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setHeight(e.target.value)}
               InputProps={{
@@ -89,6 +131,7 @@ export default function SettingsForm(props) {
               id="outlined-basic"
               label="Age"
               variant="outlined"
+              value={age}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setAge(e.target.value)}
             />
@@ -105,7 +148,7 @@ export default function SettingsForm(props) {
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
               sx={{ m: 1, width: "60ch" }}
-              // value={value}
+              value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
               <FormControlLabel value="Male" control={<Radio />} label="Male" />
@@ -123,6 +166,7 @@ export default function SettingsForm(props) {
           </div>
         </Paper>
       </div>
+      <div className="res-message">{displayResponseMessage()}</div>
     </div>
   );
 }

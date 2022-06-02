@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Settings.css";
 import Header from "../GlobalComponents/Header/Header";
-import SettingsForm from "./SettingsForm";
+import InfoForm from "./InfoForm";
 import GoalsForm from "./GoalsForm";
 import TabSelector from "./TabSelector";
 import { Grid } from "@mui/material";
@@ -14,7 +14,7 @@ export default function Settings(props) {
   }
 
   function renderTab() {
-    return tab === "info" ? <SettingsForm /> : <GoalsForm />;
+    return tab === "info" ? <InfoForm /> : <GoalsForm />;
   }
 
   return (
