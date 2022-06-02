@@ -131,6 +131,7 @@ export default class Networking {
 
     const data = await response.json();
     return data.response.rows;
+  }
 
   async trackItem(data, amount) {
     const trackedItem = { itemInfo: data, amount: amount };
