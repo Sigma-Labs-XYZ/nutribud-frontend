@@ -11,6 +11,7 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
 yarn install
 yarn add @nivo/core @nivo/calendar @nivo/colors
+yarn add @mui/lab
 ```
 
 ### description

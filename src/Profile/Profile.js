@@ -1,18 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
 import { Typography, Box, Paper } from "@mui/material";
+import TrackerTimeline from "./components/TrackerTimeline";
+import Timeline from "@mui/lab/Timeline";
+import Networking from "../Networking";
 
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
   const [userHistory, setUserHistory] = useState(undefined);
   const [day, setDay] = useState("today");
 
+  const networking = new Networking();
+
+  useEffect(() => {
+    async function loadUserHistory() {
+      const response = await networking.getUserHistory();
+      setUserHistory(response);
+    }
+    loadUserHistory();
+  }, [day]);
+
   function selectDay(dayObject) {
     const date = new Date(dayObject.date);
     console.log(date.toDateString());
     setDay(date.toDateString());
+  }
+
+  function renderTimeline() {
+    if (userHistory) {
+      return userHistory.map((event) => {
+        return (
+          <Timeline position="alternate">
+            <TrackerTimeline />
+          </Timeline>
+        );
+      });
+    }
   }
 
   return (
@@ -44,6 +69,7 @@ export default function Profile(props) {
         >
           <Typography variant="h3">{day}</Typography>
         </Paper>
+        {/* {renderTimeline()} */}
       </Box>
     </div>
   );
