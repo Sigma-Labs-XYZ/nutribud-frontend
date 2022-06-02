@@ -58,7 +58,7 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults.error)
+    if (searchResults.length > 0 && !searchResults[0].error)
       return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return <Typography> No data</Typography>;
   }

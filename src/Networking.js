@@ -73,7 +73,8 @@ export default class Networking {
       `${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`
     );
     const data = await response.json();
-    return [data.response];
+    if (data.response) return [data.response];
+    else return [data];
   }
 
   async mealSearch(item) {
