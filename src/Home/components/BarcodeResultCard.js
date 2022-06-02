@@ -65,7 +65,9 @@ export default function BarcodeResultCard(props) {
                   {nutriments["energy-kcal_100g"]
                     ? nutriments["energy-kcal_100g"]
                     : nutriments["energy_100g"]}{" "}
-                  {nutriments["energy_unit"]}
+                  {nutriments["energy-kcal_unit"]
+                    ? nutriments["energy-kcal_unit"]
+                    : nutriments["energy_unit"]}
                 </Typography>
               </Paper>
             </Box>
