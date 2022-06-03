@@ -179,7 +179,6 @@ export default class Networking {
     console.log("running below");
 
     const data = await response.json();
-    console.log(data);
     return data;
   }
 }

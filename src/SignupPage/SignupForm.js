@@ -1,13 +1,17 @@
 import { Button, TextField, Alert } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Networking from "../Networking";
 
 export default function SignupForm(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [passwordConfirmationInput, setPasswordConfirmationInput] = useState("");
+  const [passwordConfirmationInput, setPasswordConfirmationInput] =
+    useState("");
   const [accountCreationAttempts, setAccountCreationAttempts] = useState(0);
   const [accountCreationSuccess, setAccountCreationSuccess] = useState(false);
+
+  let navigate = useNavigate();
 
   const passwordsMatch = passwordInput !== passwordConfirmationInput;
 
@@ -15,8 +19,14 @@ export default function SignupForm(props) {
 
   async function handleSubmit(e) {
     if (passwordInput === passwordConfirmationInput) {
-      const response = await networking.createAccount(usernameInput, passwordInput, passwordConfirmationInput);
-      response.error ? setAccountCreationSuccess(false) : setAccountCreationSuccess(true);
+      const response = await networking.createAccount(
+        usernameInput,
+        passwordInput,
+        passwordConfirmationInput
+      );
+      response.error
+        ? setAccountCreationSuccess(false)
+        : setAccountCreationSuccess(true);
       setAccountCreationAttempts(accountCreationAttempts + 1);
     }
   }
@@ -26,7 +36,7 @@ export default function SignupForm(props) {
       if (!accountCreationSuccess) {
         return <Alert severity="error">Account could not be created</Alert>;
       } else {
-        // setTimeout(() => navigate("/login"), 1000);
+        setTimeout(() => navigate("/login"), 1000);
         return <Alert severity="success">Account created</Alert>;
       }
     }
@@ -77,11 +87,14 @@ export default function SignupForm(props) {
             Create account
           </Button>
         </div>
-        <div className="account-creation-success-error-message">{displayResponseMessage()}</div>
+        <div className="account-creation-success-error-message">
+          {displayResponseMessage()}
+        </div>
       </form>
       <div className="login-link">
         <p>
-          Already have an account? Login <a href="https://nutribud-frontend.sigmalabs.co.uk/login"> here</a>!
+          Already have an account? Login{" "}
+          <a href="https://nutribud-frontend.sigmalabs.co.uk/login"> here</a>!
         </p>
       </div>
     </div>
