@@ -74,7 +74,7 @@ export default function InfoForm(props) {
   }
 
   return (
-    <div className="page-wrapper">
+    <div className="settings-page-wrapper">
       <div className="settings-form-wrapper">
         <Paper
           elevation={3}
