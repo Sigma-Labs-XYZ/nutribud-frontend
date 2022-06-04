@@ -1,18 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
 import { Typography, Box, Paper } from "@mui/material";
+import Networking from "../Networking";
 
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
-  const [userHistory, setUserHistory] = useState(undefined);
-  const [day, setDay] = useState("today");
+  const [userHistory, setUserHistory] = useState([]);
+  const [uiDate, setUiDate] = useState("Today");
+  const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
+
+  const networking = new Networking();
+
+  useEffect(() => {
+    async function getUserHistory() {
+      const response = await networking.getTrackedItems(queryDate); //Date needs to be in format YYYY-MM-DD
+      if (response.error) {
+        console.log(response.error);
+        setUserHistory([]);
+      } else if (response.response.length > 0) {
+        setUserHistory(response.response);
+      }
+    }
+    getUserHistory();
+  }, [queryDate]);
 
   function selectDay(dayObject) {
     const date = new Date(dayObject.date);
-    console.log(date.toDateString());
-    setDay(date.toDateString());
+    setUiDate(date.toDateString());
+    setQueryDate(dayObject.day);
+  }
+
+  function convertDateToISO(date) {
+    return date.toISOString().split("T")[0];
+  }
+
+  function populateTrackedItems() {
+    return userHistory.map((item, i) => {
+      return <p>{item.item_info.name}</p>;
+    });
   }
 
   return (
@@ -20,31 +47,24 @@ export default function Profile(props) {
       <div className="header-wrapper">
         <Header />
       </div>
-      <Box
+      <Paper
+        elevation={3}
         sx={{
+          maxWidth: "40%",
           display: "grid",
-          gridTemplateColumns: "1fr 2fr",
-          gridGap: "1px",
+          gridTemplateRows: "1fr 3fr",
+          margin: "2%",
+          padding: "20px",
         }}
       >
+        <p variant="subtitle1" sx={{ fontWeight: "600" }}>
+          {uiDate}
+        </p>
         <Box>
           <Calendar selectDay={selectDay} />
         </Box>
-        <Paper
-          elevation={1}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "2%",
-            padding: "10px",
-            maxHeight: "75px",
-            maxWidth: "28vw",
-          }}
-        >
-          <Typography variant="h3">{day}</Typography>
-        </Paper>
-      </Box>
+      </Paper>
+      {populateTrackedItems()}
     </div>
   );
 }

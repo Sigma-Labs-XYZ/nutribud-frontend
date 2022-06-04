@@ -136,6 +136,7 @@ export default class Networking {
     const trackedItem = { itemInfo: data, amount: amount };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -145,9 +146,7 @@ export default class Networking {
   }
 
   async barcodeSearch(barcode) {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`
-    );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`);
     const data = await response.json();
     console.log(data.response);
     if (data.response) return [data.response];
@@ -155,12 +154,19 @@ export default class Networking {
   }
 
   async mealSearch(item) {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/search-text?item=${encodeURIComponent(
-        item
-      )}`
-    );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/search-text?item=${encodeURIComponent(item)}`);
     const data = await response.json();
     return data.response;
+  }
+
+  async getTrackedItems(date) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking?date=${date}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await response.json();
   }
 }
