@@ -33,18 +33,20 @@
 }
 
 .page-wrapper {
-  margin-top: 10%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
 }
 
 .submit-btn {
   display: flex;
   justify-content: center;
+  margin: 2%;
 }
 
 .account-creation-success-error-message {
   justify-content: center;
   margin: 2.5%;
+  margin-bottom: 1%;
 }

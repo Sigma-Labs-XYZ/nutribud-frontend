@@ -56,7 +56,6 @@ export default class Networking {
     return data;
   }
 
-
   async updateUserInformation(name, weight, height, age, gender) {
     const userInformation = { name, weight, height, age, gender };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/user-info`, {

@@ -46,7 +46,7 @@ export default function GoalsForm(props) {
     }
   }
   return (
-    <div className="page-wrapper">
+    <div className="settings-page-wrapper">
       <div className="goals-form-wrapper">
         <Paper
           elevation={3}

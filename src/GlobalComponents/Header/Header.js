@@ -62,9 +62,13 @@ export default function Header() {
     navigate("/profile", 500);
   }
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   async function handleLogoutClick() {
-    console.log("ran");
-    await networking.logout();
+    const response = await networking.logout();
+    if (response.response) refreshPage();
   }
 
   function handleLoginClick() {
@@ -203,7 +207,10 @@ export default function Header() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <FitnessCenterIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} color="secondary" />
+            <FitnessCenterIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              color="secondary"
+            />
             <Typography
               variant="h6"
               noWrap
@@ -253,7 +260,10 @@ export default function Header() {
                 {renderPageButtonsSmallPage()}
               </Menu>
             </Box>
-            <FitnessCenterIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <FitnessCenterIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              color="secondary"
+            />
             <Typography
               variant="h5"
               noWrap
@@ -263,7 +273,6 @@ export default function Header() {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
 
@@ -271,7 +280,7 @@ export default function Header() {
               }}
               color="secondary"
             >
-              LOGO
+              NutriBud
             </Typography>
             {renderPageButtonsFullPage()}
 
