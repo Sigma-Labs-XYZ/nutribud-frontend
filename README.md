@@ -12,6 +12,7 @@ npm install @mui/icons-material
 yarn install
 yarn add @nivo/core @nivo/calendar @nivo/colors
 yarn add @mui/lab
+yarn add recharts
 ```
 
 ### description

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
-import { Typography, Box, Paper } from "@mui/material";
+import ProgressCharts from "./components/ProgressCharts/ProgressCharts";
+import { Typography, Box, Paper, CircularProgress } from "@mui/material";
 import Networking from "../Networking";
 
 export default function Profile(props) {
@@ -12,6 +13,14 @@ export default function Profile(props) {
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
 
   const networking = new Networking();
+
+  useEffect(() => {
+    async function getUserGoals() {
+      const response = await networking.getUserGoals();
+      setUserGoals(response);
+    }
+    getUserGoals();
+  }, []);
 
   useEffect(() => {
     async function getUserHistory() {
@@ -36,10 +45,10 @@ export default function Profile(props) {
     return date.toISOString().split("T")[0];
   }
 
-  function populateTrackedItems() {
-    return userHistory.map((item, i) => {
-      return <p>{item.item_info.name}</p>;
-    });
+  function renderProgressCharts() {
+    if (userHistory.length !== 0 && userGoals) {
+      return <ProgressCharts history={userHistory} goals={userGoals} />;
+    } else return <CircularProgress />;
   }
 
   return (
@@ -64,7 +73,7 @@ export default function Profile(props) {
           <Calendar selectDay={selectDay} />
         </Box>
       </Paper>
-      {populateTrackedItems()}
+      <div>{renderProgressCharts()}</div>
     </div>
   );
 }
