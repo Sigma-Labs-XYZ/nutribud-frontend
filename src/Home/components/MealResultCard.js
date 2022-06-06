@@ -1,15 +1,8 @@
-import {
-  Paper,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Box,
-  CardHeader,
-} from "@mui/material";
+import { Paper, Card, CardMedia, CardContent, Typography, Box, CardHeader } from "@mui/material";
 import React from "react";
 import AddToTrackerButton from "./AddToTrackerButton";
 import Networking from "../../Networking";
+import UserPerformance from "../../UserPerformance";
 
 export default function MealResultCard(props) {
   const nutriments = props.data.nutriments;
@@ -25,9 +18,7 @@ export default function MealResultCard(props) {
 
   return (
     <Card elevation={5} sx={{ minWidth: 1 / 2, minHeight: 175, margin: 2 }}>
-      <Box
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
         <Box
           sx={{
             display: "flex",
@@ -50,18 +41,10 @@ export default function MealResultCard(props) {
         </Box>
         <CardContent sx={{ maxWidth: "30%" }}>
           <Box>
-            <CardHeader
-              sx={{ paddingTop: "1px" }}
-              title={[props.data.name]}
-              subheader={"nutritional value\n per 100g"}
-            />
+            <CardHeader sx={{ paddingTop: "1px" }} title={[props.data.name]} subheader={"nutritional value\n per 100g"} />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Paper elevation={4}>
-                <Typography
-                  variant="h3"
-                  component="div"
-                  sx={{ padding: "4px" }}
-                >
+                <Typography variant="h3" component="div" sx={{ padding: "4px" }}>
                   {Math.floor(nutriments.Energy)} Kcal
                 </Typography>
               </Paper>
@@ -72,8 +55,7 @@ export default function MealResultCard(props) {
           <Box>
             <Paper elevation={2}>
               <Typography variant="body1" component="div">
-                Carbohydrates{" "}
-                {Math.round(nutriments["Carbohydrate, by difference"])} g
+                Carbohydrates {Math.round(nutriments["Carbohydrate, by difference"])} g
               </Typography>
               <Typography variant="body1" component="div">
                 Fat {Math.round(nutriments["Total lipid (fat)"])} g
@@ -92,7 +74,7 @@ export default function MealResultCard(props) {
             marginBottom: "1%",
           }}
         >
-          <AddToTrackerButton trackItem={trackItem} />
+          <AddToTrackerButton trackItem={trackItem} nutrientAmounts={UserPerformance.addUpNutriments} performanceScore={UserPerformance.getPerformanceScore} />
         </Box>
       </Box>
     </Card>

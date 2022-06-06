@@ -145,21 +145,37 @@ export default class Networking {
   }
 
   async barcodeSearch(barcode) {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`
-    );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`);
     const data = await response.json();
     if (data.response) return [data.response];
     else return [data];
   }
 
   async mealSearch(item) {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/search-text?item=${encodeURIComponent(
-        item
-      )}`
-    );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/search-text?item=${encodeURIComponent(item)}`);
     const data = await response.json();
     return data.response;
+  }
+
+  async updatePerformanceScore(performanceScore) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/performance-history`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(performanceScore),
+    });
+    return await response.json();
+  }
+
+  async getTrackedItems(date) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking?date=${date}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await response.json();
   }
 }
