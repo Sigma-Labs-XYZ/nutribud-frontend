@@ -1,6 +1,6 @@
 export const devInfo = [
   {
-    image: "../../public/Ibrahim Ahmed.jpg",
+    image: "/Ibrahim Ahmed.jpg",
     name: "Ibrahim Ahmed",
     role: "Project Manager",
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem, faucibus
@@ -10,7 +10,7 @@ export const devInfo = [
             sapien ut consequat cursus.`,
   },
   {
-    image: "../../public/Daniel Michell.jpg",
+    image: "/Daniel Michell.jpg",
     name: "Dan Michell",
     role: "Architect & DevOps",
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem, faucibus
@@ -20,7 +20,7 @@ export const devInfo = [
             sapien ut consequat cursus.`,
   },
   {
-    image: "../../public/Elisaveta Zobeva.jpg",
+    image: "/Elisaveta Zobeva.jpg",
     name: "Elisaveta Zobeva",
     role: "Quality Assurance",
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem, faucibus
@@ -30,7 +30,7 @@ export const devInfo = [
             sapien ut consequat cursus.`,
   },
   {
-    image: "../../public/Kainan Hassan.jpg",
+    image: "/Kainan Hassan.jpg",
     name: "Kainan Hassan",
     role: "Quality Assurance",
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem, faucibus
