@@ -5,6 +5,8 @@ import Calendar from "./components/Calendar";
 import ProgressCharts from "./components/ProgressCharts/ProgressCharts";
 import { Box, Paper, CircularProgress } from "@mui/material";
 import Networking from "../Networking";
+import TrackerTimeline from "./components/TrackerTimeline";
+import Timeline from "@mui/lab/Timeline";
 
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
@@ -29,6 +31,7 @@ export default function Profile(props) {
         console.log(response.error);
         setUserHistory([]);
       } else if (response.response.length > 0) {
+        console.log(response.response);
         setUserHistory(response.response);
       }
     }
@@ -45,10 +48,23 @@ export default function Profile(props) {
     return date.toISOString().split("T")[0];
   }
 
+
   function renderProgressCharts() {
     if (userHistory.length !== 0 && userGoals) {
       return <ProgressCharts history={userHistory} goals={userGoals} />;
     } else return <CircularProgress />;
+  }
+  
+  function populateTimeline() {
+    const timelineData = userHistory.map((item, i) => {
+      return <TrackerTimeline key={i} item={item} />;
+    });
+    if (timelineData.length === 0) {
+      return "No timeline data available";
+    } else {
+      return timelineData;
+    }
+
   }
 
   return (
@@ -73,7 +89,11 @@ export default function Profile(props) {
           <Calendar selectDay={selectDay} />
         </Box>
       </Paper>
+
       <div>{renderProgressCharts()}</div>
+
+      <Timeline position="alternate">{populateTimeline()}</Timeline>
+
     </div>
   );
 }
