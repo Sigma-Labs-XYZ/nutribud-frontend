@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  Fab,
-  OutlinedInput,
-  InputAdornment,
-  Paper,
-  Button,
-  Typography,
-  Box,
-  Popover,
-} from "@mui/material";
+import { Fab, OutlinedInput, InputAdornment, Paper, Button, Typography, Box, Popover } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import Networking from "../../Networking";
 
 export default function AddToTrackerButton(props) {
   const [inputText, setInputText] = useState("");
@@ -23,8 +15,13 @@ export default function AddToTrackerButton(props) {
     setAnchorEl(null);
   };
 
-  function handleTrackItem(servingSize) {
+  async function handleTrackItem(servingSize) {
+    const today = new Date().toISOString().substring(0, 10);
+    const userHistory = await Networking.getTrackedItems(today);
+    const totalNutriments = props.nutrientAmounts(userHistory);
+    const performanceScore = props.performanceScore(totalNutriments);
     props.trackItem(servingSize);
+    await Networking.updatePerformanceScore(performanceScore);
     handleClose();
   }
 
@@ -80,9 +77,7 @@ export default function AddToTrackerButton(props) {
               />
             </Box>
             <Box sx={{ margin: "2%" }}>
-              <Button onClick={(e) => handleTrackItem(inputText)}>
-                Track Item
-              </Button>
+              <Button onClick={(e) => handleTrackItem(inputText)}>Track Item</Button>
             </Box>
           </Box>
         </Paper>
