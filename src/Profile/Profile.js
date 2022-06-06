@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
-import { Typography, Box, Paper } from "@mui/material";
+import ProgressCharts from "./components/ProgressCharts/ProgressCharts";
+import { Box, Paper, CircularProgress } from "@mui/material";
 import Networking from "../Networking";
 import TrackerTimeline from "./components/TrackerTimeline";
 import Timeline from "@mui/lab/Timeline";
@@ -16,6 +17,14 @@ export default function Profile(props) {
   const networking = new Networking();
 
   useEffect(() => {
+    async function getUserGoals() {
+      const response = await networking.getUserGoals();
+      setUserGoals(response);
+    }
+    getUserGoals(); // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
     async function getUserHistory() {
       const response = await networking.getTrackedItems(queryDate); //Date needs to be in format YYYY-MM-DD
       if (response.error) {
@@ -26,7 +35,7 @@ export default function Profile(props) {
         setUserHistory(response.response);
       }
     }
-    getUserHistory();
+    getUserHistory(); // eslint-disable-next-line
   }, [queryDate]);
 
   function selectDay(dayObject) {
@@ -39,6 +48,13 @@ export default function Profile(props) {
     return date.toISOString().split("T")[0];
   }
 
+
+  function renderProgressCharts() {
+    if (userHistory.length !== 0 && userGoals) {
+      return <ProgressCharts history={userHistory} goals={userGoals} />;
+    } else return <CircularProgress />;
+  }
+  
   function populateTimeline() {
     const timelineData = userHistory.map((item, i) => {
       return <TrackerTimeline key={i} item={item} />;
@@ -48,6 +64,7 @@ export default function Profile(props) {
     } else {
       return timelineData;
     }
+
   }
 
   return (
@@ -72,7 +89,11 @@ export default function Profile(props) {
           <Calendar selectDay={selectDay} />
         </Box>
       </Paper>
+
+      <div>{renderProgressCharts()}</div>
+
       <Timeline position="alternate">{populateTimeline()}</Timeline>
+
     </div>
   );
 }
