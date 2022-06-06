@@ -1,12 +1,26 @@
+import { useState, useEffect } from "react";
 import Header from "../GlobalComponents/Header/Header";
 import { Paper, Typography } from "@mui/material";
 import "./About.css";
-import { CardActionArea } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { devInfo } from "./developerInfo";
+import DeveloperCard from "./DeveloperCard";
 
 function About() {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    populateDevCards();
+  }, []);
+
+  function populateDevCards() {
+    const devCards = devInfo.map((info, i) => {
+      return (
+        <DeveloperCard key={i} image={info.image} name={info.name} role={info.role} description={info.description} />
+      );
+    });
+    setCards(devCards);
+  }
+
   return (
     <div>
       <Header />
@@ -27,118 +41,8 @@ function About() {
               Meet the team!
             </Typography>
             <div className="developer-cards">
-              <div className="mini-card-wrapper">
-                <Card sx={{ maxWidth: 400 }} className="card-container">
-                  <CardActionArea className="card-content">
-                    <CardMedia
-                      component="img"
-                      image="https://via.placeholder.com/300"
-                      alt="person"
-                      className="card-image"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Ibrahim Ahmed
-                        <span>
-                          <Typography gutterBottom variant="subtitle1" component="div">
-                            Project Manager
-                          </Typography>
-                        </span>
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem,
-                        faucibus sed metus eu, fringilla imperdiet felis. Curabitur quis lorem et elit ultrices mattis
-                        id non ligula. Mauris posuere pellentesque neque, in efficitur magna imperdiet quis.
-                        Pellentesque eget placerat massa, id laoreet arcu. In a placerat enim. Quisque velit diam,
-                        tempor in nisi vel, consequat vestibulum felis. Morbi finibus sapien ut consequat cursus.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-                <Card sx={{ maxWidth: 400 }} className="card-container">
-                  <CardActionArea className="card-content">
-                    <CardMedia
-                      component="img"
-                      image="https://via.placeholder.com/300"
-                      alt="person"
-                      className="card-image"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Dan Michell
-                        <span>
-                          <Typography gutterBottom variant="subtitle1" component="div">
-                            Architect & DevOps
-                          </Typography>
-                        </span>
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem,
-                        faucibus sed metus eu, fringilla imperdiet felis. Curabitur quis lorem et elit ultrices mattis
-                        id non ligula. Mauris posuere pellentesque neque, in efficitur magna imperdiet quis.
-                        Pellentesque eget placerat massa, id laoreet arcu. In a placerat enim. Quisque velit diam,
-                        tempor in nisi vel, consequat vestibulum felis. Morbi finibus sapien ut consequat cursus.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-              <div className="mini-card-wrapper">
-                <Card sx={{ maxWidth: 400 }} className="card-container">
-                  <CardActionArea className="card-content">
-                    <CardMedia
-                      component="img"
-                      image="https://via.placeholder.com/300"
-                      alt="person"
-                      className="card-image"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Elisaveta Zobeva
-                        <span>
-                          <Typography gutterBottom variant="subtitle1" component="div">
-                            Quality Assurance
-                          </Typography>
-                        </span>
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem,
-                        faucibus sed metus eu, fringilla imperdiet felis. Curabitur quis lorem et elit ultrices mattis
-                        id non ligula. Mauris posuere pellentesque neque, in efficitur magna imperdiet quis.
-                        Pellentesque eget placerat massa, id laoreet arcu. In a placerat enim. Quisque velit diam,
-                        tempor in nisi vel, consequat vestibulum felis. Morbi finibus sapien ut consequat cursus.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-                <Card sx={{ maxWidth: 400 }} className="card-container">
-                  <CardActionArea className="card-content">
-                    <CardMedia
-                      component="img"
-                      image="https://via.placeholder.com/300"
-                      alt="person"
-                      className="card-image"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Kainan Hassan
-                        <span>
-                          <Typography gutterBottom variant="subtitle1" component="div">
-                            Quality Assurance
-                          </Typography>
-                        </span>
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis risus ipsum. Nunc lacus sem,
-                        faucibus sed metus eu, fringilla imperdiet felis. Curabitur quis lorem et elit ultrices mattis
-                        id non ligula. Mauris posuere pellentesque neque, in efficitur magna imperdiet quis.
-                        Pellentesque eget placerat massa, id laoreet arcu. In a placerat enim. Quisque velit diam,
-                        tempor in nisi vel, consequat vestibulum felis. Morbi finibus sapien ut consequat cursus.
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
+              <div className="mini-card-wrapper">{cards.slice(0, 2)}</div>
+              <div className="mini-card-wrapper">{cards.slice(2, 4)}</div>
             </div>
           </div>
           <img
