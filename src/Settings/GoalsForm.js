@@ -10,6 +10,8 @@ export default function GoalsForm(props) {
   const [sugar, setSugar] = useState("");
   const [salt, setSalt] = useState("");
   const [fiber, setFiber] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     async function loadUserGoals() {
@@ -40,31 +42,40 @@ export default function GoalsForm(props) {
       fiber
     );
     if (response.error) {
+      setError(true);
+    } else {
+      setSuccess(true);
+    }
+  }
+
+  function displayResponseMessage() {
+    if (error) {
+      setTimeout(() => setError(false), 5000);
       return <Alert severity="error">Unable to save changes</Alert>;
-    } else if (response.response) {
+    } else if (success) {
+      setTimeout(() => setSuccess(false), 5000);
       return <Alert severity="success">Changes Saved!</Alert>;
     }
   }
+
   return (
     <div className="settings-page-wrapper">
-      <div className="goals-form-wrapper">
-        <Paper
-          elevation={3}
-          style={{
-            padding: 8,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
+      <Paper
+        elevation={3}
+        style={{
+          padding: 8,
+          width: 650,
+          height: 450,
+        }}
+      >
+        <div className="goals-form-wrapper">
           <div className="calories-goal-wrapper">
             <TextField
               id="outlined-basic"
               label="Calories"
               variant="outlined"
               value={calories}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setCalories(e.target.value)}
               InputProps={{
                 endAdornment: (
@@ -79,7 +90,7 @@ export default function GoalsForm(props) {
               label="Protein"
               variant="outlined"
               value={protein}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setProtein(e.target.value)}
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
@@ -92,7 +103,7 @@ export default function GoalsForm(props) {
               label="Carbohydrates"
               variant="outlined"
               value={carbs}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setCarbs(e.target.value)}
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
@@ -105,7 +116,7 @@ export default function GoalsForm(props) {
               label="Fats"
               variant="outlined"
               value={fats}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setFats(e.target.value)}
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
@@ -118,7 +129,7 @@ export default function GoalsForm(props) {
               label="Sugar"
               variant="outlined"
               value={sugar}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setSugar(e.target.value)}
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
@@ -131,7 +142,7 @@ export default function GoalsForm(props) {
               label="Salt"
               variant="outlined"
               value={salt}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setSalt(e.target.value)}
               InputProps={{
                 endAdornment: (
@@ -146,20 +157,21 @@ export default function GoalsForm(props) {
               label="Fiber"
               variant="outlined"
               value={fiber}
-              sx={{ m: 1, width: "20ch" }}
+              sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setFiber(e.target.value)}
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
               }}
             />
           </div>
-          <div className="submit-btn">
-            <Button variant="contained" onClick={handleSubmitClick} margin={2}>
-              Save Changes
-            </Button>
-          </div>
-        </Paper>
-      </div>
+        </div>
+        <div className="submit-btn">
+          <Button variant="contained" onClick={handleSubmitClick} margin={2}>
+            Save Changes
+          </Button>
+        </div>
+      </Paper>
+      <div className="res-message">{displayResponseMessage()}</div>
     </div>
   );
 }
