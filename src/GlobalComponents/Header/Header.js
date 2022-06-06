@@ -62,6 +62,10 @@ export default function Header() {
     navigate("/profile", 500);
   }
 
+  function handleAboutClick() {
+    navigate("/about", 500);
+  }
+
   function refreshPage() {
     window.location.reload(false);
   }
@@ -85,6 +89,15 @@ export default function Header() {
       return (
         <div>
           <MenuItem
+            key="about"
+            onClick={(e) => {
+              handleCloseNavMenu();
+              handleAboutClick();
+            }}
+          >
+            <Typography textAlign="center">About</Typography>
+          </MenuItem>
+          <MenuItem
             key="search"
             onClick={(e) => {
               handleCloseNavMenu();
@@ -106,15 +119,26 @@ export default function Header() {
       );
     } else {
       return (
-        <MenuItem
-          key="search"
-          onClick={(e) => {
-            handleCloseNavMenu();
-            handleSearchClick();
-          }}
-        >
-          <Typography textAlign="center">Search</Typography>
-        </MenuItem>
+        <>
+          <MenuItem
+            key="about"
+            onClick={(e) => {
+              handleCloseNavMenu();
+              handleAboutClick();
+            }}
+          >
+            <Typography textAlign="center">About</Typography>
+          </MenuItem>
+          <MenuItem
+            key="search"
+            onClick={(e) => {
+              handleCloseNavMenu();
+              handleSearchClick();
+            }}
+          >
+            <Typography textAlign="center">Search</Typography>
+          </MenuItem>
+        </>
       );
     }
   }
@@ -123,6 +147,16 @@ export default function Header() {
     if (auth) {
       return (
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Button
+            key="profile"
+            onClick={(e) => {
+              handleCloseNavMenu();
+              handleAboutClick();
+            }}
+            sx={{ my: 2, color: "white", display: "block" }}
+          >
+            About
+          </Button>
           <Button
             key="search"
             onClick={(e) => {
@@ -148,6 +182,16 @@ export default function Header() {
     } else {
       return (
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Button
+            key="profile"
+            onClick={(e) => {
+              handleCloseNavMenu();
+              handleAboutClick();
+            }}
+            sx={{ my: 2, color: "white", display: "block" }}
+          >
+            About
+          </Button>
           <Button
             key="search"
             onClick={(e) => {
@@ -207,10 +251,7 @@ export default function Header() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <FitnessCenterIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-              color="secondary"
-            />
+            <FitnessCenterIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} color="secondary" />
             <Typography
               variant="h6"
               noWrap
@@ -260,10 +301,7 @@ export default function Header() {
                 {renderPageButtonsSmallPage()}
               </Menu>
             </Box>
-            <FitnessCenterIcon
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-              color="secondary"
-            />
+            <FitnessCenterIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} color="secondary" />
             <Typography
               variant="h5"
               noWrap

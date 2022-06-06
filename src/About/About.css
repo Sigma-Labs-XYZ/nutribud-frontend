@@ -1,0 +1,37 @@
+.about-content {
+  display: flex;
+  justify-content: center;
+}
+
+.developer-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.developer-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-image {
+  border-radius: 100%;
+  max-width: 200px;
+}
+
+.mini-card-wrapper {
+  display: flex;
+}
+
+.card-container {
+  margin: 20px 30px;
+}
+
+.card-content {
+  margin-top: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
