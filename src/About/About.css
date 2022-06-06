@@ -19,6 +19,9 @@
 .card-image {
   border-radius: 100%;
   max-width: 200px;
+  min-width: 200px;
+  height: 200px;
+  margin-top: 10px;
 }
 
 .mini-card-wrapper {
@@ -30,7 +33,6 @@
 }
 
 .card-content {
-  margin-top: 10px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
