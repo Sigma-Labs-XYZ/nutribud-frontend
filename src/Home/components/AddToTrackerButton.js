@@ -15,13 +15,15 @@ export default function AddToTrackerButton(props) {
     setAnchorEl(null);
   };
 
+  const networking = new Networking();
+
   async function handleTrackItem(servingSize) {
     const today = new Date().toISOString().substring(0, 10);
-    const userHistory = await Networking.getTrackedItems(today);
+    const userHistory = await networking.getTrackedItems(today);
     const totalNutriments = props.nutrientAmounts(userHistory);
     const performanceScore = props.performanceScore(totalNutriments);
     props.trackItem(servingSize);
-    await Networking.updatePerformanceScore(performanceScore);
+    await networking.updatePerformanceScore(performanceScore);
     handleClose();
   }
 
