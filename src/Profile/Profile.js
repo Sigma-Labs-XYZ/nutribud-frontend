@@ -3,7 +3,7 @@ import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
 import ProgressCharts from "./components/ProgressCharts/ProgressCharts";
-import { Typography, Box, Paper, CircularProgress } from "@mui/material";
+import { Box, Paper, CircularProgress } from "@mui/material";
 import Networking from "../Networking";
 
 export default function Profile(props) {
@@ -19,7 +19,7 @@ export default function Profile(props) {
       const response = await networking.getUserGoals();
       setUserGoals(response);
     }
-    getUserGoals();
+    getUserGoals(); // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Profile(props) {
         setUserHistory(response.response);
       }
     }
-    getUserHistory();
+    getUserHistory(); // eslint-disable-next-line
   }, [queryDate]);
 
   function selectDay(dayObject) {

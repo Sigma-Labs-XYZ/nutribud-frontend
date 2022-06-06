@@ -8,14 +8,14 @@ export default function ProgressBar(props) {
 
   useEffect(() => {
     const progress = (props.amount / props.goal) * 100;
-    setProgress(progress);
+    setProgress(progress); // eslint-disable-next-line
   }, []);
 
   if (!progress) return <CircularProgress />;
 
   return (
     <Box sx={{ display: "flex", alignItems: "start", flexDirection: "column" }}>
-      <Box sx={{ minWidth: 35 }}>
+      <Box sx={{ minWidth: 100 }}>
         <Typography variant="body2" color="text.secondary">{`${Math.round(
           props.amount
         )}/${Math.round(props.goal)} ${props.macro}`}</Typography>

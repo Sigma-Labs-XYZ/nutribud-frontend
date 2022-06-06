@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UserPerformance from "../../../UserPerformace";
 import Chart from "./PieChart";
@@ -6,7 +6,6 @@ import ProgressBar from "./ProgressBar";
 
 export default function ProgressCharts(props) {
   const [nutrimentsAmount, setNutrimentsAmount] = useState(undefined);
-  const [loading, setLoading] = useState(true);
   const [goals, setGoals] = useState(undefined);
 
   const perf = new UserPerformance();
@@ -16,7 +15,7 @@ export default function ProgressCharts(props) {
       setNutrimentsAmount(perf.addUpNutriments(props.history));
       if (props.goals) setGoals(props.goals[0]);
     }
-    loadingInfo();
+    loadingInfo(); // eslint-disable-next-line
   }, []);
 
   function renderChart() {
@@ -40,9 +39,17 @@ export default function ProgressCharts(props) {
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       {renderChart()}
-      <Stack spacing={2}>{renderProgressBars()}</Stack>
+      <Stack sx={{ marginBottom: "7.5%", marginRight: "10%" }} spacing={2}>
+        {renderProgressBars()}
+      </Stack>
     </div>
   );
 }

@@ -4,9 +4,6 @@ import { PieChart, Pie, Sector } from "recharts";
 
 export default function Chart(props) {
   const [activeIndex, setActiveIndex] = useState(0);
-  //   const [fats, setFats] = useState(undefined);
-  //   const [carbs, setCarbs] = useState(undefined);
-  //   const [protein, setProtein] = useState(undefined);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,7 +11,7 @@ export default function Chart(props) {
       { name: "fats", value: Math.round(props.nutrimentsAmount.fats) },
       { name: "carbs", value: Math.round(props.nutrimentsAmount.carbs) },
       { name: "protein", value: Math.round(props.nutrimentsAmount.protein) },
-    ]);
+    ]); // eslint-disable-next-line
   }, []);
 
   const onPieEnter = useCallback(
@@ -26,7 +23,7 @@ export default function Chart(props) {
 
   if (data)
     return (
-      <PieChart width={500} height={500}>
+      <PieChart width={425} height={500}>
         <Pie
           activeIndex={activeIndex}
           activeShape={renderActiveShape}
@@ -35,7 +32,7 @@ export default function Chart(props) {
           cy={200}
           innerRadius={60}
           outerRadius={80}
-          fill="#8884d8"
+          fill="#808080"
           dataKey="value"
           onMouseEnter={onPieEnter}
         />
@@ -69,9 +66,17 @@ const renderActiveShape = (props) => {
   const ey = my;
   const textAnchor = cos >= 0 ? "start" : "end";
 
+  const customFill = { carbs: "#138c00", fats: "#0285d1", protein: "#eda200" };
+
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+      <text
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor="middle"
+        fill={customFill[payload.name]}
+      >
         {payload.name}
       </text>
       <Sector
@@ -81,7 +86,7 @@ const renderActiveShape = (props) => {
         outerRadius={outerRadius}
         startAngle={startAngle}
         endAngle={endAngle}
-        fill={fill}
+        fill={customFill[payload.name]}
       />
       <Sector
         cx={cx}
@@ -90,11 +95,11 @@ const renderActiveShape = (props) => {
         endAngle={endAngle}
         innerRadius={outerRadius + 6}
         outerRadius={outerRadius + 10}
-        fill={fill}
+        fill={customFill[payload.name]}
       />
       <path
         d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-        stroke={fill}
+        stroke={customFill[payload.name]}
         fill="none"
       />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
@@ -103,7 +108,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`${value}g ${payload.name}`}</text>
+      >{`${value}g`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -111,7 +116,7 @@ const renderActiveShape = (props) => {
         textAnchor={textAnchor}
         fill="#999"
       >
-        {`(${(percent * 100).toFixed(2)}%)`}
+        {`${(percent * 100).toFixed(2)}%`}
       </text>
     </g>
   );
