@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Header from "../GlobalComponents/Header/Header";
-import {
-  Paper,
-  TextField,
-  IconButton,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Paper, TextField, IconButton, Tooltip, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ScannerButton from "./components/ScannerButton";
 import TabSelector from "./components/TabSelector";
 import Networking from "../Networking";
 import BarcodeResultCard from "./components/BarcodeResultCard";
 import MealResultCard from "./components/MealResultCard";
-
 
 export default function Home(props) {
   const [tab, setTab] = useState("Product name");
@@ -66,9 +59,7 @@ export default function Home(props) {
 
   function showMealResults() {
     if (searchResults.length > 0 && !searchResults.error) {
-      return searchResults.map((meal) => (
-        <MealResultCard data={meal} auth={auth} />
-      ));
+      return searchResults.map((meal) => <MealResultCard data={meal} auth={auth} />);
     } else return <Typography> No data</Typography>;
   }
 
@@ -79,26 +70,16 @@ export default function Home(props) {
         <div className="tab-selector">
           <TabSelector selectTab={selectTab} />
         </div>
-        <Paper
-          sx={{ flex: 1, width: "40%", padding: 2 }}
-          elevation={3}
-          className="search-box"
-        >
+        <Paper sx={{ flex: 1, width: "40%", padding: 2 }} elevation={3} className="search-box">
           <TextField
             sx={{ width: "80%" }}
             variant="outlined"
             label="search"
-            placeholder={
-              tab === "Barcode" ? "enter a barcode" : "type in a food"
-            }
+            placeholder={tab === "Barcode" ? "enter a barcode" : "type in a food"}
             onChange={(e) => setTextInput(e.target.value)}
           ></TextField>
           <Tooltip title="search">
-            <IconButton
-              aria-label="search"
-              color="primary"
-              onClick={() => handleSearch()}
-            >
+            <IconButton aria-label="search" color="primary" onClick={() => handleSearch()}>
               <SearchIcon />
             </IconButton>
           </Tooltip>

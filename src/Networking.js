@@ -142,9 +142,7 @@ export default class Networking {
       },
       body: JSON.stringify(trackedItem),
     });
-    const resData = await response.json();
-    console.log(resData);
-    return resData;
+    return await response.json();
   }
 
   async barcodeSearch(barcode) {
@@ -167,18 +165,17 @@ export default class Networking {
     return data.response;
   }
 
-  async getUserHistory(date) {
-    console.log("running above");
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log("running below");
-
-    const data = await response.json();
-    return data;
+  async getTrackedItems(date) {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/tracking?date=${date}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return await response.json();
   }
 }
