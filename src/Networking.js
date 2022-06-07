@@ -182,17 +182,6 @@ export default class Networking {
     return await response.json();
   }
 
-  async getTrackedItems(date) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking?date=${date}`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return await response.json();
-  }
-
   async getPerformanceHistory() {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/performance-history?allTime=true`, {
       method: "GET",
