@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Header from "../GlobalComponents/Header/Header";
 import { Paper, TextField, IconButton, Tooltip, Alert, CircularProgress } from "@mui/material";
+
 import SearchIcon from "@mui/icons-material/Search";
 import ScannerButton from "./components/ScannerButton";
 import TabSelector from "./components/TabSelector";

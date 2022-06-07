@@ -136,6 +136,7 @@ export default class Networking {
     const trackedItem = { itemInfo: data, amount: amount };
     const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -147,6 +148,7 @@ export default class Networking {
   async barcodeSearch(barcode) {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/search-barcode?barcode=${barcode}`);
     const data = await response.json();
+    console.log(data.response);
     if (data.response) return [data.response];
     else return [data];
   }
@@ -171,6 +173,17 @@ export default class Networking {
 
   async getTrackedItems(date) {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking?date=${date}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await response.json();
+  }
+
+  async getPerformanceHistory() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/performance-history?allTime=true`, {
       method: "GET",
       credentials: "include",
       headers: {
