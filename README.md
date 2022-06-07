@@ -13,6 +13,8 @@ yarn install
 yarn add @nivo/core @nivo/calendar @nivo/colors
 yarn add @mui/lab
 yarn add recharts
+yarn add @date-io/moment
+yarn add react-datepicker
 ```
 
 ### description
