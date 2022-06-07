@@ -104,16 +104,12 @@ export default function SignupForm(props) {
               Create account
             </Button>
           </div>
-        </div>
-        <div className="submit-btn">
-          <Button variant="contained" onClick={(e) => handleSubmit(e)}>
-            Create account
-          </Button>
-        </div>
-        <div className="account-creation-success-error-message">
-          {displayResponseMessage()}
-        </div>
-      </form>
+        </form>
+      </Paper>
+      <div className="account-creation-success-error-message">
+        {displayResponseMessage()}
+      </div>
+
       <div className="login-link">
         <p>
           Already have an account? Login{" "}
