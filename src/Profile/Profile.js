@@ -13,6 +13,8 @@ export default function Profile(props) {
   const [userHistory, setUserHistory] = useState([]);
   const [uiDate, setUiDate] = useState("Today");
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
+  const [from, setFrom] = useState("2022-05-01");
+  const [to, setTo] = useState("2022-08-12");
 
   const networking = new Networking();
 
@@ -48,13 +50,12 @@ export default function Profile(props) {
     return date.toISOString().split("T")[0];
   }
 
-
   function renderProgressCharts() {
     if (userHistory.length !== 0 && userGoals) {
       return <ProgressCharts history={userHistory} goals={userGoals} />;
     } else return <CircularProgress />;
   }
-  
+
   function populateTimeline() {
     const timelineData = userHistory.map((item, i) => {
       return <TrackerTimeline key={i} item={item} />;
@@ -64,7 +65,6 @@ export default function Profile(props) {
     } else {
       return timelineData;
     }
-
   }
 
   return (
@@ -86,14 +86,13 @@ export default function Profile(props) {
           {uiDate}
         </p>
         <Box>
-          <Calendar selectDay={selectDay} />
+          <Calendar selectDay={selectDay} from={from} to={to} />
         </Box>
       </Paper>
 
       <div>{renderProgressCharts()}</div>
 
       <Timeline position="alternate">{populateTimeline()}</Timeline>
-
     </div>
   );
 }
