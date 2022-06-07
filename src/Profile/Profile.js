@@ -3,7 +3,7 @@ import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
 import ProgressCharts from "./components/ProgressCharts/ProgressCharts";
-import { Box, Paper, CircularProgress, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import Networking from "../Networking";
 import TrackerTimeline from "./components/TrackerTimeline";
 import Timeline from "@mui/lab/Timeline";

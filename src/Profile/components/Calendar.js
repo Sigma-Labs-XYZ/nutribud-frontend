@@ -2,7 +2,6 @@
 // yarn add @nivo/core @nivo/calendar
 import React, { useState, useEffect } from "react";
 import { ResponsiveTimeRange } from "@nivo/calendar";
-import { Box } from "@mui/material";
 import Networking from "../../Networking";
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -18,7 +17,7 @@ export default function Calendar(props) {
       const data = await networking.getPerformanceHistory();
       setData(data.response);
     }
-    getPerformanceData();
+    getPerformanceData(); //eslint-disable-next-line
   }, []);
 
   function handleClick(day) {
