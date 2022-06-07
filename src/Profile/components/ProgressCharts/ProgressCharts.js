@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import UserPerformance from "../../../UserPerformace";
+import UserPerformance from "../../../UserPerformance";
 import Chart from "./PieChart";
 import ProgressBar from "./ProgressBar";
 

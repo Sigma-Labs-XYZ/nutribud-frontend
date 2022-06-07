@@ -3,13 +3,19 @@ import Networking from "./Networking";
 const networking = new Networking();
 
 export default class UserPerformance {
-  getPerformanceScore(nutrientsAmount) {
+  async getPerformanceScore(nutrientsAmount) {
     const amounts = Object.values(nutrientsAmount);
-    const nutrientsGoals = networking.getUserGoals();
+    const nutrientsGoals = (await networking.getUserGoals())[0];
+    delete nutrientsGoals.user_id;
     const goals = Object.values(nutrientsGoals);
-    const totalNutrients = amounts.reduce((prev, cur) => prev + cur);
-    const totalGoals = goals.reduce((prev, cur) => prev + cur);
+    const totalNutrients = amounts.reduce(
+      (prev, cur) => Number(prev) + Number(cur)
+    );
+
+    const totalGoals = goals.reduce((prev, cur) => Number(prev) + Number(cur));
+
     const performance = totalNutrients / totalGoals;
+    console.log("performance: ", performance);
     return performance;
   }
 
@@ -21,8 +27,9 @@ export default class UserPerformance {
     console.log(userHistory);
     if (userHistory.length !== 0) {
       userHistory.forEach((item) => {
-        for (const key of Object.keys(item.item_info)) {
-          addedUpNutriments[key] += item.item_info[key] * (item.serving_size_g / 100);
+        for (const nutriment of nutriments) {
+          addedUpNutriments[nutriment] +=
+            item.item_info[nutriment] * (item.serving_size_g / 100);
         }
       });
       return addedUpNutriments;
@@ -31,33 +38,11 @@ export default class UserPerformance {
 }
 
 const nutriments = [
-  "calcium",
   "calories",
   "carbs",
-  "fatMonounsaturated",
-  "fatPolyunsaturated",
-  "fatSaturated",
   "fats",
   "fiber",
-  "folateDfe",
-  "folateFood",
-  "folicAcid",
-  "iron",
-  "niacin",
-  "phosphorus",
-  "potassium",
   "protein",
-  "riboflavin",
   "salt",
   "sugar",
-  "thiamin",
-  "vitaminA",
-  "vitaminB6",
-  "vitaminB12",
-  "vitaminC",
-  "vitaminD",
-  "vitaminE",
-  "vitaminK",
-  "water",
-  "zinc",
 ];

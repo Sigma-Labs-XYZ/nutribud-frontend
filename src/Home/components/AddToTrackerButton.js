@@ -13,11 +13,14 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Networking from "../../Networking";
+import UserPerformance from "../../UserPerformance";
 
 export default function AddToTrackerButton(props) {
   const [inputText, setInputText] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [showSnackbar, setShowSnackbar] = useState(false);
+
+  const performance = new UserPerformance();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,13 +41,17 @@ export default function AddToTrackerButton(props) {
   const networking = new Networking();
 
   async function handleTrackItem(servingSize) {
-    setShowSnackbar(true);
+    const response = await props.trackItem(servingSize);
     const today = new Date().toISOString().substring(0, 10);
-    const userHistory = await networking.getTrackedItems(today);
-    const totalNutriments = props.nutrientAmounts(userHistory);
-    const performanceScore = props.performanceScore(totalNutriments);
-    props.trackItem(servingSize);
-    await networking.updatePerformanceScore(performanceScore);
+    const userHistory = (await networking.getTrackedItems(today)).response;
+    const totalNutriments = performance.addUpNutriments(userHistory);
+    const performanceScore = await performance.getPerformanceScore(
+      totalNutriments
+    );
+    console.log(response);
+    if (response.response) setShowSnackbar(true);
+    else if (response.error) return; // show error snackbar
+    await networking.updatePerformanceScore(Math.round(performanceScore * 100));
     handleClose();
   }
 
@@ -100,13 +107,23 @@ export default function AddToTrackerButton(props) {
               />
             </Box>
             <Box sx={{ margin: "2%" }}>
-              <Button onClick={(e) => handleTrackItem(inputText)}>Track Item</Button>
+              <Button onClick={(e) => handleTrackItem(inputText)}>
+                Track Item
+              </Button>
             </Box>
           </Box>
         </Paper>
       </Popover>
-      <Snackbar open={showSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={5000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
           Item tracked!
         </Alert>
       </Snackbar>
