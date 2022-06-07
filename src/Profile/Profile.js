@@ -3,7 +3,7 @@ import "./Profile.css";
 import Header from "../GlobalComponents/Header/Header";
 import Calendar from "./components/Calendar";
 import ProgressCharts from "./components/ProgressCharts/ProgressCharts";
-import { Box, Paper, CircularProgress } from "@mui/material";
+import { Box, Paper, CircularProgress, Typography } from "@mui/material";
 import Networking from "../Networking";
 import TrackerTimeline from "./components/TrackerTimeline";
 import Timeline from "@mui/lab/Timeline";
@@ -55,7 +55,19 @@ export default function Profile(props) {
   function renderProgressCharts() {
     if (userHistory.length !== 0 && userGoals) {
       return <ProgressCharts history={userHistory} goals={userGoals} />;
-    } else return <CircularProgress />;
+    } else
+      return (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "250px",
+          }}
+        >
+          <Typography variant="h3">No data available</Typography>
+        </Box>
+      );
   }
 
   function populateTimeline() {
@@ -74,17 +86,30 @@ export default function Profile(props) {
       <div className="header-wrapper">
         <Header />
       </div>
-      <Paper
-        elevation={3}
-        sx={{
-          maxWidth: "40%",
-          display: "grid",
-          gridTemplateRows: "1fr 3fr",
-          margin: "2%",
-          padding: "20px",
-        }}
-      >
-        <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box sx={{ display: "flex", flexDirection: "row", alignItems: "start" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: "20px",
+            alignItems: "center",
+            position: "inherit",
+          }}
+        >
+          <Paper
+            elevation={3}
+            sx={{
+              minWidth: "30vw",
+              maxWidth: "100vw",
+              maxHeight: "50vh",
+              display: "grid",
+              gridTemplateRows: "1fr 3fr",
+              margin: "2%",
+              padding: "20px",
+              position: "relative",
+            }}
+          >
+           <Box sx={{ display: "flex", flexDirection: "row" }}>
           <p variant="subtitle1" sx={{ fontWeight: "600" }}>
             {uiDate}
           </p>
@@ -102,14 +127,24 @@ export default function Profile(props) {
             <DatePicker selected={from} onChange={(date) => setTo(date)} />
           </Box>
         </Box>
-        <Box>
-          <Calendar selectDay={selectDay} from={from} to={to} />
+            <Box>
+              <Calendar selectDay={selectDay} from={from} to={to}/>
+            </Box>
+          </Paper>
+          <Paper
+            sx={{ minWidth: "30vw", maxWidth: "472px", maxHeight: "50vh" }}
+          >
+            <Timeline position="alternate">{populateTimeline()}</Timeline>
+          </Paper>
         </Box>
-      </Paper>
 
-      <div>{renderProgressCharts()}</div>
-
-      <Timeline position="alternate">{populateTimeline()}</Timeline>
+        <Paper sx={{ minHeight: "350px", minWidth: "625px", marginTop: "2%" }}>
+          <Typography variant="h4" sx={{ paddingLeft: "5%", paddingTop: "5%" }}>
+            Nutriment overview
+          </Typography>
+          <Box>{renderProgressCharts()}</Box>
+        </Paper>
+      </Box>
     </div>
   );
 }
