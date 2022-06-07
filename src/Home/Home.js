@@ -92,6 +92,7 @@ export default function Home(props) {
             justifyContent: "space-between",
             width: "50%",
             padding: "15px 0px 15px 15px",
+            marginBottom: "20px",
           }}
           elevation={3}
         >

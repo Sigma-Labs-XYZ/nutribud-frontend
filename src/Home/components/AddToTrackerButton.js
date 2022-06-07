@@ -64,7 +64,7 @@ export default function AddToTrackerButton(props) {
         >
           <Box sx={{ alignItems: "center" }}>
             <Box sx={{ margin: "2%" }}>
-              <Typography variant="body1">enter your serving size</Typography>
+              <Typography variant="body1">Enter serving size:</Typography>
             </Box>
             <Box sx={{ margin: "2%" }}>
               <OutlinedInput
