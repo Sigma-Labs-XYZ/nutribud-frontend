@@ -32,11 +32,16 @@ export default function Home(props) {
   }
 
   function showBarcodeButton() {
-    if (tab === "Barcode") return <ScannerButton />;
+    if (tab === "Barcode")
+      return <ScannerButton setBarcodeInput={setBarcodeInput} />;
   }
 
   async function loadingSearchResults(results) {
     setSearchResults(results);
+  }
+
+  function setBarcodeInput(barcode) {
+    setTextInput(barcode);
   }
 
   async function handleSearch() {
@@ -77,6 +82,7 @@ export default function Home(props) {
             label="search"
             placeholder={tab === "Barcode" ? "enter a barcode" : "type in a food"}
             onChange={(e) => setTextInput(e.target.value)}
+            value={textInput}
           ></TextField>
           <Tooltip title="search">
             <IconButton aria-label="search" color="primary" onClick={() => handleSearch()}>
