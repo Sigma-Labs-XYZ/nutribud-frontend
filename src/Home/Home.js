@@ -47,8 +47,9 @@ export default function Home(props) {
     setTextInput(barcode);
   }
 
-  function updateSpeech(value) {
+  function updateTextInputSpeech(value) {
     console.log(value);
+    setTextInput(value);
   }
 
   async function handleSearch() {
@@ -119,7 +120,7 @@ export default function Home(props) {
                 <SearchIcon />
               </IconButton>
             </Tooltip>
-            <SpeechDetection updateTranscipt={updateSpeech} />
+            <SpeechDetection updateTranscipt={updateTextInputSpeech} />
             {showBarcodeButton()}
           </div>
         </Paper>

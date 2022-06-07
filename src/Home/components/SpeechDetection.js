@@ -18,11 +18,12 @@ export default function SpeechDetection(props) {
   }
   async function handleMicClick() {
     if (listening) {
-      props.updateTranscipt(transcript);
       SpeechRecognition.stopListening();
-      resetTranscript();
+      props.updateTranscipt(transcript);
     } else {
+      resetTranscript();
       await SpeechRecognition.startListening({ continuous: true });
+      console.log(transcript);
     }
   }
   return (
