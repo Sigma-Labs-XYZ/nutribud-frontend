@@ -16,18 +16,17 @@ export default function SpeechDetection(props) {
   if (!browserSupportsSpeechRecognition) {
     return <Alert>Browser doesn't support speech recognition.</Alert>;
   }
-  async function handleMicClick() {
-    if (listening) {
-      SpeechRecognition.stopListening();
-      props.updateTranscipt(transcript);
-    } else {
-      resetTranscript();
-      await SpeechRecognition.startListening({ continuous: true });
-      console.log(transcript);
-    }
+
+  async function handleMicOff() {
+    SpeechRecognition.stopListening();
+    props.updateTranscipt(transcript);
+  }
+  async function handleMicOn() {
+    resetTranscript();
+    await SpeechRecognition.startListening({ continuous: true });
   }
   return (
-    <IconButton aria-label="mic" color="primary" onClick={handleMicClick}>
+    <IconButton aria-label="mic" color="primary" onMouseDown={handleMicOn} onTouchStart={handleMicOn} onMouseUp={handleMicOff} onTouchEnd={handleMicOff}>
       {listening ? <MicIcon /> : <MicOffIcon />}
     </IconButton>
   );
