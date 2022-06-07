@@ -134,9 +134,7 @@ export default function Profile(props) {
               <Calendar selectDay={selectDay} from={from} to={to} />
             </Box>
           </Paper>
-          <Paper
-            sx={{ minWidth: "30vw", maxWidth: "472px", maxHeight: "50vh" }}
-          >
+          <Paper sx={{ minWidth: "30vw", maxWidth: "472px" }}>
             <Timeline position="alternate">{populateTimeline()}</Timeline>
           </Paper>
         </Box>
