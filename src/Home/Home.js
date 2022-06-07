@@ -15,7 +15,6 @@ import Networking from "../Networking";
 import BarcodeResultCard from "./components/BarcodeResultCard";
 import MealResultCard from "./components/MealResultCard";
 
-
 export default function Home(props) {
   const [tab, setTab] = useState("Product name");
   const [auth, setAuth] = useState(false);
@@ -39,11 +38,16 @@ export default function Home(props) {
   }
 
   function showBarcodeButton() {
-    if (tab === "Barcode") return <ScannerButton />;
+    if (tab === "Barcode")
+      return <ScannerButton setBarcodeInput={setBarcodeInput} />;
   }
 
   async function loadingSearchResults(results) {
     setSearchResults(results);
+  }
+
+  function setBarcodeInput(barcode) {
+    setTextInput(barcode);
   }
 
   async function handleSearch() {
@@ -92,6 +96,7 @@ export default function Home(props) {
               tab === "Barcode" ? "enter a barcode" : "type in a food"
             }
             onChange={(e) => setTextInput(e.target.value)}
+            value={textInput}
           ></TextField>
           <Tooltip title="search">
             <IconButton
