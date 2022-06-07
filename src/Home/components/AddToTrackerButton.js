@@ -45,10 +45,7 @@ export default function AddToTrackerButton(props) {
     const today = new Date().toISOString().substring(0, 10);
     const userHistory = (await networking.getTrackedItems(today)).response;
     const totalNutriments = performance.addUpNutriments(userHistory);
-    const performanceScore = await performance.getPerformanceScore(
-      totalNutriments
-    );
-    console.log(response);
+    const performanceScore = await performance.getPerformanceScore(totalNutriments);
     if (response.response) setShowSnackbar(true);
     else if (response.error) return; // show error snackbar
     await networking.updatePerformanceScore(Math.round(performanceScore * 100));
@@ -107,23 +104,13 @@ export default function AddToTrackerButton(props) {
               />
             </Box>
             <Box sx={{ margin: "2%" }}>
-              <Button onClick={(e) => handleTrackItem(inputText)}>
-                Track Item
-              </Button>
+              <Button onClick={(e) => handleTrackItem(inputText)}>Track Item</Button>
             </Box>
           </Box>
         </Paper>
       </Popover>
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={5000}
-        onClose={handleCloseSnackbar}
-      >
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
+      <Snackbar open={showSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
           Item tracked!
         </Alert>
       </Snackbar>
