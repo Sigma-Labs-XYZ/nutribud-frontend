@@ -9,6 +9,7 @@ import TabSelector from "./components/TabSelector";
 import Networking from "../Networking";
 import BarcodeResultCard from "./components/BarcodeResultCard";
 import MealResultCard from "./components/MealResultCard";
+import SpeechDetection from "./components/SpeechDetection";
 
 export default function Home(props) {
   const [tab, setTab] = useState("Product name");
@@ -35,8 +36,7 @@ export default function Home(props) {
   }
 
   function showBarcodeButton() {
-    if (tab === "Barcode")
-      return <ScannerButton setBarcodeInput={setBarcodeInput} />;
+    if (tab === "Barcode") return <ScannerButton setBarcodeInput={setBarcodeInput} />;
   }
 
   async function loadingSearchResults(results) {
@@ -45,6 +45,10 @@ export default function Home(props) {
 
   function setBarcodeInput(barcode) {
     setTextInput(barcode);
+  }
+
+  function updateSpeech(value) {
+    console.log(value);
   }
 
   async function handleSearch() {
@@ -65,8 +69,7 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults[0].error)
-      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults[0].error) return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return showAlert();
   }
 
@@ -116,6 +119,7 @@ export default function Home(props) {
                 <SearchIcon />
               </IconButton>
             </Tooltip>
+            <SpeechDetection updateTranscipt={updateSpeech} />
             {showBarcodeButton()}
           </div>
         </Paper>
