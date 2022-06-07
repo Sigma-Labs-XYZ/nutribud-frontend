@@ -348,7 +348,7 @@ export default function Calendar(props) {
     props.selectDay(day);
   }
   return (
-    <div style={{ height: "30vh", maxWidth: "40vw" }}>
+    <div style={{ height: "98%", minWidth: "100%" }}>
       <ResponsiveTimeRange
         data={data}
         from="2022-05-01"

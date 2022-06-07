@@ -47,7 +47,14 @@ export default function ProgressCharts(props) {
       }}
     >
       {renderChart()}
-      <Stack sx={{ marginBottom: "7.5%", marginRight: "10%" }} spacing={2}>
+      <Stack
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          width: "200px",
+        }}
+        spacing={2}
+      >
         {renderProgressBars()}
       </Stack>
     </div>

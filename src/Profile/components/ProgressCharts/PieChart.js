@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import React, { useCallback, useState, useEffect } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 
@@ -23,7 +23,7 @@ export default function Chart(props) {
 
   if (data)
     return (
-      <PieChart width={425} height={500}>
+      <PieChart width={425} height={350}>
         <Pie
           activeIndex={activeIndex}
           activeShape={renderActiveShape}
@@ -38,7 +38,6 @@ export default function Chart(props) {
         />
       </PieChart>
     );
-  else if (!data) return <CircularProgress />;
 }
 
 const renderActiveShape = (props) => {
