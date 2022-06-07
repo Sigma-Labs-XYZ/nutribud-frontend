@@ -4,12 +4,12 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Tooltip, IconButton } from "@mui/material";
 import CropFreeIcon from "@mui/icons-material/CropFree";
+import VideoDecode from "./VideoScanner";
 
-export default function ScannerButton() {
+export default function ScannerButton(props) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -22,19 +22,19 @@ export default function ScannerButton() {
 
   return (
     <Fragment>
-      <Tooltip title="open barcode scanner">
-        <IconButton
-          aria-label="barcode"
-          color="primary"
-          onClick={handleClickOpen}
-        >
+      <Tooltip title="Open barcode scanner">
+        <IconButton aria-label="barcode" color="primary" onClick={handleClickOpen}>
           <CropFreeIcon />
         </IconButton>
       </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Scan a barcode</DialogTitle>
         <DialogContent>
-          <DialogContentText></DialogContentText>
+          <VideoDecode
+            setBarcodeInput={props.setBarcodeInput}
+            handleClose={handleClose}
+          />
+          ;
           <Box
             noValidate
             component="form"

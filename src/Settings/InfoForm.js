@@ -19,6 +19,7 @@ export default function InfoForm(props) {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     async function loadUserInformation() {
@@ -49,6 +50,8 @@ export default function InfoForm(props) {
       );
       if (response.error) {
         setError(true);
+      } else {
+        setSuccess(true);
       }
     } else {
       const response = await networking.updateUserInformation(
@@ -60,6 +63,8 @@ export default function InfoForm(props) {
       );
       if (response.error) {
         setError(true);
+      } else {
+        setSuccess(true);
       }
     }
   }
@@ -68,22 +73,24 @@ export default function InfoForm(props) {
     if (error) {
       setTimeout(() => setError(false), 5000);
       return <Alert severity="error">Unable to save changes</Alert>;
-    } else {
+    } else if (success) {
+      setTimeout(() => setSuccess(false), 5000);
       return <Alert severity="success">Changes Saved!</Alert>;
     }
   }
 
   return (
-    <div className="page-wrapper">
+    <div className="settings-page-wrapper">
       <div className="settings-form-wrapper">
         <Paper
           elevation={3}
           style={{
             padding: 8,
-            width: "100%",
+            width: 650,
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
+            height: 450,
           }}
         >
           <div className="name-settings-wrapper">

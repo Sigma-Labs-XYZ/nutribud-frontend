@@ -10,6 +10,7 @@ npm i react-router-dom
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
 yarn install
+yarn add dynamsoft-javascript-barcode
 yarn add @nivo/core @nivo/calendar @nivo/colors
 yarn add @mui/lab
 yarn add recharts

@@ -8,23 +8,43 @@ import {
   Typography,
   Box,
   Popover,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import Networking from "../../Networking";
 
 export default function AddToTrackerButton(props) {
   const [inputText, setInputText] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSnackbar(false);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  function handleTrackItem(servingSize) {
+  const networking = new Networking();
+
+  async function handleTrackItem(servingSize) {
+    setShowSnackbar(true);
+    const today = new Date().toISOString().substring(0, 10);
+    const userHistory = await networking.getTrackedItems(today);
+    const totalNutriments = props.nutrientAmounts(userHistory);
+    const performanceScore = props.performanceScore(totalNutriments);
     props.trackItem(servingSize);
+    await networking.updatePerformanceScore(performanceScore);
     handleClose();
   }
 
@@ -65,7 +85,7 @@ export default function AddToTrackerButton(props) {
         >
           <Box sx={{ alignItems: "center" }}>
             <Box sx={{ margin: "2%" }}>
-              <Typography variant="body1">enter your serving size</Typography>
+              <Typography variant="body1">Enter serving size:</Typography>
             </Box>
             <Box sx={{ margin: "2%" }}>
               <OutlinedInput
@@ -80,13 +100,16 @@ export default function AddToTrackerButton(props) {
               />
             </Box>
             <Box sx={{ margin: "2%" }}>
-              <Button onClick={(e) => handleTrackItem(inputText)}>
-                Track Item
-              </Button>
+              <Button onClick={(e) => handleTrackItem(inputText)}>Track Item</Button>
             </Box>
           </Box>
         </Paper>
       </Popover>
+      <Snackbar open={showSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
+          Item tracked!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

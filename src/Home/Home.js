@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Header from "../GlobalComponents/Header/Header";
-import { Paper, TextField, IconButton, Tooltip, Typography } from "@mui/material";
+import { Paper, TextField, IconButton, Tooltip, Alert, CircularProgress } from "@mui/material";
+
 import SearchIcon from "@mui/icons-material/Search";
 import ScannerButton from "./components/ScannerButton";
 import TabSelector from "./components/TabSelector";
@@ -14,6 +15,8 @@ export default function Home(props) {
   const [auth, setAuth] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
 
   const networking = new Networking();
 
@@ -32,35 +35,53 @@ export default function Home(props) {
   }
 
   function showBarcodeButton() {
-    if (tab === "Barcode") return <ScannerButton />;
+    if (tab === "Barcode")
+      return <ScannerButton setBarcodeInput={setBarcodeInput} />;
   }
 
   async function loadingSearchResults(results) {
     setSearchResults(results);
   }
 
+  function setBarcodeInput(barcode) {
+    setTextInput(barcode);
+  }
+
   async function handleSearch() {
     if (tab === "Barcode") {
+      setLoading(true);
       const response = await networking.barcodeSearch(textInput);
       await loadingSearchResults(response);
+      setLoading(false);
     } else {
       if (textInput !== "") {
+        setLoading(true);
         const response = await networking.mealSearch(textInput);
         await loadingSearchResults(response);
+        setLoading(false);
       }
     }
+    setSearched(true);
   }
 
   function showBarcodeResults() {
     if (searchResults.length > 0 && !searchResults[0].error)
       return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
-    else return <Typography> No data</Typography>;
+    else return showAlert();
   }
 
   function showMealResults() {
-    if (searchResults.length > 0 && !searchResults.error) {
-      return searchResults.map((meal) => <MealResultCard data={meal} auth={auth} />);
-    } else return <Typography> No data</Typography>;
+    if (searchResults.length > 0 && !searchResults[0].error) {
+      return searchResults.map((meal, i) => <MealResultCard key={i} data={meal} auth={auth} />);
+    } else return showAlert();
+  }
+
+  function showAlert() {
+    return (
+      <Alert severity="info" className="alert">
+        No products found.
+      </Alert>
+    );
   }
 
   return (
@@ -70,24 +91,36 @@ export default function Home(props) {
         <div className="tab-selector">
           <TabSelector selectTab={selectTab} />
         </div>
-        <Paper sx={{ flex: 1, width: "40%", padding: 2 }} elevation={3} className="search-box">
+        <Paper
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "50%",
+            padding: "15px 0px 15px 15px",
+            marginBottom: "20px",
+          }}
+          elevation={3}
+        >
           <TextField
-            sx={{ width: "80%" }}
+            sx={{ width: "85%" }}
             variant="outlined"
-            label="search"
-            placeholder={tab === "Barcode" ? "enter a barcode" : "type in a food"}
+            label="Search..."
+            placeholder={tab === "Barcode" ? "Enter a barcode!" : "Type in a food!"}
             onChange={(e) => setTextInput(e.target.value)}
+            value={textInput}
           ></TextField>
-          <Tooltip title="search">
-            <IconButton aria-label="search" color="primary" onClick={() => handleSearch()}>
-              <SearchIcon />
-            </IconButton>
-          </Tooltip>
-          {showBarcodeButton()}
+          <div className="search-icons">
+            <Tooltip title="Search">
+              <IconButton aria-label="Search..." color="primary" onClick={() => handleSearch()}>
+                <SearchIcon />
+              </IconButton>
+            </Tooltip>
+            {showBarcodeButton()}
+          </div>
         </Paper>
-        {/* <Stack direction="column" justifyContent="center" alignItems="center"> */}
-        {tab === "Barcode" ? showBarcodeResults() : showMealResults()}
-        {/* </Stack> */}
+        {loading ? <CircularProgress style={{ marginTop: "40px" }} /> : ""}
+        {searched ? (tab === "Barcode" ? showBarcodeResults() : showMealResults()) : ""}
       </div>
     </div>
   );
