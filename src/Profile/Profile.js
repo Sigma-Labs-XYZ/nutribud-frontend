@@ -7,12 +7,16 @@ import { Box, Paper, CircularProgress, Typography } from "@mui/material";
 import Networking from "../Networking";
 import TrackerTimeline from "./components/TrackerTimeline";
 import Timeline from "@mui/lab/Timeline";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
   const [userHistory, setUserHistory] = useState([]);
   const [uiDate, setUiDate] = useState("Today");
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
+  const [from, setFrom] = useState(new Date());
+  const [to, setTo] = useState("2022-08-12");
 
   const networking = new Networking();
 
@@ -105,11 +109,26 @@ export default function Profile(props) {
               position: "relative",
             }}
           >
-            <p variant="subtitle1" sx={{ fontWeight: "600" }}>
-              {uiDate}
+           <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <p variant="subtitle1" sx={{ fontWeight: "600" }}>
+            {uiDate}
+          </p>
+          <Box>
+            {" "}
+            <p variant="subtitle2" sx={{ fontWeight: "600" }}>
+              From
             </p>
+            <DatePicker selected={from} onChange={(date) => setFrom(date)} />
+          </Box>
+          <Box>
+            <p variant="subtitle2" sx={{ fontWeight: "600" }}>
+              To
+            </p>
+            <DatePicker selected={from} onChange={(date) => setTo(date)} />
+          </Box>
+        </Box>
             <Box>
-              <Calendar selectDay={selectDay} />
+              <Calendar selectDay={selectDay} from={from} to={to}/>
             </Box>
           </Paper>
           <Paper
