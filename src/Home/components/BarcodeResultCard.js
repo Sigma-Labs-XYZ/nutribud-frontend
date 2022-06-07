@@ -1,4 +1,4 @@
-import { Paper, Card, CardMedia, CardContent, Typography, Box, CardHeader } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import React from "react";
 import AddToTrackerButton from "./AddToTrackerButton";
 import Networking from "../../Networking";
