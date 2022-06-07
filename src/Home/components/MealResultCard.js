@@ -2,7 +2,6 @@ import { Paper, Card, CardMedia, CardContent, Typography, Box, CardHeader } from
 import React from "react";
 import AddToTrackerButton from "./AddToTrackerButton";
 import Networking from "../../Networking";
-import UserPerformance from "../../UserPerformance";
 
 export default function MealResultCard(props) {
   const nutriments = props.data.nutriments;
@@ -17,21 +16,35 @@ export default function MealResultCard(props) {
   }
 
   return (
-    <Card elevation={5} sx={{ minWidth: 1 / 2, minHeight: 175, margin: 2 }}>
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+    <Card
+      elevation={5}
+      sx={{
+        minWidth: 1 / 2,
+        minHeight: 175,
+        margin: 2,
+        flexShrink: 3,
+        maxWidth: "60%",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginLeft: "2%",
-            width: "15%",
+            width: "17.5%",
           }}
         >
           <CardMedia
             sx={{
               height: "auto",
-              marginLeft: "2%",
+              marginLeft: "1%",
               marginTop: "1%",
             }}
             component="img"
@@ -39,9 +52,13 @@ export default function MealResultCard(props) {
             alt={props.data.name + " Img"}
           />
         </Box>
-        <CardContent sx={{ maxWidth: "30%" }}>
+        <CardContent sx={{ maxWidth: "40%" }}>
           <Box>
-            <CardHeader sx={{ paddingTop: "1px" }} title={[props.data.name]} subheader={"nutritional value\n per 100g"} />
+            <CardHeader
+              sx={{ paddingTop: "1px" }}
+              title={[props.data.name]}
+              subheader={"nutritional value\n per 100g"}
+            />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Paper elevation={4}>
                 <Typography variant="h3" component="div" sx={{ padding: "4px" }}>
@@ -52,8 +69,8 @@ export default function MealResultCard(props) {
           </Box>
         </CardContent>
         <CardContent>
-          <Box>
-            <Paper elevation={2}>
+          <Paper elevation={2}>
+            <Box>
               <Typography variant="body1" component="div">
                 Carbohydrates {Math.round(nutriments["Carbohydrate, by difference"])} g
               </Typography>
@@ -63,18 +80,18 @@ export default function MealResultCard(props) {
               <Typography variant="body1" component="div">
                 Protein {Math.round(nutriments["Protein"])} g
               </Typography>
-            </Paper>
-          </Box>
+            </Box>
+          </Paper>
         </CardContent>
         <Box
           sx={{
             display: "flex",
             alignItems: "end",
-            marginRight: "1%",
-            marginBottom: "1%",
+            // marginRight: "2%",
+            marginBottom: "2%",
           }}
         >
-          <AddToTrackerButton trackItem={trackItem} nutrientAmounts={UserPerformance.addUpNutriments} performanceScore={UserPerformance.getPerformanceScore} />
+          <AddToTrackerButton trackItem={trackItem} />
         </Box>
       </Box>
     </Card>

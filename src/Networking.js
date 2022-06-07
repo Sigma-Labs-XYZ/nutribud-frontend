@@ -154,7 +154,8 @@ export default class Networking {
   async mealSearch(item) {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/search-text?item=${encodeURIComponent(item)}`);
     const data = await response.json();
-    return data.response;
+    if (data.response) return data.response;
+    else return [data];
   }
 
   async updatePerformanceScore(performanceScore) {

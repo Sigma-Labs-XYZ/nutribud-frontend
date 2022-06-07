@@ -1,12 +1,4 @@
-import {
-  Paper,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Box,
-  CardHeader,
-} from "@mui/material";
+import { Paper, Card, CardMedia, CardContent, Typography, Box, CardHeader } from "@mui/material";
 import React from "react";
 import AddToTrackerButton from "./AddToTrackerButton";
 import Networking from "../../Networking";
@@ -25,9 +17,7 @@ export default function BarcodeResultCard(props) {
 
   return (
     <Card elevation={5} sx={{ minWidth: 1 / 2, minHeight: 175, margin: 2 }}>
-      <Box
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
         <Box
           sx={{
             display: "flex",
@@ -50,22 +40,12 @@ export default function BarcodeResultCard(props) {
         </Box>
         <CardContent>
           <Box>
-            <CardHeader
-              sx={{ paddingTop: "1px" }}
-              title={[props.data.name]}
-              subheader={"nutritional value per 100g"}
-            />
+            <CardHeader sx={{ paddingTop: "1px" }} title={[props.data.name]} subheader={"nutritional value per 100g"} />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Paper elevation={4}>
-                <Typography
-                  variant="h3"
-                  component="div"
-                  sx={{ padding: "4px" }}
-                >
-                  {nutriments["energy-kcal_100g"]
-                    ? nutriments["energy-kcal_100g"]
-                    : nutriments["energy_100g"]}{" "}
-                  {nutriments["energy_unit"]}
+                <Typography variant="h3" component="div" sx={{ padding: "4px" }}>
+                  {nutriments["energy-kcal_100g"] ? nutriments["energy-kcal_100g"] : nutriments["energy_100g"]}{" "}
+                  {nutriments["energy-kcal_unit"] ? nutriments["energy-kcal_unit"] : nutriments["energy_unit"]}
                 </Typography>
               </Paper>
             </Box>
