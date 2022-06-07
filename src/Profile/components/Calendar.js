@@ -19,7 +19,6 @@ export default function Calendar(props) {
       setData(data.response);
     }
     getPerformanceData();
-    console.log(data.response);
   }, []);
 
   function handleClick(day) {
@@ -30,9 +29,20 @@ export default function Calendar(props) {
       <ResponsiveTimeRange
         data={data}
         from={props.from}
-        to={[props.to]}
+        to={props.to}
         emptyColor="#eeeeee"
-        colors={["#c10c01", "#e73801", "#f15201", "#ff8208", "#fdde00", "#c3f101", "#72da00", "#33cc00", "#10b001", "#019d53"]}
+        colors={[
+          "#c10c01",
+          "#e73801",
+          "#f15201",
+          "#ff8208",
+          "#fdde00",
+          "#c3f101",
+          "#72da00",
+          "#33cc00",
+          "#10b001",
+          "#019d53",
+        ]}
         margin={{ top: 20 }}
         dayBorderWidth={2}
         dayBorderColor="#ffffff"

@@ -16,7 +16,7 @@ export default function Profile(props) {
   const [uiDate, setUiDate] = useState("Today");
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
   const [from, setFrom] = useState(new Date());
-  const [to, setTo] = useState("2022-08-12");
+  const [to, setTo] = useState(new Date());
 
   const networking = new Networking();
 
@@ -109,26 +109,29 @@ export default function Profile(props) {
               position: "relative",
             }}
           >
-           <Box sx={{ display: "flex", flexDirection: "row" }}>
-          <p variant="subtitle1" sx={{ fontWeight: "600" }}>
-            {uiDate}
-          </p>
-          <Box>
-            {" "}
-            <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-              From
-            </p>
-            <DatePicker selected={from} onChange={(date) => setFrom(date)} />
-          </Box>
-          <Box>
-            <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-              To
-            </p>
-            <DatePicker selected={from} onChange={(date) => setTo(date)} />
-          </Box>
-        </Box>
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <p variant="subtitle1" sx={{ fontWeight: "600" }}>
+                {uiDate}
+              </p>
+              <Box>
+                {" "}
+                <p variant="subtitle2" sx={{ fontWeight: "600" }}>
+                  From
+                </p>
+                <DatePicker
+                  selected={from}
+                  onChange={(date) => setFrom(date)}
+                />
+              </Box>
+              <Box>
+                <p variant="subtitle2" sx={{ fontWeight: "600" }}>
+                  To
+                </p>
+                <DatePicker selected={to} onChange={(date) => setTo(date)} />
+              </Box>
+            </Box>
             <Box>
-              <Calendar selectDay={selectDay} from={from} to={to}/>
+              <Calendar selectDay={selectDay} from={from} to={to} />
             </Box>
           </Paper>
           <Paper
