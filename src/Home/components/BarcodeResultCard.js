@@ -1,12 +1,4 @@
-import {
-  Paper,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Box,
-  CardHeader,
-} from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import React from "react";
 import AddToTrackerButton from "./AddToTrackerButton";
 import Networking from "../../Networking";
@@ -24,78 +16,74 @@ export default function BarcodeResultCard(props) {
   }
 
   return (
-    <Card elevation={5} sx={{ minWidth: 1 / 2, minHeight: 175, margin: 2 }}>
+    <Card
+      elevation={5}
+      sx={{
+        margin: 2,
+        maxWidth: "60%",
+        minWidth: "60%",
+        borderRadius: "8px",
+        display: "flex",
+        justifyContent: "space-evenly",
+      }}
+    >
       <Box
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "125px",
+          margin: "15px",
+        }}
       >
-        <Box
+        <CardMedia
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginLeft: "2%",
-            width: "15%",
+            borderRadius: "8px",
           }}
-        >
-          <CardMedia
-            sx={{
-              height: "auto",
-              marginLeft: "2%",
-              marginTop: "1%",
-            }}
-            component="img"
-            image={props.data.productImg}
-            alt={props.data.name + " Img"}
-          />
+          component="img"
+          image={props.data.productImg}
+          alt={props.data.name + " Img"}
+        />
+      </Box>
+      <CardContent
+        sx={{
+          width: "45%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Typography variant="h4" align="center">
+          {[props.data.name]}
+        </Typography>
+        <Typography variant="subtitle1">Nutritional values per 100g</Typography>
+      </CardContent>
+      <CardContent sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Box>
+          <Typography variant="h6" component="div" style={{ fontWeight: "bold" }}>
+            {nutriments["energy-kcal_100g"] ? nutriments["energy-kcal_100g"] : nutriments["energy_100g"]}
+            {nutriments["energy-kcal_unit"] ? nutriments["energy-kcal_unit"] : nutriments["energy_unit"]}
+          </Typography>
+          <Typography variant="body1" component="div">
+            Carbohydrates: {nutriments["carbohydrates"]}g
+          </Typography>
+          <Typography variant="body1" component="div">
+            Fats: {Math.round(nutriments["fat"])}g
+          </Typography>
+          <Typography variant="body1" component="div">
+            Protein: {Math.round(nutriments["proteins"])}g
+          </Typography>
         </Box>
-        <CardContent>
-          <Box>
-            <CardHeader
-              sx={{ paddingTop: "1px" }}
-              title={[props.data.name]}
-              subheader={"nutritional value per 100g"}
-            />
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Paper elevation={4}>
-                <Typography
-                  variant="h3"
-                  component="div"
-                  sx={{ padding: "4px" }}
-                >
-                  {nutriments["energy-kcal_100g"]
-                    ? nutriments["energy-kcal_100g"]
-                    : nutriments["energy_100g"]}{" "}
-                  {nutriments["energy_unit"]}
-                </Typography>
-              </Paper>
-            </Box>
-          </Box>
-        </CardContent>
-        <CardContent>
-          <Box>
-            <Paper elevation={2}>
-              <Typography variant="body1" component="div">
-                Carbohydrates {nutriments["carbohydrates"]}g
-              </Typography>
-              <Typography variant="body1" component="div">
-                Fat {nutriments["fat"]}g
-              </Typography>
-              <Typography variant="body1" component="div">
-                Protein {nutriments["proteins"]}g
-              </Typography>
-            </Paper>
-          </Box>
-        </CardContent>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "end",
-            marginRight: "1%",
-            marginBottom: "1%",
-          }}
-        >
-          <AddToTrackerButton trackItem={trackItem} />
-        </Box>
+      </CardContent>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          margin: "10px",
+        }}
+      >
+        <AddToTrackerButton trackItem={trackItem} />
       </Box>
     </Card>
   );

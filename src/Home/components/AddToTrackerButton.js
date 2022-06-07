@@ -1,14 +1,34 @@
 import React, { useState } from "react";
-import { Fab, OutlinedInput, InputAdornment, Paper, Button, Typography, Box, Popover } from "@mui/material";
+import {
+  Fab,
+  OutlinedInput,
+  InputAdornment,
+  Paper,
+  Button,
+  Typography,
+  Box,
+  Popover,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Networking from "../../Networking";
 
 export default function AddToTrackerButton(props) {
   const [inputText, setInputText] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSnackbar(false);
   };
 
   const handleClose = () => {
@@ -18,6 +38,7 @@ export default function AddToTrackerButton(props) {
   const networking = new Networking();
 
   async function handleTrackItem(servingSize) {
+    setShowSnackbar(true);
     const today = new Date().toISOString().substring(0, 10);
     const userHistory = await networking.getTrackedItems(today);
     const totalNutriments = props.nutrientAmounts(userHistory);
@@ -64,7 +85,7 @@ export default function AddToTrackerButton(props) {
         >
           <Box sx={{ alignItems: "center" }}>
             <Box sx={{ margin: "2%" }}>
-              <Typography variant="body1">enter your serving size</Typography>
+              <Typography variant="body1">Enter serving size:</Typography>
             </Box>
             <Box sx={{ margin: "2%" }}>
               <OutlinedInput
@@ -84,6 +105,11 @@ export default function AddToTrackerButton(props) {
           </Box>
         </Paper>
       </Popover>
+      <Snackbar open={showSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
+          Item tracked!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -22,12 +22,8 @@ export default function ScannerButton(props) {
 
   return (
     <Fragment>
-      <Tooltip title="open barcode scanner">
-        <IconButton
-          aria-label="barcode"
-          color="primary"
-          onClick={handleClickOpen}
-        >
+      <Tooltip title="Open barcode scanner">
+        <IconButton aria-label="barcode" color="primary" onClick={handleClickOpen}>
           <CropFreeIcon />
         </IconButton>
       </Tooltip>
