@@ -15,6 +15,7 @@ export default function Home(props) {
   const [tab, setTab] = useState("Product name");
   const [auth, setAuth] = useState(false);
   const [textInput, setTextInput] = useState("");
+  const [altInput, setAltInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
@@ -36,29 +37,29 @@ export default function Home(props) {
   }
 
   function showBarcodeButton() {
-    if (tab === "Barcode") return <ScannerButton setBarcodeInput={setBarcodeInput} />;
+    if (tab === "Barcode") return <ScannerButton setBarcodeInput={updateAltInput} />;
   }
   function showSpeechButton() {
-    if (tab !== "Barcode") return <SpeechDetection updateTranscipt={updateTextInputSpeech} />;
+    if (tab !== "Barcode") return <SpeechDetection updateTranscipt={updateAltInput} />;
   }
 
   async function loadingSearchResults(results) {
     setSearchResults(results);
   }
 
-  function setBarcodeInput(barcode) {
-    setTextInput(barcode);
+  useEffect(() => {
     handleSearch();
-  }
+  }, [altInput]);
 
-  function updateTextInputSpeech(value) {
-    setTextInput(value);
-    handleSearch();
+  function updateAltInput(input) {
+    setTextInput(input);
+    setAltInput(input);
   }
 
   async function handleSearch() {
     if (tab === "Barcode") {
       setLoading(true);
+      console.log(textInput);
       const response = await networking.barcodeSearch(textInput);
       await loadingSearchResults(response);
       setLoading(false);
@@ -74,7 +75,8 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults[0].error) return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults[0].error)
+      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return showAlert();
   }
 
