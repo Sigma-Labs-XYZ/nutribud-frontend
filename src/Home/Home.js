@@ -38,6 +38,9 @@ export default function Home(props) {
   function showBarcodeButton() {
     if (tab === "Barcode") return <ScannerButton setBarcodeInput={setBarcodeInput} />;
   }
+  function showSpeechButton() {
+    if (tab !== "Barcode") return <SpeechDetection updateTranscipt={updateTextInputSpeech} />;
+  }
 
   async function loadingSearchResults(results) {
     setSearchResults(results);
@@ -121,7 +124,7 @@ export default function Home(props) {
                 <SearchIcon />
               </IconButton>
             </Tooltip>
-            <SpeechDetection updateTranscipt={updateTextInputSpeech} />
+            {showSpeechButton()}
             {showBarcodeButton()}
           </div>
         </Paper>
