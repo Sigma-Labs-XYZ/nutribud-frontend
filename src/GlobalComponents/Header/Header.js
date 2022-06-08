@@ -13,11 +13,14 @@ import {
   Tooltip,
   MenuItem,
   Paper,
+  Switch,
 } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
+import Brightness3Icon from "@mui/icons-material/Brightness3";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import Networking from "../../Networking";
 import { useNavigate, useLocation } from "react-router-dom";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -150,7 +153,7 @@ export default function Header() {
       return (
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           <Button
-            key="profile"
+            key="about"
             onClick={(e) => {
               handleCloseNavMenu();
               handleAboutClick();
@@ -179,6 +182,13 @@ export default function Header() {
           >
             Profile
           </Button>
+          <FormControlLabel
+            control={<Switch defaultChecked />}
+            label={<Brightness3Icon />}
+            labelPlacement="start"
+            sx={{ marginLeft: "80%" }}
+            // onChange={handleDarkMode}
+          />
         </Box>
       );
     } else {
@@ -204,6 +214,13 @@ export default function Header() {
           >
             Search
           </Button>
+          <FormControlLabel
+            control={<Switch defaultChecked />}
+            label={<Brightness3Icon />}
+            labelPlacement="start"
+            sx={{ marginLeft: "80%" }}
+            // onChange={handleDarkMode}
+          />
         </Box>
       );
     }

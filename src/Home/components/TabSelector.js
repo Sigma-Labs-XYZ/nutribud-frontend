@@ -5,7 +5,10 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 const StyledTabs = styled((props) => (
-  <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  />
 ))({
   "& .MuiTabs-indicator": {
     display: "flex",
@@ -19,19 +22,21 @@ const StyledTabs = styled((props) => (
   },
 });
 
-const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
-  textTransform: "none",
-  fontWeight: theme.typography.fontWeightRegular,
-  fontSize: theme.typography.pxToRem(15),
-  marginRight: theme.spacing(1),
-  color: "#407d00",
-  "&.Mui-selected": {
-    color: "#6acc01",
-  },
-  "&.Mui-focusVisible": {
-    backgroundColor: "rgba(100, 95, 228, 0.32)",
-  },
-}));
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: "none",
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    color: "#407d00",
+    "&.Mui-selected": {
+      color: "#6acc01",
+    },
+    "&.Mui-focusVisible": {
+      backgroundColor: "rgba(100, 95, 228, 0.32)",
+    },
+  })
+);
 
 export default function TabSelector(props) {
   const [value, setValue] = useState(0);
@@ -45,7 +50,11 @@ export default function TabSelector(props) {
   return (
     <Box sx={{ width: "100%", marginBottom: "30px" }}>
       <Box>
-        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example">
+        <StyledTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="styled tabs example"
+        >
           <StyledTab id="Product name" label="Product name" />
           <StyledTab label="Barcode" />
         </StyledTabs>
