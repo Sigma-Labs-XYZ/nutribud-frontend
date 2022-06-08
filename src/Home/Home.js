@@ -18,7 +18,6 @@ export default function Home(props) {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [speech, setSpeech] = useState("");
 
   const networking = new Networking();
 
@@ -50,7 +49,7 @@ export default function Home(props) {
 
   function updateTextInputSpeech(value) {
     setTextInput(value);
-    setSpeech(value);
+    handleSearch();
   }
 
   async function handleSearch() {
@@ -127,7 +126,6 @@ export default function Home(props) {
         </Paper>
         {loading ? <CircularProgress style={{ marginTop: "40px" }} /> : ""}
         {searched ? (tab === "Barcode" ? showBarcodeResults() : showMealResults()) : ""}
-        {/* {speech ? handleSearch() : null} */}
       </div>
     </div>
   );
