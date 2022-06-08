@@ -44,6 +44,7 @@ export default function AddToTrackerButton(props) {
 
   async function handleTrackItem(servingSize) {
     try {
+      //eslint-disable-next-line
       const response = await props.trackItem(servingSize);
       setShowSuccessSnackbar(true);
     } catch (e) {
