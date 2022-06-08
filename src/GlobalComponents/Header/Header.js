@@ -17,13 +17,14 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import Networking from "../../Networking";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   let navigate = useNavigate();
+  let location = useLocation();
 
   const networking = new Networking();
 
@@ -67,7 +68,8 @@ export default function Header() {
   }
 
   function refreshPage() {
-    window.location.reload(false);
+    if (location.pathname === "/") window.location.reload(false);
+    else navigate("/", 500);
   }
 
   async function handleLogoutClick() {
@@ -251,7 +253,10 @@ export default function Header() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <FitnessCenterIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} color="secondary" />
+            <FitnessCenterIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              color="secondary"
+            />
             <Typography
               variant="h6"
               noWrap
@@ -301,7 +306,10 @@ export default function Header() {
                 {renderPageButtonsSmallPage()}
               </Menu>
             </Box>
-            <FitnessCenterIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} color="secondary" />
+            <FitnessCenterIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              color="secondary"
+            />
             <Typography
               variant="h5"
               noWrap
