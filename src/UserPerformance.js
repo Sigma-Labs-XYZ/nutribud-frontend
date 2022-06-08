@@ -4,19 +4,18 @@ const networking = new Networking();
 
 export default class UserPerformance {
   async getPerformanceScore(nutrientsAmount) {
-    const amounts = Object.values(nutrientsAmount);
     const nutrientsGoals = (await networking.getUserGoals())[0];
     delete nutrientsGoals.user_id;
-    const goals = Object.values(nutrientsGoals);
-    const totalNutrients = amounts.reduce(
-      (prev, cur) => Number(prev) + Number(cur)
+    const performancePercentages = this.calculateNutrientProgress(
+      Object.keys(nutrientsAmount),
+      nutrientsAmount,
+      nutrientsGoals
     );
-
-    const totalGoals = goals.reduce((prev, cur) => Number(prev) + Number(cur));
-
-    const performance = totalNutrients / totalGoals;
-    console.log("performance: ", performance);
-    return performance;
+    const performanceValues = Object.values(performancePercentages);
+    const performance =
+      performanceValues.reduce((prev, curr) => Number(prev) + Number(curr)) / performanceValues.length;
+    const performanceDiff = performance - 1;
+    return performanceDiff > 0 ? 1 - performanceDiff : performance;
   }
 
   addUpNutriments(userHistory) {
@@ -26,23 +25,34 @@ export default class UserPerformance {
     }
     if (userHistory.length !== 0) {
       userHistory.forEach((item) => {
+        console.log(item);
         for (const nutriment of nutriments) {
-          if (item.item_info[nutriment])
-            addedUpNutriments[nutriment] +=
-              item.item_info[nutriment] * (item.serving_size_g / 100);
+          let itemNutrimentValue = 0;
+          if (item.item_info[nutriment]) {
+            itemNutrimentValue = item.item_info[nutriment];
+          }
+          addedUpNutriments[nutriment] += itemNutrimentValue * (item.serving_size_g / 100);
         }
       });
       return addedUpNutriments;
     } else return undefined;
   }
+
+  calculateNutrientProgress(nutrients, totalNutrimentAmounts, goals) {
+    const percentageProgress = {};
+    nutrients.forEach((nutrient) => {
+      percentageProgress[nutrient] = totalNutrimentAmounts[nutrient] / goals[nutrient];
+      const goalDiff = totalNutrimentAmounts[nutrient] - goals[nutrient];
+      if (goalDiff <= 0) {
+        percentageProgress[nutrient] = totalNutrimentAmounts[nutrient] / goals[nutrient];
+      } else {
+        const percentage = totalNutrimentAmounts[nutrient] / goals[nutrient];
+        const percentageDiff = percentage - 1;
+        percentageProgress[nutrient] = 1 - percentageDiff < 0 ? 0 : 1 - percentageDiff;
+      }
+    });
+    return percentageProgress;
+  }
 }
 
-const nutriments = [
-  "calories",
-  "carbs",
-  "fats",
-  "fiber",
-  "protein",
-  "salt",
-  "sugar",
-];
+const nutriments = ["calories", "carbs", "fats", "fiber", "protein", "salt", "sugar"];
