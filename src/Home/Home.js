@@ -45,6 +45,7 @@ export default function Home(props) {
 
   function setBarcodeInput(barcode) {
     setTextInput(barcode);
+    handleSearch();
   }
 
   function updateTextInputSpeech(value) {
