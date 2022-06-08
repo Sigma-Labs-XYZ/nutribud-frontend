@@ -24,12 +24,12 @@ export default class UserPerformance {
     for (const nutriment of nutriments) {
       addedUpNutriments[nutriment] = 0;
     }
-    console.log(userHistory);
     if (userHistory.length !== 0) {
       userHistory.forEach((item) => {
         for (const nutriment of nutriments) {
-          addedUpNutriments[nutriment] +=
-            item.item_info[nutriment] * (item.serving_size_g / 100);
+          if (item.item_info[nutriment])
+            addedUpNutriments[nutriment] +=
+              item.item_info[nutriment] * (item.serving_size_g / 100);
         }
       });
       return addedUpNutriments;
