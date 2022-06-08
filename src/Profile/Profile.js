@@ -109,16 +109,26 @@ export default function Profile(props) {
               position: "relative",
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "12px" }}>
-              <Box className="date-container">
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "600", marginRight: "4%" }}
+              >
+                {uiDate}
+              </Typography>
+              <Box>
+                {" "}
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  From:
+                  From
                 </p>
-                <DatePicker selected={from} onChange={(date) => setFrom(date)} />
+                <DatePicker
+                  selected={from}
+                  onChange={(date) => setFrom(date)}
+                />
               </Box>
-              <Box className="date-container">
+              <Box>
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  To:
+                  To
                 </p>
                 <DatePicker selected={to} onChange={(date) => setTo(date)} />
               </Box>

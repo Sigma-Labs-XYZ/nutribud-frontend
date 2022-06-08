@@ -11,7 +11,7 @@ export default function Chart(props) {
       { name: "carbs", value: Math.round(props.nutrimentsAmount.carbs) },
       { name: "protein", value: Math.round(props.nutrimentsAmount.protein) },
     ]); // eslint-disable-next-line
-  }, []);
+  }, [props.nutrimentsAmount]);
 
   const onPieEnter = useCallback(
     (_, index) => {

@@ -1932,6 +1932,28 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@speechly/browser-client@1.5.0", "@speechly/browser-client@^1.0.11":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@speechly/browser-client/-/browser-client-1.5.0.tgz#42de041d041e2ad57666c4fec69ca984a5d36a0e"
+  integrity sha512-sAhLuwV1YMoMoe3mY8WgT3C4+89FimBj0oAPMAtxl7PdWWWAAvWRqB1n9MzTaDzGN3mvu9tSkqrS+DHWU4jw4A==
+  dependencies:
+    base-64 "^0.1.0"
+    uuid "^8.0.0"
+
+"@speechly/react-client@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@speechly/react-client/-/react-client-2.0.1.tgz#5efeb1de967ea79df39b88e9ce9399451fbdeb6f"
+  integrity sha512-bAA8oDvesGn8wLWy2sdsiLbs6ijisii6tTCWaIgHi2rpXrW6n/QtNBCj5pVV2i+tM17NgoPkcqarmMVn+EilGw==
+  dependencies:
+    "@speechly/browser-client" "1.5.0"
+
+"@speechly/speech-recognition-polyfill@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@speechly/speech-recognition-polyfill/-/speech-recognition-polyfill-1.1.0.tgz#f0add2e7d19dd874c3a63119e86294e33f7624a4"
+  integrity sha512-GFzyDcqn0y0bOlo3Z8bq+lwR1GxLk3pta2hrXs6z20rV0mXxlvQDOEY3SGq1IgfvInL7CILVINCFUopl5oGozg==
+  dependencies:
+    "@speechly/browser-client" "^1.0.11"
+
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz#ee34985952ca21558ab0d952f00298ad2190c053"
@@ -3110,6 +3132,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha512-Y5gU45svrR5tI2Vt/X9GPd3L0HNIKzGu202EjxrXMpuc2V2CiKgemAbUUsqYmZJvPtCXoUKjNZwBJzsNScUbXA==
 
 batch@0.6.1:
   version "0.6.1"
@@ -7885,6 +7912,11 @@ react-smooth@^2.0.0:
     raf "^3.4.0"
     react-transition-group "2.9.0"
 
+react-speech-recognition@^3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/react-speech-recognition/-/react-speech-recognition-3.9.1.tgz#dea4c4163e7cfb8e8c9e523abc99127eee7bcd43"
+  integrity sha512-HzhHydSvLcpaCW7q9HZamNg4XQaKXEMGBT9rYP/rGhbwBRj6dgrCZsHcoV3Lr3WSDyFw0svXeoRzbG/cneFGnQ==
+
 react-transition-group@2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
@@ -9091,7 +9123,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^8.3.2:
+uuid@^8.0.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
