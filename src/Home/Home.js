@@ -48,7 +48,7 @@ export default function Home(props) {
   }
 
   useEffect(() => {
-    handleSearch();
+    handleSearch(); //eslint-disable-next-line
   }, [altInput]);
 
   function updateAltInput(input) {
