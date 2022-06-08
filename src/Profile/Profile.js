@@ -34,10 +34,8 @@ export default function Profile(props) {
     async function getUserHistory() {
       const response = await networking.getTrackedItems(queryDate); //Date needs to be in format YYYY-MM-DD
       if (response.error) {
-        console.log(response.error);
         setUserHistory([]);
       } else if (response.response.length > 0) {
-        console.log(response.response);
         setUserHistory(response.response);
       }
     }
@@ -124,16 +122,16 @@ export default function Profile(props) {
             >
               <Box className="date-container">
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  From:
+                  From
                 </p>
                 <DatePicker
                   selected={from}
                   onChange={(date) => setFrom(date)}
                 />
               </Box>
-              <Box className="date-container">
+              <Box>
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  To:
+                  To
                 </p>
                 <DatePicker selected={to} onChange={(date) => setTo(date)} />
               </Box>

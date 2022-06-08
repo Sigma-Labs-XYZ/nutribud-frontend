@@ -16,7 +16,7 @@ export default function ProgressCharts(props) {
       if (props.goals) setGoals(props.goals[0]);
     }
     loadingInfo(); // eslint-disable-next-line
-  }, []);
+  }, [props.history]);
 
   function renderChart() {
     if (nutrimentsAmount) return <Chart nutrimentsAmount={nutrimentsAmount} />;

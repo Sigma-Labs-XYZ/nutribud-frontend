@@ -16,6 +16,9 @@ yarn add @mui/lab
 yarn add recharts
 yarn add @date-io/moment
 yarn add react-datepicker
+yarn add @speechly/speech-recognition-polyfill
+yarn add @speechly/react-client
+yarn add react-speech-recognition
 ```
 
 ### description
