@@ -3,3 +3,12 @@
   align-items: center;
   gap: 8px;
 }
+
+.timeline {
+  overflow-y: scroll;
+  max-height: 450px;
+}
+
+.timeline::-webkit-scrollbar {
+  display: none;
+}
