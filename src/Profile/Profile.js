@@ -42,7 +42,7 @@ export default function Profile(props) {
       setUserGoals(response);
     }
     if (auth) getUserGoals(); // eslint-disable-next-line
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     async function getUserHistory() {
@@ -54,7 +54,7 @@ export default function Profile(props) {
       }
     }
     if (auth) getUserHistory(); // eslint-disable-next-line
-  }, [queryDate]);
+  }, [queryDate, auth]);
 
   function selectDay(dayObject) {
     const date = new Date(dayObject.date);
@@ -100,7 +100,9 @@ export default function Profile(props) {
       <div className="header-wrapper">
         <Header />
       </div>
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <Box
           className="calendar-wrapper"
           sx={{
@@ -138,7 +140,10 @@ export default function Profile(props) {
                   <p variant="subtitle2" sx={{ fontWeight: "600" }}>
                     From:
                   </p>
-                  <DatePicker selected={from} onChange={(date) => setFrom(date)} />
+                  <DatePicker
+                    selected={from}
+                    onChange={(date) => setFrom(date)}
+                  />
                 </Box>
                 <Box className="date-container">
                   <p variant="subtitle2" sx={{ fontWeight: "600" }}>
@@ -163,7 +168,10 @@ export default function Profile(props) {
         >
           <Box className="timeline-wrapper" sx={{ marginRight: "3%" }}>
             <Paper elevation={4} sx={{ minWidth: "30vw", maxWidth: "472px" }}>
-              <Typography variant="h4" sx={{ paddingLeft: "20px", paddingTop: "20px" }}>
+              <Typography
+                variant="h4"
+                sx={{ paddingLeft: "20px", paddingTop: "20px" }}
+              >
                 Timeline
               </Typography>
               <div className="timeline">
@@ -180,7 +188,10 @@ export default function Profile(props) {
                 maxHeight: "450px",
               }}
             >
-              <Typography variant="h4" sx={{ paddingLeft: "20px", paddingTop: "20px" }}>
+              <Typography
+                variant="h4"
+                sx={{ paddingLeft: "20px", paddingTop: "20px" }}
+              >
                 Nutriment Overview
               </Typography>
               <Box>{renderProgressCharts()}</Box>
