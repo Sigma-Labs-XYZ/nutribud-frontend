@@ -31,6 +31,15 @@ export default function Home(props) {
     checkSession(); // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    clearInputs();
+  }, [tab]);
+
+  function clearInputs() {
+    setTextInput("");
+    setAltInput("");
+  }
+
   async function checkSession() {
     const authentication = await networking.verifyUserSession();
     authentication.response ? setAuth(true) : setAuth(false);
@@ -59,7 +68,6 @@ export default function Home(props) {
   async function handleSearch() {
     if (tab === "Barcode") {
       setLoading(true);
-      console.log(textInput);
       const response = await networking.barcodeSearch(textInput);
       await loadingSearchResults(response);
       setLoading(false);
@@ -75,8 +83,7 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults[0].error)
-      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults[0].error) return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return showAlert();
   }
 
