@@ -34,10 +34,8 @@ export default function Profile(props) {
     async function getUserHistory() {
       const response = await networking.getTrackedItems(queryDate); //Date needs to be in format YYYY-MM-DD
       if (response.error) {
-        console.log(response.error);
         setUserHistory([]);
       } else if (response.response.length > 0) {
-        console.log(response.response);
         setUserHistory(response.response);
       }
     }
