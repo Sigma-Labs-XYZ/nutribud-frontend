@@ -75,8 +75,7 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults[0].error)
-      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults[0].error) return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return showAlert();
   }
 
@@ -118,6 +117,9 @@ export default function Home(props) {
             label="Search..."
             placeholder={tab === "Barcode" ? "Enter a barcode!" : "Type in a food!"}
             onChange={(e) => setTextInput(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") handleSearch();
+            }}
             value={textInput}
           ></TextField>
           <div className="search-icons">
