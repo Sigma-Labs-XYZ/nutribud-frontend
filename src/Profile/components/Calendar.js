@@ -23,6 +23,7 @@ export default function Calendar(props) {
   function handleClick(day) {
     props.selectDay(day);
   }
+
   return (
     <div style={{ height: "98%", minWidth: "100%" }}>
       <ResponsiveTimeRange

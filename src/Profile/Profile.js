@@ -25,12 +25,12 @@ export default function Profile(props) {
   const networking = new Networking();
 
   useEffect(() => {
-    checkSession();
+    checkSession(); // eslint-disable-next-line
   }, []);
 
   async function checkSession() {
     const authentication = await networking.verifyUserSession();
-    if (!authentication.response) navigate("/", 500);
+    if (!authentication.response) navigate("/", 1000);
     else setAuth(true);
   }
 
