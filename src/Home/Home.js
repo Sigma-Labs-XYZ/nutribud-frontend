@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./Home.css";
 import Header from "../GlobalComponents/Header/Header";
 import { Paper, TextField, IconButton, Tooltip, Alert, CircularProgress } from "@mui/material";
@@ -21,15 +21,28 @@ export default function Home(props) {
   const [searched, setSearched] = useState(false);
 
   const networking = new Networking();
-
-  function selectTab(selectedTab) {
-    setSearchResults([]);
-    setTab(selectedTab);
-  }
-
+  const pageLoad = useRef(true);
   useEffect(() => {
     checkSession(); // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (pageLoad.current) {
+      pageLoad.current = false;
+    } else handleSearch(); //eslint-disable-next-line
+  }, [altInput]);
+
+  function selectTab(selectedTab) {
+    setSearched(false);
+    setSearchResults([]);
+    clearInputs();
+    setTab(selectedTab);
+  }
+
+  function clearInputs() {
+    setTextInput("");
+    setAltInput("");
+  }
 
   async function checkSession() {
     const authentication = await networking.verifyUserSession();
@@ -47,10 +60,6 @@ export default function Home(props) {
     setSearchResults(results);
   }
 
-  useEffect(() => {
-    handleSearch(); //eslint-disable-next-line
-  }, [altInput]);
-
   function updateAltInput(input) {
     setTextInput(input);
     setAltInput(input);
@@ -59,7 +68,6 @@ export default function Home(props) {
   async function handleSearch() {
     if (tab === "Barcode") {
       setLoading(true);
-      console.log(textInput);
       const response = await networking.barcodeSearch(textInput);
       await loadingSearchResults(response);
       setLoading(false);
