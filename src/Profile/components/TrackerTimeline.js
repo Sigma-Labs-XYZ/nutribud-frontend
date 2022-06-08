@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 
 export default function TrackerTimeline(props) {
   const [anchorEl, setAnchorEl] = useState(null);
+
   function formatTime() {
     const simpleTime = props.item.time.split(".")[0];
     const splitTime = simpleTime.split(":");
@@ -30,17 +31,12 @@ export default function TrackerTimeline(props) {
 
   return (
     <TimelineItem>
-      <TimelineOppositeContent color="text.secondary">
-        {formatTime()}
-      </TimelineOppositeContent>
+      <TimelineOppositeContent color="text.secondary">{formatTime()}</TimelineOppositeContent>
       <TimelineSeparator>
         <TimelineDot />
         <TimelineConnector />
       </TimelineSeparator>
-      <TimelineContent
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
+      <TimelineContent onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
         {props.item.item_info.name}
       </TimelineContent>
       <Popover
@@ -50,39 +46,26 @@ export default function TrackerTimeline(props) {
         }}
         open={open}
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        <Box>
-          <Typography
-            variant="h6"
-            component="div"
-            style={{ fontWeight: "bold" }}
-          >
-            {Math.floor(
-              (props.item.item_info.calories * props.item.serving_size_g) / 100
-            )}{" "}
-            Kcal
+        <Box sx={{ padding: "10px" }}>
+          <Typography variant="h6" component="div" style={{ fontWeight: "bold" }}>
+            {Math.floor((props.item.item_info.calories * props.item.serving_size_g) / 100)} Kcal
           </Typography>
           <Typography variant="body1" component="div">
-            Carbohydrates: {Math.round(props.item.item_info.carbs)}g
+            Carbohydrates: {Math.floor((props.item.item_info.carbs * props.item.serving_size_g) / 100)}g
           </Typography>
           <Typography variant="body1" component="div">
-            Fats: {Math.round(props.item.item_info.fats)}g
+            Fats: {Math.floor((props.item.item_info.fats * props.item.serving_size_g) / 100)}g
           </Typography>
           <Typography variant="body1" component="div">
-            Protein: {Math.round(props.item.item_info.protein)}g
+            Protein: {Math.floor((props.item.item_info.protein * props.item.serving_size_g) / 100)}g
           </Typography>
           <Typography variant="body1" component="div">
-            Serving: {Math.round(props.item.serving_size_g)}g
+            Serving: {Math.floor(props.item.serving_size_g)}g
           </Typography>
         </Box>
       </Popover>

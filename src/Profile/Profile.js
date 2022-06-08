@@ -10,6 +10,9 @@ import Timeline from "@mui/lab/Timeline";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
+import CalendarInfo from "./components/Info/CalendarInfo";
+import TimelineInfo from "./components/Info/TimelineInfo";
+import NutrimentOverviewInfo from "./components/Info/NutrimentOverviewInfo";
 
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
@@ -86,7 +89,7 @@ export default function Profile(props) {
 
   function populateTimeline() {
     const timelineData = userHistory.map((item, i) => {
-      return <TrackerTimeline key={i} item={item} />;
+      return <TrackerTimeline key={i} itemId={i} item={item} />;
     });
     if (timelineData.length === 0) {
       return "No timeline data available";
@@ -100,9 +103,7 @@ export default function Profile(props) {
       <div className="header-wrapper">
         <Header />
       </div>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box
           className="calendar-wrapper"
           sx={{
@@ -126,6 +127,7 @@ export default function Profile(props) {
               position: "relative",
             }}
           >
+            <CalendarInfo />
             <Box
               sx={{
                 display: "flex",
@@ -140,10 +142,7 @@ export default function Profile(props) {
                   <p variant="subtitle2" sx={{ fontWeight: "600" }}>
                     From:
                   </p>
-                  <DatePicker
-                    selected={from}
-                    onChange={(date) => setFrom(date)}
-                  />
+                  <DatePicker selected={from} onChange={(date) => setFrom(date)} />
                 </Box>
                 <Box className="date-container">
                   <p variant="subtitle2" sx={{ fontWeight: "600" }}>
@@ -167,11 +166,12 @@ export default function Profile(props) {
           }}
         >
           <Box className="timeline-wrapper" sx={{ marginRight: "3%" }}>
-            <Paper elevation={4} sx={{ minWidth: "30vw", maxWidth: "472px" }}>
-              <Typography
-                variant="h4"
-                sx={{ paddingLeft: "20px", paddingTop: "20px" }}
-              >
+            <Paper
+              elevation={4}
+              sx={{ minWidth: "30vw", maxWidth: "472px", marginBottom: "8vh", position: "relative" }}
+            >
+              <TimelineInfo />
+              <Typography variant="h4" sx={{ paddingLeft: "20px", paddingTop: "20px" }}>
                 Timeline
               </Typography>
               <div className="timeline">
@@ -186,12 +186,11 @@ export default function Profile(props) {
                 minHeight: "350px",
                 minWidth: "625px",
                 maxHeight: "450px",
+                position: "relative",
               }}
             >
-              <Typography
-                variant="h4"
-                sx={{ paddingLeft: "20px", paddingTop: "20px" }}
-              >
+              <NutrimentOverviewInfo />
+              <Typography variant="h4" sx={{ paddingLeft: "20px", paddingTop: "20px" }}>
                 Nutriment Overview
               </Typography>
               <Box>{renderProgressCharts()}</Box>
