@@ -9,6 +9,7 @@ import TrackerTimeline from "./components/TrackerTimeline";
 import Timeline from "@mui/lab/Timeline";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
@@ -17,8 +18,21 @@ export default function Profile(props) {
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
   const [from, setFrom] = useState(new Date());
   const [to, setTo] = useState(new Date());
+  const [auth, setAuth] = useState(false);
+
+  let navigate = useNavigate();
 
   const networking = new Networking();
+
+  useEffect(() => {
+    checkSession(); // eslint-disable-next-line
+  }, []);
+
+  async function checkSession() {
+    const authentication = await networking.verifyUserSession();
+    if (!authentication.response) navigate("/", 1000);
+    else setAuth(true);
+  }
 
   useEffect(() => {
     const startDate = new Date();
@@ -27,7 +41,7 @@ export default function Profile(props) {
       const response = await networking.getUserGoals();
       setUserGoals(response);
     }
-    getUserGoals(); // eslint-disable-next-line
+    if (auth) getUserGoals(); // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -39,7 +53,7 @@ export default function Profile(props) {
         setUserHistory(response.response);
       }
     }
-    getUserHistory(); // eslint-disable-next-line
+    if (auth) getUserHistory(); // eslint-disable-next-line
   }, [queryDate]);
 
   function selectDay(dayObject) {
