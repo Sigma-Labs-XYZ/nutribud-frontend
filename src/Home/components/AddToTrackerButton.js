@@ -18,7 +18,8 @@ import UserPerformance from "../../UserPerformance";
 export default function AddToTrackerButton(props) {
   const [inputText, setInputText] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false);
+  const [showErrorSnackbar, setShowErrorSnackbar] = useState(false);
 
   const performance = new UserPerformance();
 
@@ -31,7 +32,8 @@ export default function AddToTrackerButton(props) {
       return;
     }
 
-    setShowSnackbar(false);
+    setShowSuccessSnackbar(false);
+    setShowErrorSnackbar(false);
   };
 
   const handleClose = () => {
@@ -41,13 +43,17 @@ export default function AddToTrackerButton(props) {
   const networking = new Networking();
 
   async function handleTrackItem(servingSize) {
-    const response = await props.trackItem(servingSize);
+    try {
+      const response = await props.trackItem(servingSize);
+      setShowSuccessSnackbar(true);
+    } catch (e) {
+      setShowErrorSnackbar(true);
+    }
+
     const today = new Date().toISOString().substring(0, 10);
     const userHistory = (await networking.getTrackedItems(today)).response;
     const totalNutriments = performance.addUpNutriments(userHistory);
     const performanceScore = await performance.getPerformanceScore(totalNutriments);
-    if (response.response) setShowSnackbar(true);
-    else if (response.error) return; // show error snackbar
     await networking.updatePerformanceScore(Math.round(performanceScore * 100));
     handleClose();
   }
@@ -109,9 +115,14 @@ export default function AddToTrackerButton(props) {
           </Box>
         </Paper>
       </Popover>
-      <Snackbar open={showSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+      <Snackbar open={showSuccessSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
         <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
           Item tracked!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={showErrorSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: "100%" }}>
+          Could not track item
         </Alert>
       </Snackbar>
     </div>
