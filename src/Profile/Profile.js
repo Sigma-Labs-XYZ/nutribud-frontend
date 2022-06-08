@@ -21,6 +21,8 @@ export default function Profile(props) {
   const networking = new Networking();
 
   useEffect(() => {
+    const startDate = new Date();
+    setFrom(startDate.setMonth(startDate.getMonth() - 1));
     async function getUserGoals() {
       const response = await networking.getUserGoals();
       setUserGoals(response);
