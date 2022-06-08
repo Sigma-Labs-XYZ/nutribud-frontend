@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Networking from "../Networking.js";
-import {
-  Paper,
-  TextField,
-  FormLabel,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-  InputAdornment,
-  Button,
-  Alert,
-} from "@mui/material";
+import { Paper, TextField, FormLabel, FormControlLabel, RadioGroup, Radio, InputAdornment, Button, Alert } from "@mui/material";
 
 export default function InfoForm(props) {
   const [name, setName] = useState("");
@@ -41,26 +31,14 @@ export default function InfoForm(props) {
     const userInfoResponse = await networking.getUserInformation();
 
     if (userInfoResponse.length === 0) {
-      const response = await networking.newUserInformation(
-        name,
-        weight,
-        height,
-        age,
-        gender
-      );
+      const response = await networking.newUserInformation(name, weight, height, age, gender);
       if (response.error) {
         setError(true);
       } else {
         setSuccess(true);
       }
     } else {
-      const response = await networking.updateUserInformation(
-        name,
-        weight,
-        height,
-        age,
-        gender
-      );
+      const response = await networking.updateUserInformation(name, weight, height, age, gender);
       if (response.error) {
         setError(true);
       } else {
@@ -77,6 +55,10 @@ export default function InfoForm(props) {
       setTimeout(() => setSuccess(false), 5000);
       return <Alert severity="success">Changes Saved!</Alert>;
     }
+  }
+
+  function handleEnterKey(e) {
+    if (e.key === "Enter") handleSubmitClick();
   }
 
   return (
@@ -101,6 +83,7 @@ export default function InfoForm(props) {
               value={name}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setName(e.target.value)}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="weight-settings-wrapper">
@@ -112,10 +95,9 @@ export default function InfoForm(props) {
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setWeight(e.target.value)}
               InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">kg</InputAdornment>
-                ),
+                endAdornment: <InputAdornment position="end">kg</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="height-settings-wrapper">
@@ -127,10 +109,9 @@ export default function InfoForm(props) {
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setHeight(e.target.value)}
               InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">cm</InputAdornment>
-                ),
+                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="age-settings-wrapper">
@@ -141,13 +122,11 @@ export default function InfoForm(props) {
               value={age}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setAge(e.target.value)}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="gender-settings-wrapper">
-            <FormLabel
-              id="demo-controlled-radio-buttons-group"
-              sx={{ marginLeft: 1 }}
-            >
+            <FormLabel id="demo-controlled-radio-buttons-group" sx={{ marginLeft: 1 }}>
               Gender
             </FormLabel>
             <RadioGroup
@@ -157,13 +136,10 @@ export default function InfoForm(props) {
               sx={{ m: 1, width: "60ch" }}
               value={gender}
               onChange={(e) => setGender(e.target.value)}
+              onKeyPress={handleEnterKey}
             >
               <FormControlLabel value="Male" control={<Radio />} label="Male" />
-              <FormControlLabel
-                value="Female"
-                control={<Radio />}
-                label="Female"
-              />
+              <FormControlLabel value="Female" control={<Radio />} label="Female" />
             </RadioGroup>
           </div>
           <div className="submit-btn">
