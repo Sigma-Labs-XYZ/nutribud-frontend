@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Header from "../GlobalComponents/Header/Header";
 import { Paper, Typography } from "@mui/material";
 import "./About.css";
@@ -6,19 +5,20 @@ import { devInfo } from "./developerInfo";
 import DeveloperCard from "./DeveloperCard";
 
 function About() {
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    populateDevCards();
-  }, []);
-
   function populateDevCards() {
-    const devCards = devInfo.map((info, i) => {
+    return devInfo.map((info, i) => {
       return (
-        <DeveloperCard key={i} image={info.image} name={info.name} role={info.role} description={info.description} />
+        <DeveloperCard
+          key={i}
+          index={i}
+          image={info.image}
+          name={info.name}
+          role={info.role}
+          description={info.description}
+          link={info.link}
+        />
       );
     });
-    setCards(devCards);
   }
 
   return (
@@ -41,16 +41,23 @@ function About() {
               Meet the team!
             </Typography>
             <div className="developer-cards">
-              <div className="mini-card-wrapper">{cards.slice(0, 2)}</div>
-              <div className="mini-card-wrapper">{cards.slice(2, 4)}</div>
+              <div className="mini-card-wrapper">{populateDevCards()}</div>
             </div>
           </div>
-          <img
-            src="https://developer.edamam.com/images/transparent.png"
-            alt="Edamam badge"
-            width={"200px"}
-            style={{ marginTop: "20px" }}
-          />
+          <div style={{ display: "flex", marginTop: "20px" }}>
+            <img
+              src="https://i.pinimg.com/originals/a1/85/04/a1850439c183df9f3b4144ec246ae19a.png"
+              alt="Edamam badge"
+              width={"200px"}
+              height={"100px"}
+              style={{ marginTop: "60px", marginRight: "20px" }}
+            />
+            <img
+              src="https://world.openfoodfacts.org/images/misc/openfoodfacts-logo-en-178x150.png"
+              alt="Open Food Facts Logo"
+              style={{ marginTop: "20px", marginLeft: "20px" }}
+            />
+          </div>
         </Paper>
       </div>
     </div>
