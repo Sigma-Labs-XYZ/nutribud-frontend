@@ -21,6 +21,8 @@ export default function Profile(props) {
   const networking = new Networking();
 
   useEffect(() => {
+    const startDate = new Date();
+    setFrom(startDate.setMonth(startDate.getMonth() - 1));
     async function getUserGoals() {
       const response = await networking.getUserGoals();
       setUserGoals(response);
@@ -109,23 +111,16 @@ export default function Profile(props) {
               position: "relative",
             }}
           >
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <p variant="subtitle1" sx={{ fontWeight: "600" }}>
-                {uiDate}
-              </p>
-              <Box>
-                {" "}
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "12px" }}>
+              <Box className="date-container">
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  From
+                  From:
                 </p>
-                <DatePicker
-                  selected={from}
-                  onChange={(date) => setFrom(date)}
-                />
+                <DatePicker selected={from} onChange={(date) => setFrom(date)} />
               </Box>
-              <Box>
+              <Box className="date-container">
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  To
+                  To:
                 </p>
                 <DatePicker selected={to} onChange={(date) => setTo(date)} />
               </Box>
