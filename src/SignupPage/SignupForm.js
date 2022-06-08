@@ -35,6 +35,10 @@ export default function SignupForm(props) {
     }
   }
 
+  function handleEnterKey(e) {
+    if (e.key === "Enter") handleSubmit();
+  }
+
   return (
     <div className="page-wrapper">
       <Paper
@@ -55,6 +59,7 @@ export default function SignupForm(props) {
               variant="outlined"
               value={usernameInput}
               onChange={(e) => setUsernameInput(e.target.value)}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="password-wrapper">
@@ -67,6 +72,7 @@ export default function SignupForm(props) {
                 variant="outlined"
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
+                onKeyPress={handleEnterKey}
               />
             </div>
             <div className="password-box">
@@ -80,6 +86,7 @@ export default function SignupForm(props) {
                 error={passwordsMatch}
                 helperText={passwordsMatch ? "Passwords do not match" : ""}
                 onChange={(e) => setPasswordConfirmationInput(e.target.value)}
+                onKeyPress={handleEnterKey}
               />
             </div>
           </div>

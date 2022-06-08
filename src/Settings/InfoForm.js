@@ -57,6 +57,10 @@ export default function InfoForm(props) {
     }
   }
 
+  function handleEnterKey(e) {
+    if (e.key === "Enter") handleSubmitClick();
+  }
+
   return (
     <div className="settings-page-wrapper">
       <div className="settings-form-wrapper">
@@ -79,6 +83,7 @@ export default function InfoForm(props) {
               value={name}
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setName(e.target.value)}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="weight-settings-wrapper">
@@ -92,6 +97,7 @@ export default function InfoForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">kg</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="height-settings-wrapper">
@@ -105,6 +111,7 @@ export default function InfoForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">cm</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="age-settings-wrapper">
@@ -121,6 +128,7 @@ export default function InfoForm(props) {
               sx={{ m: 1, width: "60ch" }}
               value={gender}
               onChange={(e) => setGender(e.target.value)}
+              onKeyPress={handleEnterKey}
             >
               <FormControlLabel value="Male" control={<Radio />} label="Male" />
               <FormControlLabel value="Female" control={<Radio />} label="Female" />
