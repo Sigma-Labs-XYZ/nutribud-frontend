@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useLayoutEffect } from "react";
 import "./Home.css";
 import Header from "../GlobalComponents/Header/Header";
 import { Paper, TextField, IconButton, Tooltip, Alert, CircularProgress } from "@mui/material";
@@ -21,20 +21,23 @@ export default function Home(props) {
   const [searched, setSearched] = useState(false);
 
   const networking = new Networking();
-
-  function selectTab(selectedTab) {
-    setSearchResults([]);
-    clearInputs();
-    setTab(selectedTab);
-  }
-
+  const pageLoad = useRef(true);
   useEffect(() => {
     checkSession(); // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    handleSearch(); //eslint-disable-next-line
+    if (pageLoad.current) {
+      pageLoad.current = false;
+    } else handleSearch(); //eslint-disable-next-line
   }, [altInput]);
+
+  function selectTab(selectedTab) {
+    setSearched(false);
+    setSearchResults([]);
+    clearInputs();
+    setTab(selectedTab);
+  }
 
   function clearInputs() {
     setTextInput("");
