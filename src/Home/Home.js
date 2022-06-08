@@ -24,6 +24,7 @@ export default function Home(props) {
 
   function selectTab(selectedTab) {
     setSearchResults([]);
+    clearInputs();
     setTab(selectedTab);
   }
 
@@ -32,8 +33,8 @@ export default function Home(props) {
   }, []);
 
   useEffect(() => {
-    clearInputs();
-  }, [tab]);
+    handleSearch(); //eslint-disable-next-line
+  }, [altInput]);
 
   function clearInputs() {
     setTextInput("");
@@ -55,10 +56,6 @@ export default function Home(props) {
   async function loadingSearchResults(results) {
     setSearchResults(results);
   }
-
-  useEffect(() => {
-    handleSearch(); //eslint-disable-next-line
-  }, [altInput]);
 
   function updateAltInput(input) {
     setTextInput(input);
