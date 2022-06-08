@@ -88,8 +88,11 @@ export default function Profile(props) {
       <div className="header-wrapper">
         <Header />
       </div>
-      <Box sx={{ display: "flex", flexDirection: "row", alignItems: "start" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <Box
+          className="calendar-wrapper"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -99,7 +102,7 @@ export default function Profile(props) {
           }}
         >
           <Paper
-            elevation={3}
+            elevation={4}
             sx={{
               minWidth: "30vw",
               maxWidth: "100vw",
@@ -111,12 +114,22 @@ export default function Profile(props) {
               position: "relative",
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "12px" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "12px",
+              }}
+            >
               <Box className="date-container">
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
                   From:
                 </p>
-                <DatePicker selected={from} onChange={(date) => setFrom(date)} />
+                <DatePicker
+                  selected={from}
+                  onChange={(date) => setFrom(date)}
+                />
               </Box>
               <Box className="date-container">
                 <p variant="subtitle2" sx={{ fontWeight: "600" }}>
@@ -129,17 +142,47 @@ export default function Profile(props) {
               <Calendar selectDay={selectDay} from={from} to={to} />
             </Box>
           </Paper>
-          <Paper sx={{ minWidth: "30vw", maxWidth: "472px" }}>
-            <Timeline position="alternate">{populateTimeline()}</Timeline>
-          </Paper>
         </Box>
-
-        <Paper sx={{ minHeight: "350px", minWidth: "625px", marginTop: "2%" }}>
-          <Typography variant="h4" sx={{ paddingLeft: "5%", paddingTop: "5%" }}>
-            Nutriment overview
-          </Typography>
-          <Box>{renderProgressCharts()}</Box>
-        </Paper>
+        <Box
+          className="timeline-nutriment-wrapper"
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <Box className="timeline-wrapper" sx={{ marginRight: "3%" }}>
+            <Paper elevation={4} sx={{ minWidth: "30vw", maxWidth: "472px" }}>
+              <Typography
+                variant="h4"
+                sx={{ paddingLeft: "5%", paddingTop: "5%" }}
+              >
+                Timeline overview
+              </Typography>
+              <div className="timeline">
+                <Timeline position="alternate">{populateTimeline()} </Timeline>
+              </div>
+            </Paper>
+          </Box>
+          <Box className="nutriment-results-wrapper" sx={{ marginLeft: "3%" }}>
+            <Paper
+              elevation={4}
+              sx={{
+                minHeight: "350px",
+                minWidth: "625px",
+                maxHeight: "450px",
+              }}
+            >
+              <Typography
+                variant="h4"
+                sx={{ paddingLeft: "5%", paddingTop: "5%" }}
+              >
+                Nutriment overview
+              </Typography>
+              <Box>{renderProgressCharts()}</Box>
+            </Paper>
+          </Box>
+        </Box>
       </Box>
     </div>
   );

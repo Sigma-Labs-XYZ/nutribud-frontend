@@ -1,7 +1,7 @@
 // install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/calendar
 import React, { useState, useEffect } from "react";
-import { ResponsiveTimeRange } from "@nivo/calendar";
+import { TimeRange } from "@nivo/calendar";
 import Networking from "../../Networking";
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -25,7 +25,9 @@ export default function Calendar(props) {
   }
   return (
     <div style={{ height: "98%", minWidth: "100%" }}>
-      <ResponsiveTimeRange
+      <TimeRange
+        width="600"
+        height="200"
         data={data}
         from={props.from}
         to={props.to}
