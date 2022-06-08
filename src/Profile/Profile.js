@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
   const [userHistory, setUserHistory] = useState([]);
-  const [uiDate, setUiDate] = useState("Today");
+//   const [uiDate, setUiDate] = useState("Today");
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
   const [from, setFrom] = useState(new Date());
   const [to, setTo] = useState(new Date());
