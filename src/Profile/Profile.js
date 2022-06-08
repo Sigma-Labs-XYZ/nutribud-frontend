@@ -155,7 +155,7 @@ export default function Profile(props) {
                 variant="h4"
                 sx={{ paddingLeft: "5%", paddingTop: "5%" }}
               >
-                Timeline overview
+                Timeline
               </Typography>
               <div className="timeline">
                 <Timeline position="alternate">{populateTimeline()} </Timeline>
