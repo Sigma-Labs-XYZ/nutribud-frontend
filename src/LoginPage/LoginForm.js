@@ -28,6 +28,10 @@ export default function LoginForm(props) {
   function displayError() {
     if (error) return <Alert severity="error">Incorrect details</Alert>;
   }
+
+  function handleEnterKey(e) {
+    if (e.key === "Enter") handleSubmitClick();
+  }
   return (
     <div className="main-wrapper">
       <Paper
@@ -36,22 +40,12 @@ export default function LoginForm(props) {
           padding: 8,
         }}
       >
-        <Typography
-          variant="h4"
-          className="title"
-          textAlign="center"
-          margin={2}
-        >
+        <Typography variant="h4" className="title" textAlign="center" margin={2}>
           NutriBud
         </Typography>
         <form className="login-user">
           <div className="username-wrapper">
-            <TextField
-              id="outlined-basic"
-              label="Username"
-              variant="outlined"
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <TextField id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setUsername(e.target.value)} onKeyPress={handleEnterKey} />
           </div>
           <div className="password-wrapper">
             <TextField
@@ -60,6 +54,7 @@ export default function LoginForm(props) {
               variant="outlined"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="btn-wrapper">
@@ -73,8 +68,7 @@ export default function LoginForm(props) {
 
       <div className="signup-link">
         <p>
-          Don't have an account yet? Sign up{" "}
-          <a href="https://nutribud-frontend.sigmalabs.co.uk/sign-up">here</a>!
+          Don't have an account yet? Sign up <a href="https://nutribud-frontend.sigmalabs.co.uk/sign-up">here</a>!
         </p>
       </div>
     </div>
