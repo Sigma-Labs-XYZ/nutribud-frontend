@@ -44,7 +44,7 @@ export default function Profile(props) {
 
   function selectDay(dayObject) {
     const date = new Date(dayObject.date);
-    setUiDate(date.toDateString());
+//     setUiDate(date.toDateString());
     setQueryDate(dayObject.day);
   }
 
