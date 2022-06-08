@@ -35,8 +35,7 @@ export default function Home(props) {
   }
 
   function showBarcodeButton() {
-    if (tab === "Barcode")
-      return <ScannerButton setBarcodeInput={setBarcodeInput} />;
+    if (tab === "Barcode") return <ScannerButton setBarcodeInput={setBarcodeInput} />;
   }
 
   async function loadingSearchResults(results) {
@@ -45,6 +44,7 @@ export default function Home(props) {
 
   function setBarcodeInput(barcode) {
     setTextInput(barcode);
+    handleSearch();
   }
 
   async function handleSearch() {
@@ -65,8 +65,7 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults[0].error)
-      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults[0].error) return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return showAlert();
   }
 
