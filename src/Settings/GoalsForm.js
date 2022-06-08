@@ -32,15 +32,7 @@ export default function GoalsForm(props) {
   const networking = new Networking();
 
   async function handleSubmitClick() {
-    const response = await networking.updateUserGoals(
-      calories,
-      protein,
-      carbs,
-      fats,
-      sugar,
-      salt,
-      fiber
-    );
+    const response = await networking.updateUserGoals(calories, protein, carbs, fats, sugar, salt, fiber);
     if (response.error) {
       setError(true);
     } else {
@@ -56,6 +48,10 @@ export default function GoalsForm(props) {
       setTimeout(() => setSuccess(false), 5000);
       return <Alert severity="success">Changes Saved!</Alert>;
     }
+  }
+
+  function handleEnterKey(e) {
+    if (e.key === "Enter") handleSubmitClick();
   }
 
   return (
@@ -78,10 +74,9 @@ export default function GoalsForm(props) {
               sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setCalories(e.target.value)}
               InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">kcal</InputAdornment>
-                ),
+                endAdornment: <InputAdornment position="end">kcal</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="protein-goal-wrapper">
@@ -95,6 +90,7 @@ export default function GoalsForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="carbs-goal-wrapper">
@@ -108,6 +104,7 @@ export default function GoalsForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="fats-goal-wrapper">
@@ -121,6 +118,7 @@ export default function GoalsForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="sugar-goal-wrapper">
@@ -134,6 +132,7 @@ export default function GoalsForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="salt-goal-wrapper">
@@ -145,10 +144,9 @@ export default function GoalsForm(props) {
               sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setSalt(e.target.value)}
               InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">mg</InputAdornment>
-                ),
+                endAdornment: <InputAdornment position="end">mg</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
           <div className="fiber-goal-wrapper">
@@ -162,6 +160,7 @@ export default function GoalsForm(props) {
               InputProps={{
                 endAdornment: <InputAdornment position="end">g</InputAdornment>,
               }}
+              onKeyPress={handleEnterKey}
             />
           </div>
         </div>
