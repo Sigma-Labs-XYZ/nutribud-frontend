@@ -50,7 +50,7 @@ export default function InfoForm(props) {
   function displayResponseMessage() {
     if (error) {
       setTimeout(() => setError(false), 5000);
-      return <Alert severity="error">Unable to save changes</Alert>;
+      return <Alert severity="error">Unable to save changes - all information required</Alert>;
     } else if (success) {
       setTimeout(() => setSuccess(false), 5000);
       return <Alert severity="success">Changes Saved!</Alert>;
@@ -115,15 +115,7 @@ export default function InfoForm(props) {
             />
           </div>
           <div className="age-settings-wrapper">
-            <TextField
-              id="outlined-basic"
-              label="Age"
-              variant="outlined"
-              value={age}
-              sx={{ m: 1, width: "60ch" }}
-              onChange={(e) => setAge(e.target.value)}
-              onKeyPress={handleEnterKey}
-            />
+            <TextField id="outlined-basic" label="Age" variant="outlined" value={age} sx={{ m: 1, width: "60ch" }} onChange={(e) => setAge(e.target.value)} />
           </div>
           <div className="gender-settings-wrapper">
             <FormLabel id="demo-controlled-radio-buttons-group" sx={{ marginLeft: 1 }}>
