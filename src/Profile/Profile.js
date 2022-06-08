@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function Profile(props) {
   const [userGoals, setUserGoals] = useState(undefined);
   const [userHistory, setUserHistory] = useState([]);
-//   const [uiDate, setUiDate] = useState("Today");
+  const [uiDate, setUiDate] = useState(new Date().toDateString());
   const [queryDate, setQueryDate] = useState(convertDateToISO(new Date()));
   const [from, setFrom] = useState(new Date());
   const [to, setTo] = useState(new Date());
@@ -43,8 +43,8 @@ export default function Profile(props) {
   }, [queryDate]);
 
   function selectDay(dayObject) {
-//     const date = new Date(dayObject.date);
-//     setUiDate(date.toDateString());
+    const date = new Date(dayObject.date);
+    setUiDate(date.toDateString());
     setQueryDate(dayObject.day);
   }
 
@@ -86,9 +86,7 @@ export default function Profile(props) {
       <div className="header-wrapper">
         <Header />
       </div>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box
           className="calendar-wrapper"
           sx={{
@@ -117,23 +115,23 @@ export default function Profile(props) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "12px",
+                flexDirection: "column",
               }}
             >
-              <Box className="date-container">
-                <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  From
-                </p>
-                <DatePicker
-                  selected={from}
-                  onChange={(date) => setFrom(date)}
-                />
-              </Box>
-              <Box>
-                <p variant="subtitle2" sx={{ fontWeight: "600" }}>
-                  To
-                </p>
-                <DatePicker selected={to} onChange={(date) => setTo(date)} />
+              <p style={{ fontWeight: "bold", margin: "0px" }}>{uiDate}</p>
+              <Box sx={{ display: "flex", gap: "12px" }}>
+                <Box className="date-container">
+                  <p variant="subtitle2" sx={{ fontWeight: "600" }}>
+                    From:
+                  </p>
+                  <DatePicker selected={from} onChange={(date) => setFrom(date)} />
+                </Box>
+                <Box className="date-container">
+                  <p variant="subtitle2" sx={{ fontWeight: "600" }}>
+                    To:
+                  </p>
+                  <DatePicker selected={to} onChange={(date) => setTo(date)} />
+                </Box>
               </Box>
             </Box>
             <Box>
@@ -151,10 +149,7 @@ export default function Profile(props) {
         >
           <Box className="timeline-wrapper" sx={{ marginRight: "3%" }}>
             <Paper elevation={4} sx={{ minWidth: "30vw", maxWidth: "472px" }}>
-              <Typography
-                variant="h4"
-                sx={{ paddingLeft: "5%", paddingTop: "5%" }}
-              >
+              <Typography variant="h4" sx={{ paddingLeft: "20px", paddingTop: "20px" }}>
                 Timeline
               </Typography>
               <div className="timeline">
@@ -171,11 +166,8 @@ export default function Profile(props) {
                 maxHeight: "450px",
               }}
             >
-              <Typography
-                variant="h4"
-                sx={{ paddingLeft: "5%", paddingTop: "5%" }}
-              >
-                Nutriment overview
+              <Typography variant="h4" sx={{ paddingLeft: "20px", paddingTop: "20px" }}>
+                Nutriment Overview
               </Typography>
               <Box>{renderProgressCharts()}</Box>
             </Paper>
