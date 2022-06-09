@@ -24,7 +24,6 @@ export default function SignupForm(props) {
         passwordInput,
         passwordConfirmationInput
       );
-      console.log(response);
       response.error
         ? setAccountCreationSuccess(false)
         : setAccountCreationSuccess(true);
