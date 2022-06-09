@@ -24,8 +24,7 @@ You may have noticed this little icon in the searchbar
 ### Tab selector
 
 We have two types of searches, one for typing in a food and other for searching specific barcodes.
-![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/frontend-doc/readme-files/text-tab-selected.png?raw=true "text tab")
-![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/frontend-doc/readme-files/barcode-tab-selected.png?raw=true "barcode tab")
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/frontend-doc/readme-files/tab-selector-demo.gif "tab selector demo")
 
 You can switch freely between the two tabs as you like.
 
@@ -78,6 +77,24 @@ The timeline component shows an ordered timeline of all the things you ate on th
 The nutrition overview component gives you a pie chart of the three main macronutrients from the items you tracked on the selected day. Hovering over the different parts of the chart shows you the percentage of that particular macronutrient. It also has progress bars which tell you how close you got/are to your goal for the selected day.
 
 ![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/frontend-doc/readme-files/nutrient-overview-demo.gif "nutrient overview demo")
+
+## Settings page
+
+When you go to the settings page, you'll see something like this (if it's your first time going here then all the fields in info will be blank)
+
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/frontend-doc/readme-files/settings-page-info.png "settings page, info tab")
+
+### Info
+
+You can change what it's in this fields, click save changes and the info will be updated! Currently we don't use this information so feel free to leave everything blank although we do have some features planned in the future that may use some of this information.
+
+### Goals
+
+Navigate to the goals tab and you'll see this (even if it's your first time coming here).
+
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/frontend-doc/readme-files/settings-page-goals.png "settings page, goals tab")
+
+This tab functions the same as the info tab however unlike the user info we give you these goals by default when you sign up, although they are only supposed to be temporary so we strongly encourage you to change them to suit your own goals.
 
 ## technologies used
 
