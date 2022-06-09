@@ -44,9 +44,11 @@ export default function AddToTrackerButton(props) {
 
   async function handleTrackItem(servingSize) {
     try {
+      if (servingSize === "") throw new Error("no serving size");
       //eslint-disable-next-line
       const response = await props.trackItem(servingSize);
-      setShowSuccessSnackbar(true);
+      if (response.response) setShowSuccessSnackbar(true);
+      else throw new Error("couldn't track item");
     } catch (e) {
       setShowErrorSnackbar(true);
     }
