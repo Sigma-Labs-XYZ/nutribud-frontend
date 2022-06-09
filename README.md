@@ -2,6 +2,8 @@
 
 ## Contents
 
+- [Homepage](#Homepage)
+
 ## Homepage
 
 When you get to our homepage (https://nutribud-frontend.sigmalabs.co.uk/), this is what you'll see.
@@ -98,17 +100,15 @@ This tab functions the same as the info tab however unlike the user info we give
 
 ## technologies used
 
-- @date-io/moment v2.14.0
-- @nivo v0.79.1
-- @speechly/react-client v2.0.1
-- @speechly/speech-recognition-polyfill v1.1.0
-- dynamsoft-javascript-barcode v9.0.2
 - react v18.1.0
-- react-datepicker v4.8.0
 - react-router-dom v6.3.0
 - react-script v5.0.1
 - react-speech-recognition v3.9.1
+- dynamsoft-javascript-barcode v9.0.2
 - recharts v2.1.10
+- @nivo v0.79.1
+- @date-io/moment v2.14.0
+- react-datepicker v4.8.0
 
 ### css styling
 
