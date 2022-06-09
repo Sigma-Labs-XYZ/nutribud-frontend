@@ -105,6 +105,7 @@ export default function Profile(props) {
       </div>
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box
+          data-testid="calendar-wrapper"
           className="calendar-wrapper"
           sx={{
             display: "flex",
