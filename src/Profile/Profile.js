@@ -166,7 +166,7 @@ export default function Profile(props) {
             justifyContent: "center",
           }}
         >
-          <Box className="timeline-wrapper" sx={{ marginRight: "3%" }}>
+          <Box data-testid="timeline-paper" className="timeline-wrapper" sx={{ marginRight: "3%" }}>
             <Paper
               elevation={4}
               sx={{ minWidth: "30vw", maxWidth: "472px", marginBottom: "8vh", position: "relative" }}
@@ -176,11 +176,17 @@ export default function Profile(props) {
                 Timeline
               </Typography>
               <div className="timeline">
-                <Timeline position="alternate">{populateTimeline()} </Timeline>
+                <Timeline data-testid="timeline" position="alternate">
+                  {populateTimeline()}{" "}
+                </Timeline>
               </div>
             </Paper>
           </Box>
-          <Box className="nutriment-results-wrapper" sx={{ marginLeft: "3%", marginBottom: "8vh" }}>
+          <Box
+            data-testid="nutriment-overview-box"
+            className="nutriment-results-wrapper"
+            sx={{ marginLeft: "3%", marginBottom: "8vh" }}
+          >
             <Paper
               elevation={4}
               sx={{
