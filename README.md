@@ -98,21 +98,34 @@ This tab functions the same as the info tab however unlike the user info we give
 
 ## technologies used
 
-```
-npm install
-npm i react-router-dom
-npm install @mui/material @emotion/react @emotion/styled
-npm install @mui/icons-material
-yarn install
-yarn add dynamsoft-javascript-barcode
-yarn add @nivo/core @nivo/calendar @nivo/colors
-yarn add @mui/lab
-yarn add recharts
-yarn add @date-io/moment
-yarn add react-datepicker
-yarn add @speechly/speech-recognition-polyfill
-yarn add @speechly/react-client
-yarn add react-speech-recognition
-```
+- @date-io/moment v2.14.0
+- @nivo v0.79.1
+- @speechly/react-client v2.0.1
+- @speechly/speech-recognition-polyfill v1.1.0
+- dynamsoft-javascript-barcode v9.0.2
+- react v18.1.0
+- react-datepicker v4.8.0
+- react-router-dom v6.3.0
+- react-script v5.0.1
+- react-speech-recognition v3.9.1
+- recharts v2.1.10
 
-### description
+### css styling
+
+- @emotion/react v11.9.0
+- @emotion/styled v11.8.1
+- @mui/lab v5.0.0-alpha.84
+- @mui/material v5.8.1
+
+### testing libraries
+
+- @testing-library/jest-dom v5.16.4
+- @testing-library/react v13.3.0
+- @testing-library/user-event v13.5.0
+
+## Contributors
+
+- [Ibrahim Ahmed](https://github.com/Ibahmed1)
+- [Dan Michell](https://github.com/dan-michell)
+- [Elisaveta Zobeva](https://github.com/e-zob)
+- [Kainan Hassan](https://github.com/kainanh)
