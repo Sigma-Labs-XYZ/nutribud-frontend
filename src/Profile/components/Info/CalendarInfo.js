@@ -44,7 +44,7 @@ function CalendarInfo(props) {
               </li>
               <li>
                 By default, the calendar shows the previous <br />
-                month of activity. Use the date pickers to alter the <br />
+                4 months of activity. Use the date pickers to alter the <br />
                 date range displayed and click on any of the squares <br />
                 to view nutrition progress from that day.
               </li>

@@ -34,7 +34,7 @@ function NutrimentOverviewInfo(props) {
       >
         <Box sx={{ padding: "10px" }}>
           <Typography variant="h6" component="div" style={{ fontWeight: "bold" }} align="center">
-            Calendar Info
+            Nutriment Overview Info
           </Typography>
           <Typography variant="body1" component="div">
             <ul style={{ marginTop: "0" }}>
