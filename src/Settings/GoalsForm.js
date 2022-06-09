@@ -32,7 +32,15 @@ export default function GoalsForm(props) {
   const networking = new Networking();
 
   async function handleSubmitClick() {
-    const response = await networking.updateUserGoals(calories, protein, carbs, fats, sugar, salt, fiber);
+    const response = await networking.updateUserGoals(
+      calories,
+      protein,
+      carbs,
+      fats,
+      sugar,
+      salt,
+      fiber
+    );
     if (response.error) {
       setError(true);
     } else {
@@ -43,10 +51,18 @@ export default function GoalsForm(props) {
   function displayResponseMessage() {
     if (error) {
       setTimeout(() => setError(false), 5000);
-      return <Alert severity="error">Unable to save changes</Alert>;
+      return (
+        <Alert data-testid="goals-update-error" severity="error">
+          Unable to save changes
+        </Alert>
+      );
     } else if (success) {
       setTimeout(() => setSuccess(false), 5000);
-      return <Alert severity="success">Changes Saved!</Alert>;
+      return (
+        <Alert data-testid="goals-update-success" severity="success">
+          Changes Saved!
+        </Alert>
+      );
     }
   }
 
@@ -64,7 +80,7 @@ export default function GoalsForm(props) {
           height: 450,
         }}
       >
-        <div className="goals-form-wrapper">
+        <div className="goals-form-wrapper" data-testid="goals-form">
           <div className="calories-goal-wrapper">
             <TextField
               id="outlined-basic"
@@ -74,7 +90,9 @@ export default function GoalsForm(props) {
               sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setCalories(e.target.value)}
               InputProps={{
-                endAdornment: <InputAdornment position="end">kcal</InputAdornment>,
+                endAdornment: (
+                  <InputAdornment position="end">kcal</InputAdornment>
+                ),
               }}
               onKeyPress={handleEnterKey}
             />
@@ -144,7 +162,9 @@ export default function GoalsForm(props) {
               sx={{ m: 1, width: "30ch" }}
               onChange={(e) => setSalt(e.target.value)}
               InputProps={{
-                endAdornment: <InputAdornment position="end">mg</InputAdornment>,
+                endAdornment: (
+                  <InputAdornment position="end">mg</InputAdornment>
+                ),
               }}
               onKeyPress={handleEnterKey}
             />
