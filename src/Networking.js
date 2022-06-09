@@ -102,7 +102,7 @@ export default class Networking {
     });
 
     const data = await response.json();
-    return data.response.rows;
+    return data.response;
   }
 
   async newUserInformation(name, weight, height, age, gender) {
