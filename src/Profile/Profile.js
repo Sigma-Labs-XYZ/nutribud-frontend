@@ -179,7 +179,7 @@ export default function Profile(props) {
               </div>
             </Paper>
           </Box>
-          <Box className="nutriment-results-wrapper" sx={{ marginLeft: "3%" }}>
+          <Box className="nutriment-results-wrapper" sx={{ marginLeft: "3%", marginBottom: "8vh" }}>
             <Paper
               elevation={4}
               sx={{
