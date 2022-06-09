@@ -35,6 +35,10 @@ Here, you can search for a specific barcode of a product. You'll also notice we 
 
 ### tracking an item
 
+To track an item you have ate, you must be logged in so we know who you are! Tracking an item is really simple, just click the big plus sign on the right, type in how many grams of the item you had then click track item! We'll also give you a little message to let you know your item was tracked (or if something went wrong D:). If still not sure, here's a quick demo
+
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/track-item-demo.gif "tracking item demo")
+
 ## technologies used
 
 ```
