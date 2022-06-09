@@ -1,8 +1,15 @@
 # NutriBud Frontend
 
-## Overview
+## Contents
 
-## things to install on local system
+## Homepage
+
+When you get to our homepage ([nutribud-frontend.sigmalabs.co.uk/])
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+### searching
+
+## technologies used
 
 ```
 npm install
