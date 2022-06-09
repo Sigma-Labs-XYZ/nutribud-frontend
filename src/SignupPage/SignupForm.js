@@ -6,7 +6,8 @@ import Networking from "../Networking";
 export default function SignupForm(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [passwordConfirmationInput, setPasswordConfirmationInput] = useState("");
+  const [passwordConfirmationInput, setPasswordConfirmationInput] =
+    useState("");
   const [accountCreationAttempts, setAccountCreationAttempts] = useState(0);
   const [accountCreationSuccess, setAccountCreationSuccess] = useState(false);
 
@@ -17,9 +18,17 @@ export default function SignupForm(props) {
   const networking = new Networking();
 
   async function handleSubmit(e) {
-    if (passwordInput === passwordConfirmationInput) {
-      const response = await networking.createAccount(usernameInput, passwordInput, passwordConfirmationInput);
-      response.error ? setAccountCreationSuccess(false) : setAccountCreationSuccess(true);
+    if (passwordInput === passwordConfirmationInput && passwordInput !== "") {
+      const response = await networking.createAccount(
+        usernameInput,
+        passwordInput,
+        passwordConfirmationInput
+      );
+      response.error
+        ? setAccountCreationSuccess(false)
+        : setAccountCreationSuccess(true);
+      setAccountCreationAttempts(accountCreationAttempts + 1);
+    } else {
       setAccountCreationAttempts(accountCreationAttempts + 1);
     }
   }
@@ -27,10 +36,18 @@ export default function SignupForm(props) {
   function displayResponseMessage() {
     if (accountCreationAttempts > 0) {
       if (!accountCreationSuccess) {
-        return <Alert severity="error">Account could not be created</Alert>;
+        return (
+          <div data-testid="signup-error">
+            <Alert severity="error">Account could not be created</Alert>
+          </div>
+        );
       } else {
         setTimeout(() => navigate("/login"), 1000);
-        return <Alert severity="success">Account created</Alert>;
+        return (
+          <Alert data-testid="signup-success" severity="success">
+            Account created
+          </Alert>
+        );
       }
     }
   }
@@ -47,12 +64,18 @@ export default function SignupForm(props) {
           padding: 4,
         }}
       >
-        <Typography variant="h4" className="title" textAlign="center" margin={2}>
+        <Typography
+          variant="h4"
+          className="title"
+          textAlign="center"
+          margin={2}
+        >
           Create an account!
         </Typography>
-        <form className="signup-form">
+        <form className="signup-form" data-testid="signup-form">
           <div className="username-wrapper">
             <TextField
+              inputProps={{ "data-testid": "username-input" }}
               required
               id="outlined-required"
               label="Username"
@@ -65,6 +88,7 @@ export default function SignupForm(props) {
           <div className="password-wrapper">
             <div className="password-box">
               <TextField
+                inputProps={{ "data-testid": "password-input" }}
                 required
                 id="outlined-required"
                 label="Password"
@@ -78,6 +102,7 @@ export default function SignupForm(props) {
             <div className="password-box">
               <TextField
                 required
+                inputProps={{ "data-testid": "confirm-password-input" }}
                 id="outlined-required"
                 label="Confirm password"
                 type="password"
@@ -91,17 +116,27 @@ export default function SignupForm(props) {
             </div>
           </div>
           <div className="submit-btn">
-            <Button variant="contained" margin={2} onClick={(e) => handleSubmit(e)}>
+            <Button
+              variant="contained"
+              margin={2}
+              onClick={(e) => handleSubmit(e)}
+            >
               Create account
             </Button>
           </div>
         </form>
       </Paper>
-      <div className="account-creation-success-error-message">{displayResponseMessage()}</div>
+      <div
+        // data-testid="signup-error"
+        className="account-creation-success-error-message"
+      >
+        {displayResponseMessage()}
+      </div>
 
       <div className="login-link">
         <p>
-          Already have an account? Login <a href="https://nutribud-frontend.sigmalabs.co.uk/login"> here</a>!
+          Already have an account? Login{" "}
+          <a href="https://nutribud-frontend.sigmalabs.co.uk/login"> here</a>!
         </p>
       </div>
     </div>
