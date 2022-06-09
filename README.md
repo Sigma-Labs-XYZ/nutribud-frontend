@@ -3,7 +3,7 @@
 ## Contents
 
 - [Homepage](#Homepage)
-  ⋅⋅\* [searching](#searching)
+  - [searching](#searching)
 
 ## Homepage
 
