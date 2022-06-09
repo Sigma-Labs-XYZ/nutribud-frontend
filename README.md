@@ -24,12 +24,16 @@ You may have noticed this little icon in the searchbar
 ### Tab selector
 
 We have two types of searches, one for typing in a food and other for searching specific barcodes.
-![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/text-tab-selected.png?raw=true "text tab").
-![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/barcode-tab-selected.png?raw=true "barcode tab").
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/text-tab-selected.png?raw=true "text tab")
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/barcode-tab-selected.png?raw=true "barcode tab")
 
 You can switch freely between the two tabs as you like.
 
 ### barcode search
+
+Here, you can search for a specific barcode of a product. You'll also notice we no longer have the mic button, we now have this ![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/barcode-scanner-button.jpeg "barcode scanner button") button instead. When clicked this will open a barcode scanner, just simply hold up your barcode to the camera and once scanned the site will do the rest of the work for you.
+
+### tracking an item
 
 ## technologies used
 
