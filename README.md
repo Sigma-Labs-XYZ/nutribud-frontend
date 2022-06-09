@@ -1,6 +1,6 @@
 # NutriBud Frontend
 
-## Contents
+## Table of contents
 
 - [Homepage](#Homepage)
   - [searching](#searching)
@@ -32,13 +32,13 @@ When you get to our homepage (https://nutribud-frontend.sigmalabs.co.uk/), this 
 
 Here you see the header for the first time which you'll have access to on every page of our website we'll have a close look at this later on. In addition to the header we have a tab selector to choose whether you want to search for something you've eaten, or search for a specific barcode.
 
-### searching
+### Searching
 
 ![Image not found](readme-files/text-searchbar.png?raw=true "Text Searchbar")
 
 When on the product name tab, you can search for vague foods, specific foods, meals or even just write a sentence such "For breakfast I had some toast" and we'll bring you a list of all items in our database to do with toast (This part is made possible with the fancy natural language processing technique).
 
-### speech to text
+### Speech to text
 
 You may have noticed this little icon in the searchbar
 ![Image not found](readme-files/nomic-icon.jpeg "mic not in use icon"). This is a speech to text feature. If you press and hold on this icon, the line through it will disappear (the icon will look like this ![Image not found](readme-files/mic-icon.jpeg "mic in-use icon") when the mic is listening for you.) meaning you can now say what you had to eat. When you've finished saying what you had to eat, just simply let go and the website will bring a list of items relating to what you just said (just a note, text to speech also supports the ability to say a generic sentence such as "I had eggs for lunch".)
@@ -50,11 +50,11 @@ We have two types of searches, one for typing in a food and other for searching 
 
 You can switch freely between the two tabs as you like.
 
-### barcode search
+### Barcode search
 
 Here, you can search for a specific barcode of a product. You'll also notice we no longer have the mic button, we now have this ![Image not found](readme-files/barcode-scanner-button.jpeg "barcode scanner button") button instead. When clicked this will open a barcode scanner, just simply hold up your barcode to the camera and once scanned the site will do the rest of the work for you.
 
-### tracking an item
+### Tracking an item
 
 To track an item you have ate, you must be logged in so we know who you are! (see more about login and sign up [here](#login-and-sign-up)) Tracking an item is really simple, just click the big plus sign on the right, type in how many grams of the item you had then click track item! We'll also give you a little message to let you know your item was tracked (or if something went wrong D:). If still not sure, here's a quick demo
 
@@ -94,7 +94,7 @@ The timeline component shows an ordered timeline of all the things you ate on th
 
 ![Image not found](readme-files/timeline-demo.gif "timeline demo")
 
-### Nutrition Overview
+### Nutrition overview
 
 The nutrition overview component gives you a pie chart of the three main macronutrients from the items you tracked on the selected day. Hovering over the different parts of the chart shows you the percentage of that particular macronutrient. It also has progress bars which tell you how close you got/are to your goal for the selected day.
 
@@ -118,11 +118,11 @@ Navigate to the goals tab and you'll see this (even if it's your first time comi
 
 This tab functions the same as the info tab however unlike the user info we give you these goals by default when you sign up, although they are only supposed to be temporary so we strongly encourage you to change them to suit your own goals.
 
-## login and sign-up
+## Login and sign-up
 
 for the main features of the site you'll have to create an account and be logged in. Luckily enough we make it easy to do this!
 
-### creating an account
+### Creating an account
 
 When creating an account you'll have to make sure you enter a username, and a password that's long enough (as well as confirming that password just to make sure you know what you typed!). otherwise you'll get an error message and see something like this
 
@@ -134,7 +134,7 @@ If you successfully create an account you'll see a little success message and be
 
 ![Image not found](readme-files/create-acc-success.gif "creating an account success")
 
-### logging in
+### Logging in
 
 When on the login page type in the username and password you used to create your account and if you typed everything in correctly you'll be logged in and taken to the homepage.
 
@@ -146,7 +146,7 @@ If you find yourself on the create account page when you already have an account
 
 ![Image not found](readme-files/click-login-redirect.gif "login redirect")
 
-## technologies used
+## Technologies used
 
 - react v18.1.0
 - react-router-dom v6.3.0
@@ -158,14 +158,14 @@ If you find yourself on the create account page when you already have an account
 - @date-io/moment v2.14.0
 - react-datepicker v4.8.0
 
-### css styling
+### CSS Styling
 
 - @emotion/react v11.9.0
 - @emotion/styled v11.8.1
 - @mui/lab v5.0.0-alpha.84
 - @mui/material v5.8.1
 
-### testing libraries
+### Testing libraries
 
 - @testing-library/jest-dom v5.16.4
 - @testing-library/react v13.3.0
