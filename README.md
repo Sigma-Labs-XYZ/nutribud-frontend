@@ -4,6 +4,22 @@
 
 - [Homepage](#Homepage)
   - [searching](#searching)
+  - [speech to text](#speech-to-text)
+  - [tab selector](#tab-selector)
+  - [barcode search](#barcode-search)
+  - [tracking an item](#tracking-an-item)
+- [Header](#header)
+- [Profile page](#profile-page)
+  - [calendar](#calendar)
+  - [timeline](#timeline)
+  - [nutrition overivew](#nutrition-overview)
+- [settings page](#settings-page)
+  - [info](#info)
+  - [goals](#goals)
+- [technology used](#technologies-used)
+  - [css styling](#css-styling)
+  - [testing libraries](#testing-libraries)
+- [contributors](#contributors)
 
 ## Homepage
 
