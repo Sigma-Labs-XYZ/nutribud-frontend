@@ -5,7 +5,8 @@
 ## Homepage
 
 When you get to our homepage (https://nutribud-frontend.sigmalabs.co.uk/), this is what you'll see.
-![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/tree/readme-edits/readme-files/homepage.png "Homepage")
+
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/homepage.png?raw=true "Homepage")
 
 ### searching
 
