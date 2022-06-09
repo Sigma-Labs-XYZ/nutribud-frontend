@@ -16,7 +16,8 @@ Here you see the header for the first time which you'll have access to on every 
 
 When on the product name tab, you can search for vague foods, specific foods, meals or even just write a sentence such "For breakfast I had some toast" and we'll bring you a list of all items in our database to do with toast (This part is made possible with the fancy natural language processing technique).
 
-You may have noticed this little icon in the searchbar ![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/nomic-icon.png "mic not in use icon")
+You may have noticed this little icon in the searchbar
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/blob/readme-edits/readme-files/nomic-icon.png "mic not in use icon")
 
 ## technologies used
 
