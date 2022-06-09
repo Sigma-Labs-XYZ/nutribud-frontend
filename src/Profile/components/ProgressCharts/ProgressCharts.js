@@ -26,14 +26,7 @@ export default function ProgressCharts(props) {
     const macros = ["calories", "carbs", "fats", "protein"];
     if (goals) {
       return macros.map((macro) => {
-        return (
-          <ProgressBar
-            key={macro}
-            macro={macro}
-            amount={nutrimentsAmount[macro]}
-            goal={goals[macro]}
-          />
-        );
+        return <ProgressBar key={macro} macro={macro} amount={nutrimentsAmount[macro]} goal={goals[macro]} />;
       });
     }
   }

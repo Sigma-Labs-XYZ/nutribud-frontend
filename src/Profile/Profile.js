@@ -39,7 +39,7 @@ export default function Profile(props) {
 
   useEffect(() => {
     const startDate = new Date();
-    setFrom(startDate.setMonth(startDate.getMonth() - 1));
+    setFrom(startDate.setMonth(startDate.getMonth() - 4));
     async function getUserGoals() {
       const response = await networking.getUserGoals();
       setUserGoals(response);
