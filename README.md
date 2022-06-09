@@ -4,8 +4,8 @@
 
 ## Homepage
 
-When you get to our homepage (https://nutribud-frontend.sigmalabs.co.uk/)
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+When you get to our homepage (https://nutribud-frontend.sigmalabs.co.uk/), this is what you'll see.
+![alt text](https://github.com/Sigma-Labs-XYZ/nutribud-frontend/tree/readme-edits/readme-files/homepage.png "Homepage")
 
 ### searching
 
