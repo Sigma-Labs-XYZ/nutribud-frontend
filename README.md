@@ -4,7 +4,7 @@
 
 ## Homepage
 
-When you get to our homepage (<https//www.nutribud-frontend.sigmalabs.co.uk/>)
+When you get to our homepage (www.nutribud-frontend.sigmalabs.co.uk/)
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ### searching
