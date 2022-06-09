@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Networking from "../Networking.js";
-import { Paper, TextField, FormLabel, FormControlLabel, RadioGroup, Radio, InputAdornment, Button, Alert } from "@mui/material";
+import {
+  Paper,
+  TextField,
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  InputAdornment,
+  Button,
+  Alert,
+} from "@mui/material";
 
 export default function InfoForm(props) {
   const [name, setName] = useState("");
@@ -31,14 +41,26 @@ export default function InfoForm(props) {
     const userInfoResponse = await networking.getUserInformation();
 
     if (userInfoResponse.length === 0) {
-      const response = await networking.newUserInformation(name, weight, height, age, gender);
+      const response = await networking.newUserInformation(
+        name,
+        weight,
+        height,
+        age,
+        gender
+      );
       if (response.error) {
         setError(true);
       } else {
         setSuccess(true);
       }
     } else {
-      const response = await networking.updateUserInformation(name, weight, height, age, gender);
+      const response = await networking.updateUserInformation(
+        name,
+        weight,
+        height,
+        age,
+        gender
+      );
       if (response.error) {
         setError(true);
       } else {
@@ -50,10 +72,18 @@ export default function InfoForm(props) {
   function displayResponseMessage() {
     if (error) {
       setTimeout(() => setError(false), 5000);
-      return <Alert severity="error">Unable to save changes - all information required</Alert>;
+      return (
+        <Alert data-testid="information-save-error" severity="error">
+          Unable to save changes - all information required
+        </Alert>
+      );
     } else if (success) {
       setTimeout(() => setSuccess(false), 5000);
-      return <Alert severity="success">Changes Saved!</Alert>;
+      return (
+        <Alert data-testid="information-save-success" severity="success">
+          Changes Saved!
+        </Alert>
+      );
     }
   }
 
@@ -65,6 +95,7 @@ export default function InfoForm(props) {
     <div className="settings-page-wrapper">
       <div className="settings-form-wrapper">
         <Paper
+          data-testid="information-form"
           elevation={3}
           style={{
             padding: 8,
@@ -95,7 +126,9 @@ export default function InfoForm(props) {
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setWeight(e.target.value)}
               InputProps={{
-                endAdornment: <InputAdornment position="end">kg</InputAdornment>,
+                endAdornment: (
+                  <InputAdornment position="end">kg</InputAdornment>
+                ),
               }}
               onKeyPress={handleEnterKey}
             />
@@ -109,16 +142,28 @@ export default function InfoForm(props) {
               sx={{ m: 1, width: "60ch" }}
               onChange={(e) => setHeight(e.target.value)}
               InputProps={{
-                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                endAdornment: (
+                  <InputAdornment position="end">cm</InputAdornment>
+                ),
               }}
               onKeyPress={handleEnterKey}
             />
           </div>
           <div className="age-settings-wrapper">
-            <TextField id="outlined-basic" label="Age" variant="outlined" value={age} sx={{ m: 1, width: "60ch" }} onChange={(e) => setAge(e.target.value)} />
+            <TextField
+              id="outlined-basic"
+              label="Age"
+              variant="outlined"
+              value={age}
+              sx={{ m: 1, width: "60ch" }}
+              onChange={(e) => setAge(e.target.value)}
+            />
           </div>
           <div className="gender-settings-wrapper">
-            <FormLabel id="demo-controlled-radio-buttons-group" sx={{ marginLeft: 1 }}>
+            <FormLabel
+              id="demo-controlled-radio-buttons-group"
+              sx={{ marginLeft: 1 }}
+            >
               Gender
             </FormLabel>
             <RadioGroup
@@ -131,7 +176,11 @@ export default function InfoForm(props) {
               onKeyPress={handleEnterKey}
             >
               <FormControlLabel value="Male" control={<Radio />} label="Male" />
-              <FormControlLabel value="Female" control={<Radio />} label="Female" />
+              <FormControlLabel
+                value="Female"
+                control={<Radio />}
+                label="Female"
+              />
             </RadioGroup>
           </div>
           <div className="submit-btn">
