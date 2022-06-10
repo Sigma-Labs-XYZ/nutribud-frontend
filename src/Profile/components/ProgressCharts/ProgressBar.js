@@ -9,7 +9,7 @@ export default function ProgressBar(props) {
 
   useEffect(() => {
     let progress = (props.amount / props.goal) * 100;
-    if (progress > 110) setColor("error");
+    progress > 110 ? setColor("error") : setColor("primary");
     if (progress > 100) progress = 100;
     setProgress(progress); // eslint-disable-next-line
   }, [props.amount]);

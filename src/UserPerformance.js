@@ -25,7 +25,6 @@ export default class UserPerformance {
     }
     if (userHistory.length !== 0) {
       userHistory.forEach((item) => {
-        console.log(item);
         for (const nutriment of nutriments) {
           let itemNutrimentValue = 0;
           if (item.item_info[nutriment]) {
