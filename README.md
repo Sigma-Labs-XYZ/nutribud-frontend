@@ -10,7 +10,7 @@
   - [tracking an item](#tracking-an-item)
 - [Header](#header)
 - [Profile page](#profile-page)
-  - [calendar](#calendar)
+  - [Calendar](#calendar)
   - [timeline](#timeline)
   - [nutrition overivew](#nutrition-overview)
 - [settings page](#settings-page)
