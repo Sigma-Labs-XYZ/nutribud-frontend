@@ -4,7 +4,7 @@ import Profile from "./Profile";
 import "@testing-library/jest-dom/extend-expect";
 import { BrowserRouter as Router } from "react-router-dom";
 
-describe("Profile page", () => {
+describe("Calendar component", () => {
   const profile = (
     <Router>
       <Profile />
