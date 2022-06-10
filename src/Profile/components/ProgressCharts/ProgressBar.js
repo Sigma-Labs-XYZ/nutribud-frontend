@@ -12,20 +12,19 @@ export default function ProgressBar(props) {
     if (progress > 110) setColor("error");
     if (progress > 100) progress = 100;
     setProgress(progress); // eslint-disable-next-line
-  }, []);
+  }, [props.amount]);
 
   if (!progress) return <CircularProgress />;
 
   return (
     <Box sx={{ display: "flex", alignItems: "start", flexDirection: "column" }}>
       <Box sx={{ minWidth: 100 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.amount
-        )}/${Math.round(props.goal)} ${props.macro}`}</Typography>
+        <Typography variant="body2" color="text.secondary">{`${Math.round(props.amount)}/${Math.round(props.goal)} ${
+          props.macro
+        }`}</Typography>
       </Box>
       <Box sx={{ width: "150px" }}>
         <LinearProgress variant="determinate" value={progress} color={color} />
-        {console.log(color)}
       </Box>
     </Box>
   );
