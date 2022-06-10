@@ -1,19 +1,19 @@
 {
   "short_name": "Nutribud",
-  "name": "Nutribud - nutrition tracking app",
+  "name": "Nutribud - Nutrition tracking app",
   "icons": [
     {
-      "src": "Daniel Michell.jpg",
+      "src": "logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

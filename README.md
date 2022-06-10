@@ -171,6 +171,15 @@ If you find yourself on the create account page when you already have an account
 - @testing-library/react v13.3.0
 - @testing-library/user-event v13.5.0
 
+## Future Endeavors
+
+Due to the two week time restriction on the project there were some features that had to be dropped in order to achieve our minimum viable product. These were as follows:
+
+- Custom nutrition recommendations based on the user's body measurements. Currently we only have the option to store and update these.
+- Display progress towards micro-nutrients and offer the ability to pick and choose what nutrients you want to track.
+- Display optional information popups offering advice on how to maintain a healthy lifestyle.
+- Add a fitness tracking page.
+
 ## Contributors
 
 - [Ibrahim Ahmed](https://github.com/Ibahmed1)
