@@ -280,7 +280,7 @@ export default function Header() {
                 onClick={handleOpenNavMenu}
                 color="inherit"
               >
-                <MenuIcon />
+                <MenuIcon sx={{ color: "white" }} />
               </IconButton>
               <Menu
                 id="menu-appbar"
