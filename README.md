@@ -47,6 +47,7 @@ You may have noticed this little icon in the searchbar
 
 We have two types of searches, one for typing in a food and the other for searching specific barcodes.
 ![Image not found](readme-files/tab-selector-demo.gif "tab selector demo")
+
 (_Note: Product name tab has been changed to text._)
 
 You can switch freely between the two tabs as you like.
