@@ -2,7 +2,7 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import IconButton from "@mui/material/IconButton";
 import MicIcon from "@mui/icons-material/Mic";
 import MicOffIcon from "@mui/icons-material/MicOff";
-import { Alert } from "@mui/material";
+import { Alert, Tooltip } from "@mui/material";
 
 export default function SpeechDetection(props) {
   const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -20,8 +20,17 @@ export default function SpeechDetection(props) {
     await SpeechRecognition.startListening({ continuous: true });
   }
   return (
-    <IconButton aria-label="mic" color="primary" onMouseDown={handleMicOn} onTouchStart={handleMicOn} onMouseUp={handleMicOff} onTouchEnd={handleMicOff}>
-      {listening ? <MicIcon /> : <MicOffIcon />}
-    </IconButton>
+    <Tooltip title="Press and hold icon">
+      <IconButton
+        aria-label="mic"
+        color="primary"
+        onMouseDown={handleMicOn}
+        onTouchStart={handleMicOn}
+        onMouseUp={handleMicOff}
+        onTouchEnd={handleMicOff}
+      >
+        {listening ? <MicIcon /> : <MicOffIcon />}
+      </IconButton>
+    </Tooltip>
   );
 }
