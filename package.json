@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.8.0",
     "@mui/lab": "^5.0.0-alpha.84",
     "@mui/material": "^5.8.1",
+    "@mui/x-date-pickers": "^5.0.0-alpha.6",
     "@nivo/calendar": "^0.79.1",
     "@nivo/colors": "^0.79.1",
     "@nivo/core": "^0.79.0",

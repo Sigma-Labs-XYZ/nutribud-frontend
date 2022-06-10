@@ -8,9 +8,9 @@ export default function MealResultCard(props) {
 
   const networking = new Networking();
 
-  async function trackItem(servingSize) {
+  async function trackItem(servingSize, date, time) {
     if (props.auth) {
-      const response = await networking.trackItem(props.data, servingSize);
+      const response = await networking.trackItem(props.data, servingSize, date, time);
       return response;
     }
   }

@@ -132,9 +132,9 @@ export default class Networking {
     return data.response;
   }
 
-  async trackItem(data, amount) {
+  async trackItem(data, amount, date, time) {
     const trackedItem = { itemInfo: data, amount: amount };
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tracking?date=${date}&time=${time}`, {
       method: "POST",
       credentials: "include",
       headers: {

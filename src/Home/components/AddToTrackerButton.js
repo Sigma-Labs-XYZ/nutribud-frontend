@@ -10,16 +10,26 @@ import {
   Popover,
   Snackbar,
   Alert,
+  TextField,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Networking from "../../Networking";
 import UserPerformance from "../../UserPerformance";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 export default function AddToTrackerButton(props) {
   const [inputText, setInputText] = useState("");
+  const [date, setDate] = useState(new Date().toLocaleDateString().split("/").reverse().join("-"));
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [anchorEl, setAnchorEl] = useState(null);
   const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false);
   const [showErrorSnackbar, setShowErrorSnackbar] = useState(false);
+
+  function handleDateChange(e) {
+    setDate(e.toLocaleDateString().split("/").reverse().join("-"));
+    setTime(e.toLocaleTimeString());
+  }
 
   const performance = new UserPerformance();
 
@@ -42,11 +52,11 @@ export default function AddToTrackerButton(props) {
 
   const networking = new Networking();
 
-  async function handleTrackItem(servingSize) {
+  async function handleTrackItem(servingSize, date, time) {
     try {
       if (servingSize === "") throw new Error("no serving size");
       //eslint-disable-next-line
-      const response = await props.trackItem(servingSize);
+      const response = await props.trackItem(servingSize, date, time);
       if (response.response) setShowSuccessSnackbar(true);
       else throw new Error("couldn't track item");
     } catch (e) {
@@ -93,7 +103,7 @@ export default function AddToTrackerButton(props) {
             alignItems: "center",
             flexDirection: "column",
             width: "250px",
-            height: "150px",
+            height: "200px",
           }}
         >
           <Box sx={{ alignItems: "center" }}>
@@ -112,8 +122,18 @@ export default function AddToTrackerButton(props) {
                 }}
               />
             </Box>
+            <Box>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DateTimePicker
+                  label="When did you have this?"
+                  value={date}
+                  onChange={(e) => handleDateChange(e)}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </Box>
             <Box sx={{ margin: "2%" }}>
-              <Button onClick={(e) => handleTrackItem(inputText)}>Track Item</Button>
+              <Button onClick={(e) => handleTrackItem(inputText, date, time)}>Track Item</Button>
             </Box>
           </Box>
         </Paper>
