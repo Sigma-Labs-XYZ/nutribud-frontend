@@ -9,7 +9,7 @@
   - [Barcode Search](#barcode-search)
   - [Tracking an Item](#tracking-an-item)
 - [Header](#header)
-- [Profile page](#profile-page)
+- [Dashboard](#dashboard)
   - [Calendar](#calendar)
   - [Timeline](#timeline)
   - [Nutrition Overivew](#nutrition-overview)
@@ -45,8 +45,9 @@ You may have noticed this little icon in the searchbar
 
 ### Tab selector
 
-We have two types of searches, one for typing in a food and other for searching specific barcodes.
+We have two types of searches, one for typing in a food and the other for searching specific barcodes.
 ![Image not found](readme-files/tab-selector-demo.gif "tab selector demo")
+(_Note: Product name tab has been changed to text._)
 
 You can switch freely between the two tabs as you like.
 
@@ -70,15 +71,15 @@ you can click on the little icon in the top right and a drop down menu will appe
 
 ![Image not found](readme-files/header-drop-down.png?raw=true "header drop down image")
 
-If you're not logged in, the Profile button will not appear on the header and the settings button will not appear on the drop down and the logout will be replaced with a login button which redirects you to the login page (see more about login and sign up [here](#login-and-sign-up)).
+If you're not logged in, the Dashboard button will not appear on the header and the settings button will not appear on the drop down and the logout will be replaced with a login button which redirects you to the login page (see more about login and sign up [here](#login-and-sign-up)).
 
-If you _are_ logged in, clicking the profile button will take you to your profile page (where you'll see an overview of your tracking history) and clicking the settings button in the drop down menu will take you to your settings page where you can edit information about yourself and also edit your nutrition goals.
+If you _are_ logged in, clicking the dashboard button will take you to your dashboard (where you'll see an overview of your tracking history) and clicking the settings button in the drop down menu will take you to your settings page where you can edit information about yourself and also edit your nutrition goals.
 
-## Profile page
+## Dashboard
 
-After clicking the profile button on the header, you will be taken to this page
+After clicking the dashboard button on the header, you will be taken to this page
 
-![Image not found](readme-files/profile-page.png?raw=true "profile page picture")
+![Image not found](readme-files/profile-page.png?raw=true "dashboard picture")
 
 You'll notice this ![Image not found](readme-files/info-icon.jpeg "info icon") icon in the top right of each component. Hovering over the icon will give you a run down of what that component means/does.
 
