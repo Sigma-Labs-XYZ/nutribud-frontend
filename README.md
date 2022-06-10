@@ -178,6 +178,7 @@ Due to the two week time restriction on the project there were some features tha
 - Custom nutrition recommendations based on the user's body measurements. Currently we only have the option to store and update these.
 - Display progress towards micro-nutrients and offer the ability to pick and choose what nutrients you want to track.
 - Display optional information popups offering advice on how to maintain a healthy lifestyle.
+- If an item does not exist give the user an option to add this to open food facts database. 
 - Add a fitness tracking page.
 
 ## Contributors
