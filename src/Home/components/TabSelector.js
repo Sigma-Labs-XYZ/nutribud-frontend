@@ -4,9 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-const StyledTabs = styled((props) => (
-  <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
-))({
+const StyledTabs = styled((props) => <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />)({
   "& .MuiTabs-indicator": {
     display: "flex",
     justifyContent: "center",
@@ -45,9 +43,9 @@ export default function TabSelector(props) {
   return (
     <Box sx={{ width: "100%", marginBottom: "30px" }}>
       <Box>
-        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example">
+        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example" data-testid="tab-selector">
           <StyledTab id="Product name" label="Product name" />
-          <StyledTab label="Barcode" />
+          <StyledTab data-testid="barcode-button" label="Barcode" />
         </StyledTabs>
       </Box>
     </Box>

@@ -26,6 +26,7 @@ export default function MealResultCard(props) {
         display: "flex",
         justifyContent: "space-evenly",
       }}
+      data-testid="meal-card"
     >
       <Box
         sx={{

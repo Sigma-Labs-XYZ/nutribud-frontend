@@ -30,11 +30,7 @@ export default function ScannerButton(props) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Scan a barcode</DialogTitle>
         <DialogContent>
-          <VideoDecode
-            setBarcodeInput={props.setBarcodeInput}
-            handleClose={handleClose}
-          />
-          ;
+          <VideoDecode setBarcodeInput={props.setBarcodeInput} handleClose={handleClose} />;
           <Box
             noValidate
             component="form"

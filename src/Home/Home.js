@@ -95,7 +95,7 @@ export default function Home(props) {
 
   function showAlert() {
     return (
-      <Alert severity="info" className="alert">
+      <Alert data-testid="alert" severity="info" className="alert">
         No products found.
       </Alert>
     );
@@ -129,10 +129,12 @@ export default function Home(props) {
               if (e.key === "Enter") handleSearch();
             }}
             value={textInput}
+            data-testid="search-field"
+            inputProps={{ "data-testid": "search-input" }}
           ></TextField>
           <div className="search-icons">
             <Tooltip title="Search">
-              <IconButton aria-label="Search..." color="primary" onClick={() => handleSearch()}>
+              <IconButton data-testid="search-button" aria-label="Search..." color="primary" onClick={() => handleSearch()}>
                 <SearchIcon />
               </IconButton>
             </Tooltip>
