@@ -25,7 +25,7 @@ export default function Calendar(props) {
   }
 
   return (
-    <div style={{ height: "98%", minWidth: "100%" }}>
+    <div data-testid="calendar" style={{ height: "98%", minWidth: "100%" }}>
       <TimeRange
         width="600"
         height="200"
