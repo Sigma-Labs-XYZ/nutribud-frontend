@@ -173,6 +173,8 @@ If you find yourself on the create account page when you already have an account
 - @testing-library/react v13.3.0
 - @testing-library/user-event v13.5.0
 
+Use ```yarn install``` to automatically install all project dependancies. Use ```yarn start``` to run the project locally on localhost.
+
 ## Future Endeavors
 
 Due to the two week time restriction on the project there were some features that had to be dropped in order to achieve our minimum viable product. These were as follows:
