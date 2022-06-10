@@ -34,7 +34,7 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/about" element={<About />} />
       </Routes>

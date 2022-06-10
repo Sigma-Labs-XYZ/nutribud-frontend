@@ -60,7 +60,7 @@ export default function Header() {
 
   function handleProfileClick() {
     //navigate to users dashboard/profile
-    navigate("/profile", 500);
+    navigate("/dashboard", 500);
   }
 
   function handleAboutClick() {
@@ -109,13 +109,13 @@ export default function Header() {
             <Typography textAlign="center">Search</Typography>
           </MenuItem>
           <MenuItem
-            key="profile"
+            key="dashboard"
             onClick={(e) => {
               handleCloseNavMenu();
               handleProfileClick();
             }}
           >
-            <Typography textAlign="center">Profile</Typography>
+            <Typography textAlign="center">Dashboard</Typography>
           </MenuItem>
         </div>
       );
@@ -150,7 +150,7 @@ export default function Header() {
       return (
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           <Button
-            key="profile"
+            key="about"
             onClick={(e) => {
               handleCloseNavMenu();
               handleAboutClick();
@@ -170,14 +170,14 @@ export default function Header() {
             Search
           </Button>
           <Button
-            key="profile"
+            key="dashboard"
             onClick={(e) => {
               handleCloseNavMenu();
               handleProfileClick();
             }}
             sx={{ my: 2, color: "white", display: "block" }}
           >
-            Profile
+            Dashboard
           </Button>
         </Box>
       );
@@ -185,7 +185,7 @@ export default function Header() {
       return (
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           <Button
-            key="profile"
+            key="about"
             onClick={(e) => {
               handleCloseNavMenu();
               handleAboutClick();

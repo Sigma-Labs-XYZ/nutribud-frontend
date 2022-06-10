@@ -12,7 +12,7 @@ import MealResultCard from "./components/MealResultCard";
 import SpeechDetection from "./components/SpeechDetection";
 
 export default function Home(props) {
-  const [tab, setTab] = useState("Product name");
+  const [tab, setTab] = useState("Text");
   const [auth, setAuth] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [altInput, setAltInput] = useState("");
@@ -83,7 +83,8 @@ export default function Home(props) {
   }
 
   function showBarcodeResults() {
-    if (searchResults.length > 0 && !searchResults[0].error) return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
+    if (searchResults.length > 0 && !searchResults[0].error)
+      return <BarcodeResultCard data={searchResults[0]} auth={auth} />;
     else return showAlert();
   }
 
@@ -134,7 +135,12 @@ export default function Home(props) {
           ></TextField>
           <div className="search-icons">
             <Tooltip title="Search">
-              <IconButton data-testid="search-button" aria-label="Search..." color="primary" onClick={() => handleSearch()}>
+              <IconButton
+                data-testid="search-button"
+                aria-label="Search..."
+                color="primary"
+                onClick={() => handleSearch()}
+              >
                 <SearchIcon />
               </IconButton>
             </Tooltip>
